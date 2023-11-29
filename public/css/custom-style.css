@@ -1,0 +1,698 @@
+@font-face {
+    font-family: Vazir;
+    src: url('../fonts/Vazir.eot');
+    src: url('../fonts/Vazir.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Vazir.woff2') format('woff2'),
+    url('../fonts/Vazir.woff') format('woff'),
+    url('../fonts/Vazir.ttf') format('truetype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Vazir;
+    src: url('../fonts/Vazir-Bold.eot');
+    src: url('../fonts/Vazir-Bold.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Vazir-Bold.woff2') format('woff2'),
+    url('../fonts/Vazir-Bold.woff') format('woff'),
+    url('../fonts/Vazir-Bold.ttf') format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: Vazir;
+    src: url('../fonts/Vazir-Light.eot');
+    src: url('../fonts/Vazir-Light.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Vazir-Light.woff2') format('woff2'),
+    url('../fonts/Vazir-Light.woff') format('woff'),
+    url('../fonts/Vazir-Light.ttf') format('truetype');
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Vazir;
+    src: url('../fonts/Vazir-Medium.eot');
+    src: url('../fonts/Vazir-Medium.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Vazir-Medium.woff2') format('woff2'),
+    url('../fonts/Vazir-Medium.woff') format('woff'),
+    url('../fonts/Vazir-Medium.ttf') format('truetype');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Vazir;
+    src: url('../fonts/Vazir-Thin.eot');
+    src: url('../fonts/Vazir-Thin.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Vazir-Thin.woff2') format('woff2'),
+    url('../fonts/Vazir-Thin.woff') format('woff'),
+    url('../fonts/Vazir-Thin.ttf') format('truetype');
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: Vazir;
+    src: url('../fonts/Vazir-Black.eot');
+    src: url('../fonts/Vazir-Black.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Vazir-Black.woff2') format('woff2'),
+    url('../fonts/Vazir-Black.woff') format('woff'),
+    url('../fonts/Vazir-Black.ttf') format('truetype');
+    font-weight: 900;
+}
+
+@font-face {
+    font-family: FontAwesome;
+    src: url('../fonts/webfonts/fa-brands-400.ttf');
+    url('../fonts/webfonts/fa-brands-400.woff2') format('woff2'),
+    url('../fonts/webfonts/fa-brands-400.woff') format('woff'),
+    url('../fonts/webfonts/fa-regular-400.ttf') format('truetype');
+    font-weight: 400;
+}
+
+/**
+*
+*	Name:			IRANYekan Font
+*	Version:		1.0
+*	Author:			Moslem Ebrahimi (moslemebrahimi.com)
+*	Created on:		Dec 20, 2016
+*	Updated on:		Dec 20, 2016
+*	Website:		http://fontiran.com
+*	Copyright:		Commercial/Proprietary Software
+--------------------------------------------------------------------------------------
+فونت ایران یکان یک نرم افزار مالکیتی محسوب می شود. جهت آگاهی از قوانین استفاده از این فونت ها لطفا به وب سایت (فونت ایران دات کام) مراجعه نمایید
+--------------------------------------------------------------------------------------
+IRANYekan fonts are considered a proprietary software. To gain information about the laws regarding the use of these fonts, please visit www.fontiran.com
+--------------------------------------------------------------------------------------
+This set of fonts are used in this project under the license: (.....)
+--------------------------------------------------------------------------------------
+*
+**/
+
+/*---------------------------------- End of fonts ---------------------------------- */
+
+body {
+    font-family: 'Vazir', roboto, Arial, sans-serif !important;
+}
+
+.ltr {
+    direction: ltr;
+}
+
+
+ul {
+    padding-inline-start: 0;
+}
+
+.dropdown-item {
+    text-align: right;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    padding-left: .5rem;
+}
+
+
+/*------------------------------------ contacts-list ------------------------------------*/
+
+.contacts-list-img {
+    float: right;
+}
+
+.contacts-list-info {
+    margin-right: 45px;
+    margin-left: 0;
+}
+
+
+/* sidebar */
+
+.sidebar {
+    direction: ltr;
+}
+
+.sidebar > div:first-child {
+    direction: rtl;
+}
+
+.control-sidebar, .control-sidebar:before {
+    left: -250px;
+    right: auto;
+    transition: left .3s ease-in-out;
+}
+
+.control-sidebar-slide-open .control-sidebar, .control-sidebar-slide-open .control-sidebar:before {
+    left: 0;
+    right: auto;
+}
+
+.small-box .icon {
+    right: auto;
+    left: 10px;
+}
+
+.nav-sidebar .nav-link > p > .right {
+    left: 1rem;
+    right: auto;
+}
+
+.nav-sidebar > .nav-item .nav-icon {
+    margin-right: 0;
+    margin-left: .2rem;
+}
+
+@media (min-width: 992px) {
+    .sidebar-mini.sidebar-collapse .content-wrapper, .sidebar-mini.sidebar-collapse .main-footer, .sidebar-mini.sidebar-collapse .main-header {
+        margin-right: 4.6rem;
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 992px) {
+    .sidebar-mini.sidebar-collapse .content-wrapper, .sidebar-mini.sidebar-collapse .main-footer, .sidebar-mini.sidebar-collapse .main-header {
+        margin-left: 0rem !important;
+        margin-right: 4.6rem !important;
+        z-index: 100;
+    }
+
+    .sidebar-mini.sidebar-collapse .main-sidebar, .sidebar-mini.sidebar-collapse .main-sidebar:before {
+        margin-right: 0;
+        width: 4.6rem;
+    }
+}
+
+
+@media (min-width: 768px) {
+    .content-wrapper, .main-footer, .main-header {
+        transition: margin-right .3s ease-in-out;
+        margin-right: 250px;
+        margin-left: 0;
+        z-index: 3000;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .main-sidebar, .main-sidebar:before {
+        box-shadow: none !important;
+        margin-right: -250px;
+        margin-left: 0;
+    }
+
+    .content-wrapper, .content-wrapper:before, .main-footer, .main-footer:before, .main-header, .main-header:before {
+        margin-right: 0;
+    }
+
+    .sidebar-open .main-sidebar, .sidebar-open .main-sidebar:before {
+        margin-right: 0;
+        z-index: 4000;
+    }
+}
+
+.sidebar-collapse .main-sidebar, .sidebar-collapse .main-sidebar:before {
+    margin-right: -250px;
+}
+
+.main-sidebar {
+    left: auto;
+    right: 0;
+}
+
+/* Cards */
+
+.user-block img {
+    float: right;
+}
+
+.attachment-block .attachment-img {
+    float: right;
+}
+
+.attachment-block .attachment-pushed {
+    margin-left: 0px;
+    margin-right: 110px;
+}
+
+.card-comments .card-comment img, .img-lg, .img-md, .img-sm, .user-block.user-block-sm img {
+    float: right;
+}
+
+.card-comments .comment-text {
+    margin-right: 40px;
+    margin-left: 0;
+}
+
+.card-comments .card-comment img + .img-push, .img-sm + .img-push, .user-block.user-block-sm img + .img-push {
+    margin-left: 0px;
+    margin-right: 40px;
+}
+
+.user-block .comment, .user-block .description, .user-block .username {
+    margin-right: 50px;
+    margin-left: 0px;
+}
+
+.btn-group-vertical {
+    align-items: center;
+}
+
+
+/*------------------------- Form ----------------------------*/
+.select2-container .select2-search--inline {
+    float: right;
+}
+
+.select2-container--default .select2-search--inline .select2-search__field {
+    text-align: right;
+}
+
+/*----------------------- Extra Page ---------------------------*/
+.error-page > .headline {
+    float: right;
+}
+
+.error-page > .error-content {
+    margin-right: 190px;
+    margin-left: 0;
+}
+
+.lockscreen-image {
+    left: auto;
+    right: -10px;
+}
+
+.lockscreen-credentials {
+    margin-left: 0px;
+    margin-right: 70px;
+}
+
+.nav {
+    padding-inline-start: 0px !important;
+}
+
+/*---------------------------------- Persian Date Picker ---------------------------------- */
+
+.datepicker-plot-area {
+    font-family: iranyekan, 'Vazir', sans-serif;
+}
+
+img.user_image {
+    height: 30px;
+    width: 40px;
+}
+
+.direction_ltr {
+    direction: ltr !important;
+}
+
+.breadcrumb {
+    background-color: initial !important;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.btn {
+    margin: 3px;
+    max-height: 40px;
+    align-self: center;
+}
+
+.alert {
+    width: fit-content;
+    margin: 10px;
+    padding: 5px 10px;
+}
+
+.red {
+    color: red;
+}
+
+.fa-icon {
+    background-color: initial;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.patient {
+    display: flex;
+    justify-content: space-between;
+}
+
+#msg p {
+    margin: 0 !important;
+}
+
+form.leftform {
+    text-align: left;
+    direction: ltr;
+}
+
+
+form.leftform .select2-container .select2-selection--multiple{
+    direction: ltr;
+}
+
+form.leftform .form-group .form-check-input {
+    margin-left: -1rem;
+}
+
+.form-check {
+    display: inline-block;
+}
+
+form.leftform .custom-control, form.leftform .form-check {
+    padding-left: 1.25rem;
+    padding-right: 0;
+}
+
+.del-option span, button.deletefiled {
+    background-color: #dc3545 !important;
+    cursor: pointer;
+    border-radius: 0;
+    color: white;
+}
+
+.edit-option span, .edit-field a {
+    background-color: #ffc107 !important;
+    cursor: pointer;
+    border-radius: 0;
+    color: white;
+}
+
+.alert-dismissible {
+    background-color: lightgray;
+    margin: 2% auto;
+    z-index: 1;
+    position: fixed;
+    left: 0;
+    width: 40%;
+    transform: translate(calc(50vw - 70%));
+
+}
+
+.errorinput {
+    direction: rtl;
+    color: red;
+    font-size: 10px;
+}
+
+.addSpacify, .addSpacifyVascularAccess, .addOtherSpecify,.addCardiovascularreasonSpecify, .addDischargeLocationSpecify, .addSpacify2, .addnonCardiovascularreasonSpecify {
+    width: 40px;
+    margin-top: 0 !important;
+    margin-bottom: 1rem !important;
+}
+
+.sidebar-open .main-header {
+    margin-right: 250px;
+}
+
+.select2-selection.is-invalid {
+    border-color: rgb(185, 74, 72) !important;
+}
+
+small.help-block {
+    position: absolute;
+    right: 15px;
+    margin: -1.7rem 0;
+}
+
+/*
+.row .form-group,.row .if_yes{
+    align-self: end;
+}*/
+.form-completed {
+    width: 25px;
+    height: 30px;
+    background: url("../img/45.png");
+    display: inline-block;
+    vertical-align: middle;
+    background-size: contain;
+    float: right;
+    margin: 0 5px;
+}
+
+.form-notcompleted {
+    width: 22px;
+    height: 30px;
+    background: url("../img/40.png");
+    display: inline-block;
+    vertical-align: middle;
+    background-size: contain;
+    float: right;
+    margin: 0 5px;
+}
+
+.card-tools .btn.btn-tool {
+    margin-top: 0 !important;
+    padding: 0;
+}
+
+span.patient-login {
+    display: inline-block;
+    background: url("../img/login-patient.jpg");
+    width: 20px;
+    height: 20px;
+}
+
+form.leftform input[type="text"]:-moz-placeholder {
+    direction: ltr;
+}
+
+form.leftform input[type="text"]:-ms-input-placeholder {
+    direction: ltr;
+}
+
+form.leftform input[type="text"]::-webkit-input-placeholder {
+    direction: ltr;
+}
+
+input.persian-date-picker.pwt-datepicker-input-element {
+    direction: ltr;
+}
+
+li.nav-item.has-treeview.active {
+    background-color: blue;
+    color: white;
+}
+
+.text-underline {
+    text-decoration: underline;
+    font-size: 12px;
+    margin-left: 0.5rem;
+}
+
+.card .card-header,.card .card-header h6{
+    background-color: #edf0ff;
+    text-align: center;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+li.nav-item {
+    border-radius: 5px;
+    margin: 1px;
+}
+
+#myTab li.nav-item.completed {
+    background-color: #a8dea4;
+}
+
+#myTab li.nav-item {
+    background-color: #b1d1df;
+}
+
+.control-label .gray {
+    color: gray;
+    font-weight: lighter;
+    font-size: 12px;
+}
+
+.select2-search--inline {
+    display: contents; /*this will make the container disappear, making the child the one who sets the width of the element*/
+}
+
+.select2-search__field:placeholder-shown {
+    min-width: 100px !important; /*makes the placeholder to be 100% of the width while there are no options selected*/
+}
+
+.leftform li.select2-results__option {
+    direction: ltr;
+    text-align: left;
+}
+
+select.is-invalid .selection .select2-container--default {
+    border: solid red 1px !important;
+}
+
+.table-bordered tr {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.part {
+    text-align: right;
+    direction: rtl;
+    margin-bottom: 10px;
+}
+
+.part label {
+    font-weight: bold;
+}
+
+.show-password {
+    position: relative;
+    left: 23px;
+    top: 10px;
+    color: darkgray;
+    cursor: pointer;
+    z-index: 99;
+}
+
+.swal-text {
+    text-align: right;
+}
+
+input[type="checkbox"]:disabled {
+    background: black;
+}
+
+input[type="checkbox"]:disabled {
+    background: black;
+    border: 1px solid black;
+}
+
+.rtl {
+    direction: rtl !important;
+}
+
+.calender, .time {
+    position: absolute;
+    right: 2px;
+    margin-top: -5px;
+    padding:0;
+    color: #495057;
+    font-size:12px;
+}
+
+.bs-timepicker {
+    text-align: left;
+    direction: ltr;
+}
+
+.leftform input[title] {
+    direction: rtl;
+    text-align: left;
+}
+
+.leftform input[placeholder] {
+    direction: ltr;
+    text-align: left;
+}
+
+.btn {
+    padding: .25rem .7rem;
+    font-size: 14px;
+}
+
+.show-dossier {
+    margin-top: 0 !important;
+}
+
+.editform, .cancel {
+    color: white !important;
+}
+
+.f1, .f3, .f4, .f2 {
+    width: 22px;
+    height: 27px;
+    display: inline-block;
+    background-size: contain !important;
+}
+
+.f1 {
+    background: url("../img/f1.png");
+}
+
+.f2 {
+    background: url("../img/f2.png");
+}
+
+.f3 {
+    background: url("../img/f3.png");
+}
+
+.f4 {
+    background: url("../img/f4.png");
+}
+
+.back-page {
+    float: left;
+}
+
+.card-header h6 {
+    line-height: 1.7;
+}
+
+.paginationc {
+    margin: 10px auto -5px 10px;
+    float: left;
+}
+
+.btn.btn-primary.back-page {
+    color: white;
+}
+
+a.show-field {
+    background-color: #28a745;
+    color: white;
+}
+
+input[type="checkbox"]:disabled + label {
+    color: #434A50;
+}
+
+b[role='presentation'] {
+    display: none;
+}
+
+.select2-selection--multiple::before,.select2-selection--single::before{
+    font-family: "FontAwesome";
+    content: "\f107" !important;
+    font-size: 12px;
+    position: absolute;
+    left: 0.2rem !important;
+    top: 26% !important;
+    color: #4f5454;
+    z-index: 999;
+}
+.leftform .select2-selection--multiple:before {
+    right: 4px !important;
+    left: unset !important;
+}
+
+.select2-container--default .select2-search--inline .select2-search__field{
+    text-align: right !important;
+}
+
+.leftform .select2-container--default .select2-search--inline .select2-search__field{
+    text-align: left !important;
+}
+.new-select2-icon{
+    font-size: 12px;
+    top: 26% !important;
+    color: #4f5454;
+}
+
+#myTab {
+    background-color: #edf0ff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    width: 100%;
+}
+ li.back-gray{
+     background-color: #f6f5f5;
+ }
+ .followup-icon{
+     background: url("../img/3.png") no-repeat center;
+     background-size: 20px;
+     background-color: #007bff;
+     height: 30px;
+     width: 35px;
+ }
