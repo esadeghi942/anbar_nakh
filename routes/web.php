@@ -19,9 +19,17 @@ Route::get('/', function () {
 })->middleware(['auth', 'verified'])->name('index');
 
 Route::middleware('auth')->group(function () {
+    //Route::resource('anbar',);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::resource('cell',App\Http\Controllers\CellController::class);
+    Route::resource('anbar',App\Http\Controllers\AnbarController::class);
+    Route::resource('customer',App\Http\Controllers\CustomerController::class);
+
+
+
 });
 
 require __DIR__.'/auth.php';
