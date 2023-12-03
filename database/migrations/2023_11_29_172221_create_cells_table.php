@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cells', function (Blueprint $table) {
+        Schema::create('string_cells', function (Blueprint $table) {
             $table->id();
             $table->string('code');
-            $table->bigInteger('anbar_id')->unsigned();
-            $table->bigInteger('customer_id')->unsigned();
-            $table->string('color');
-            $table->foreign('anbar_id')->references('id')->on('anbars')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade')->onUpdate('cascade');
+            $table->bigInteger('string_anbar_id')->unsigned();
+            $table->foreign('string_anbar_id')->references('id')->on('string_anbars')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

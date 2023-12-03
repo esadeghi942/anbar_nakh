@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sellers', function (Blueprint $table) {
+        Schema::create('string_colors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('en_name');
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('colors');
     }
 };

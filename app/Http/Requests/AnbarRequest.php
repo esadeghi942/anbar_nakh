@@ -24,11 +24,11 @@ class AnbarRequest extends FormRequest
     {
         if ($this->anbar)
             return [
-                'code' => 'unique:anbars,id,'.$this->anbar->id,
+                'code' => 'unique:string_anbars,id,'.$this->anbar->id,
             ];
         else
             return [
-                'code' => 'unique:anbars'
+                'code' => 'unique:string_anbars'
             ];
     }
 

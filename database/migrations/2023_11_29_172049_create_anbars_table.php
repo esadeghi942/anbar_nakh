@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('anbars', function (Blueprint $table) {
+        Schema::create('string_anbars', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('code',15);

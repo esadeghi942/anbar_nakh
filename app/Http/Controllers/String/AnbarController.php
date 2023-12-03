@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\String;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\AnbarRequest;
-use App\Models\Anbar;
+use App\Models\String\Anbar;
 use Illuminate\Http\Request;
 
 class AnbarController extends Controller
@@ -14,7 +15,7 @@ class AnbarController extends Controller
     public function index()
     {
         $anbars=Anbar::all();
-        return view('anbar.index',compact('anbars'));
+        return view('string.anbar.index',compact('anbars'));
     }
 
     /**
@@ -31,7 +32,7 @@ class AnbarController extends Controller
     public function store(AnbarRequest $request)
     {
         Anbar::create($request->all());
-        return redirect()->route('anbar.index')->with('success',trans('panel.success create',['item'=>trans('panel.anbar')]));
+        return redirect()->route('string.anbar.index')->with('success',trans('panel.success create',['item'=>trans('panel.anbar')]));
 
     }
 
@@ -48,7 +49,7 @@ class AnbarController extends Controller
      */
     public function edit(Anbar $anbar)
     {
-        return view('anbar.edit',compact('anbar'));
+        return view('string.anbar.edit',compact('anbar'));
 
     }
 
@@ -58,7 +59,7 @@ class AnbarController extends Controller
     public function update(AnbarRequest $request, Anbar $anbar)
     {
         $anbar->update($request->all());
-        return redirect()->route('anbar.index')->with('success',trans('panel.success edit',['item'=>trans('panel.anbar')]));
+        return redirect()->route('string.anbar.index')->with('success',trans('panel.success edit',['item'=>trans('panel.anbar')]));
     }
 
     /**

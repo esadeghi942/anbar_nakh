@@ -1,13 +1,4 @@
 @extends('layouts.panel')
-@section('css')
-    <style>
-        .back-ground {
-            width: 25px;
-            height: 25px;
-            margin: auto;
-        }
-    </style>
-@endsection
 @section('content')
 
     <div class="container-fluid">
@@ -22,11 +13,26 @@
         </div>
     </div>
 
-
     <div class="container-fluid">
         <div class="row starter-main">
             <div class="col-12 col-sm-6">
-                <h3>{{__('panel.cells')}}</h3>
+                <h3>{{__('panel.create item',[ 'item'=>__('panel.color') ])}}</h3>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" action="{{route('string.color.store')}}">
+                        @csrf
+                        @include('BaseForm')
+                        <button type="submit" class="btn btn-success mt-3">{{__('panel.save')}}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row starter-main">
+            <div class="col-12 col-sm-6">
+                <h3>{{__('panel.colors')}}</h3>
             </div>
             <div class="card">
                 <div class="card-body">
@@ -35,28 +41,21 @@
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th>{{__('panel.code')}}</th>
-                                <th>{{__('panel.anbar')}}</th>
-                                <th>{{__('panel.customer')}}</th>
                                 <th>{{__('panel.color')}}</th>
+                                <th>{{__('panel.english name')}}</th>
                                 <th scope="col">{{__('panel.edit')}}</th>
                                 <th scope="col">{{__('panel.delete')}}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($cells as $i => $cell)
+                            @foreach($colors as $i => $color)
                                 <tr>
                                     <td>{{ $i +1 }}</td>
-                                    <td>{{ $cell->code }}</td>
-                                    <td>{{ $cell->anbar->name }}</td>
-                                    <td>{{ $cell->customer->name }}</td>
+                                    <td>{{ $color->name }}</td>
+                                    <td>{{ $color->en_name }}</td>
+                                    <td><a href="{{route('string.color.edit',$color)}}" class="btn"><i class="fa fa-edit"></i></a></td>
                                     <td>
-                                        <div class="back-ground" style="background-color: {{ $cell->color }}"></div>
-                                    </td>
-                                    <td><a href="{{route('cell.edit',$cell)}}" class="btn"><i
-                                                class="fa fa-edit"></i></a></td>
-                                    <td>
-                                        <form action="{{ route('cell.destroy',$cell->id)}}" method="POST">
+                                        <form action="{{ route('string.color.destroy',$color->id)}}" method="POST">
                                             @method('DELETE')
                                             @csrf
                                             <button type="submit" class="btn"><i

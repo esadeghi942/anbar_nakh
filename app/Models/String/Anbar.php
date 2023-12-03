@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\String;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,9 +11,11 @@ class Anbar extends Model
 
     protected $guarded=['id'];
 
-    public function qrCodes()
+    protected $table='string_anbars';
+
+    public function string_items()
     {
-        return $this->hasMany(QrCode::class);
+        return $this->hasMany(Item::class);
     }
 
 }

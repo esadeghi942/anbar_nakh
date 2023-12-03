@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\String;
 
-use App\Models\Cell;
+use App\Http\Controllers\Controller;
+use App\Models\String\Anbar;
+use App\Models\String\Cell;
 use Illuminate\Http\Request;
 
 class CellController extends Controller
@@ -12,8 +14,9 @@ class CellController extends Controller
      */
     public function index()
     {
+        $anbars=Anbar::all();
         $cells=Cell::all();
-        return view('cell.index',compact('cells'));
+        return view('string.cell.index',compact('cells','anbars'));
     }
 
     /**
@@ -29,7 +32,8 @@ class CellController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Cell::create($request->all());
+        return redirect()->route('string.cell.index')->with('success',trans('panel.success create',['item'=>trans('panel.cell')]));
     }
 
     /**
@@ -45,7 +49,8 @@ class CellController extends Controller
      */
     public function edit(Cell $cell)
     {
-        //
+        $anbars=Anbar::all();
+        return view('string.cell.edit',compact('cell','anbars'));
     }
 
     /**
@@ -53,7 +58,10 @@ class CellController extends Controller
      */
     public function update(Request $request, Cell $cell)
     {
-        //
+        $cell->update($request->all());
+        return redirect()->route('string.cell.index')->with('success',trans('panel.success edit',['item'=>trans('panel.cell')]));
+
+
     }
 
     /**
