@@ -44,6 +44,11 @@ class Item extends Model
         return $this->belongsTo(Anbar::class);
     }
 
+    public function string_exports()
+    {
+        return $this->hasMany(Export::class,'string_item_id');
+    }
+
     public static function create_qr_codes($data)
     {
         $date = jdate()->format('Ymdhis');

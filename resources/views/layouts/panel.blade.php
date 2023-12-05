@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('/assets/css/responsive.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/rating.css')}}">
     <link href="{{asset('css/persian-datepicker.min.css')}}" rel="stylesheet">
+    <link href="{{asset('css/select2.min.css')}}" rel="stylesheet">
 
 </head>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\String;
 
 use App\Http\Controllers\Controller;
+
 use App\Models\Seller;
 use App\Models\String\Anbar;
 use App\Models\String\Cell;
@@ -11,19 +12,12 @@ use App\Models\String\Grade;
 use App\Models\String\Item;
 use App\Models\String\Material;
 use Illuminate\Http\Request;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ItemController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $items=Item::all();
-        return view('string.item.index',compact('items'));
-
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -47,15 +41,9 @@ class ItemController extends Controller
         $data=$request->all();
         $qrcode=Item::create_qr_codes($request->all());
         $data['qr_code']=$qrcode;
-        Item::create($data);
-        return QrCode::generate($qrcode);
-        return redirect()->route('string.item.index')->with('success',trans('panel.success create',['item'=>trans('panel.item')]));
-
-    }
-
-    public function get_qr_code(Item $item)
-    {
-        return view('string.item.qr_code', compact('item'));
+        $data['rest_weight']=$request->weight;
+        $item=Item::create($data);
+        return redirect()->route('string.item.show',$item);
 
     }
 
@@ -64,7 +52,7 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        //
+        return view('string.item.show', compact('item'));
     }
 
     /**
@@ -89,5 +77,19 @@ class ItemController extends Controller
     public function destroy(Item $item)
     {
         //
+    }
+
+    public function exports(Item $item)
+    {
+        $exports=$item->string_exports()->get();
+        $title=[];
+        $title[]= ' انبار:'.$item->string_anbar->name;
+        $title[]= ' سلول:'.$item->string_cell->code;
+        $title[]= ' جنس:'.$item->string_material->name;
+        $title[]= ' رنگ:'.$item->string_color->name;
+        $title[]= ' نمره:'.$item->string_grade->value;
+        $title[]= ' فروشنده:'.$item->string_seller->name;
+        $title=implode(', ' ,$title);
+        return view('string.item.exports',compact('exports','title'));
     }
 }

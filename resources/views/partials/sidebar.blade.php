@@ -31,10 +31,46 @@
                            href="{{route('index')}}"> <i
                                 class="fa fa-home"></i><span>{{ __('panel.dashboard') }} </span></a></li>
 
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title" href="#">
+                            <i class="fa fa-users"></i><span class="">اطلاعات انبار فرش</span>
+                            <div class="according-menu"></div>
+                        </a>
+                        <ul class="sidebar-submenu">
+                            <li><a class="{{ $route == 'carpet.anbar.index' ? 'active' : '' }}"
+                                   href="{{route('carpet.anbar.index')}}">{{ __('panel.anbars') }}</a></li>
+
+                            <li><a class="{{ $route == 'carpet.cell.index' ? 'active' : '' }}"
+                                   href="{{route('carpet.cell.index')}}">{{ __('panel.cells') }}</a></li>
+
+
+                        </ul>
+                    </li>
 
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title" href="#">
-                            <i class="fa fa-users"></i><span class="">اطلاعات انبار</span>
+                            <i class="fa fa-users"></i><span class="">اطلاعات پایه</span>
+                            <div class="according-menu"></div>
+                        </a>
+                        <ul class="sidebar-submenu">
+
+                            <li><a class="{{ $route == 'seller.index' ? 'active' : '' }}"
+                                   href="{{route('seller.index')}}"><span>{{ __('panel.sellers') }}</span></a></li>
+
+                            <li><a class="{{ $route == 'customer.index' ? 'active' : '' }}"
+                                   href="{{route('customer.index')}}"><span>{{ __('panel.customers') }}</span></a></li>
+
+                            <li><a class="{{ $route == 'person.index' ? 'active' : '' }}"
+                                   href="{{route('person.index')}}"><span>{{ __('panel.persons') }}</span></a></li>
+
+                            <li><a class="{{ $route == 'device.index' ? 'active' : '' }}"
+                                   href="{{route('device.index')}}"><span>{{ __('panel.devices') }}</span></a></li>
+                        </ul>
+                    </li>
+
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title" href="#">
+                            <i class="fa fa-users"></i><span class="">اطلاعات انبار نخ</span>
                             <div class="according-menu"></div>
                         </a>
                         <ul class="sidebar-submenu">
@@ -54,13 +90,25 @@
                                    href="{{route('string.grade.index')}}">{{ __('panel.grades') }}</a></li>
                         </ul>
                     </li>
-                    <li><a class="sidebar-link {{ $route == 'string.item.index' ? 'active' : '' }}"
-                           href="{{route('string.item.index')}}"> <i
+
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title" href="#">
+                            <i class="fa fa-search"></i><span class="">ورود به انبار فرش</span>
+                            <div class="according-menu"></div>
+                        </a>
+                        <ul class="sidebar-submenu">
+                            <li><a href="">یک محصول</a></li>
+                            <li><a href="">چند محصول</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a class="sidebar-link {{ $route == 'string.item.create' ? 'active' : '' }}"
+                           href="{{route('string.item.create')}}"> <i
                                 class="fa fa-arrow-down"></i><span>ورود به انبار نخ</span></a></li>
 
-                    <li><a class="sidebar-link {{ $route == 'seller.index' ? 'active' : '' }}"
-                           href="{{route('seller.index')}}"> <i
-                                class="fa fa-user"></i><span>{{ __('panel.sellers') }}</span></a></li>
+                    <li><a class="sidebar-link {{ $route == 'string.export.index' ? 'active' : '' }}"
+                           href="{{route('string.export.index')}}"> <i
+                                class="fa fa-arrow-up"></i><span>خروج/جستجو از انبار نخ</span></a></li>
 
                     <li>
                         <form class="sidebar-link" action="{{route('logout')}}" method="POST">

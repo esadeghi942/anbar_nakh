@@ -1,17 +1,10 @@
 @extends('layouts.panel')
-@section('css')
-    <style>
-        .form-group {
-            margin-top: 10px !important;
-        }
-    </style>
-@endsection
 @section('content')
     <div class="container-fluid">
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-sm-6">
-                    {{__('panel.enter anbar',['item'=>__('panel.item')])}}
+                    {{__('panel.edit item',['item'=>__('panel.device')])}}
                 </div>
                 <div class="col-12 col-sm-6">
                     <ol class="breadcrumb">
@@ -29,9 +22,10 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-body">
-                        <form method="post" action="{{route('string.item.store')}}">
+                        <form method="post" action="{{route('device.update',$data)}}">
                             @csrf
-                            @include('String.item.form')
+                            @method('put')
+                            @include('device.form')
                             <button type="submit" class="btn btn-success mt-3">{{__('panel.save')}}</button>
                         </form>
 
@@ -40,14 +34,4 @@
             </div>
         </div>
     </div>
-@endsection
-@section('js')
-    <script>
-        $(document).on('change','#anbar',function (){
-            var val=$(this).val();
-            var dest=$('#cell').val('');
-            $('#cell option').hide();
-            $('#cell option[data-parent='+val+']').show();
-        });
-    </script>
 @endsection

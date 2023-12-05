@@ -25,8 +25,8 @@
     <div class="container-fluid">
         <div class="row starter-main">
             <div class="col-12 col-sm-12">
-                <h3>{{__('panel.items')}}</h3>
-                <a href="{{route('string.item.create')}}" class="btn btn-success float-end">{{__('panel.enter anbar')}}</a>
+                <h3>{{__('panel.exports') . $title }}
+                </h3>
             </div>
             <div class="card mt-3">
                 <div class="card-body">
@@ -36,26 +36,21 @@
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th>{{__('panel.anbar')}}</th>
-                                <th>{{__('panel.cell')}}</th>
-                                <th>{{__('panel.qr_code')}}</th>
-                                {{--
-                                                                <th scope="col">{{__('panel.edit')}}</th>
-                                --}}
-                                <th scope="col">{{__('panel.get_qr_code')}}</th>
+                                <th>{{__('panel.person')}}</th>
+                                <th>{{__('panel.device')}}</th>
+                                <th>{{__('panel.weight')}}</th>
+                                <th>{{__('panel.date')}}</th>
+
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($items as $i => $item)
+                            @foreach($exports as $i => $item)
                                 <tr>
                                     <td>{{ $i +1 }}</td>
-                                    <td>{{ $item->string_anbar->name }}</td>
-                                    <td>{{ $item->string_cell->code }}</td>
-                                    <td>{{ $item->qr_code }}</td>
-                                    <td>
-                                        <a href="{{route('string.get_qr_code',$item)}}"><i
-                                                class="fa fa-barcode"></i></a>
-                                    </td>
+                                    <td>{{ $item->person->name }}</td>
+                                    <td>{{ $item->device->name }}</td>
+                                    <td>{{$item->weight}}</td>
+                                    <td>{{jdate($item->create_at)->format('h:i Y/m/d')}}</td>
                                     {{--<td><a href="{{route('string.item.edit',$cell)}}" class="btn"><i
                                                 class="fa fa-edit"></i></a></td>
 
@@ -76,4 +71,6 @@
             </div>
         </div>
     </div>
+@endsection
+@section('js')
 @endsection

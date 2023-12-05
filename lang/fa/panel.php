@@ -31,8 +31,18 @@ return [
     'until' => 'تا',
     'save' => 'ذخیره',
     'nothing found' => 'موردی یافت نشد',
-    'sellers' => 'فروشنگان',
+    'sellers' => 'فروشندگان',
     'seller' => 'فروشنده',
+
+    'customers' => 'مشتریان',
+    'customer' => 'مشتری',
+
+    'persons' => 'اشخاص',
+    'person' => 'شخص',
+
+    'devices' => 'دستگاه ها',
+    'device' => 'دستگاه ',
+
     'anbars' => 'انبار ها',
     'anbar' => 'انبار',
     'english name' => 'نام انگلیسی',
@@ -44,10 +54,14 @@ return [
     'grade' => 'نمره',
     'grades' => 'نمره ها',
     'weight' => 'وزن',
+    'rest_weight' => 'وزن باقی مانده',
     'type' => 'نوع',
     'qr_code' => 'کد Qr',
     'get_qr_code' => 'دریافت کد Qr ',
     'enter anbar' => 'ورود به انبار',
+    'export anbar' => 'خروج از انبار',
+    'exports' => 'خروجی ها',
+    'search anbar' => 'جستجو در انبار',
     'items' => 'اقلام',
     'count' => 'تعداد',
     'count orders' => ' تعداد اقلام',
@@ -67,4 +81,6 @@ return [
     'report' => 'گزارش گیری',
     'from delivery_date' => ' تاریخ تحویل از ',
     'end delivery_date' => 'تاریخ تحویل تا ',
+    'search'=>'جستجو',
+    'export'=>'خروج'
 ];
