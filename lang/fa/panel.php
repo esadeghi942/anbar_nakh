@@ -51,6 +51,7 @@ return [
     'material' => 'جنس',
     'materials' => 'جنس ها',
 
+    'qrcode'=>'کد QR',
     'grade' => 'نمره',
     'grades' => 'نمره ها',
     'weight' => 'وزن',

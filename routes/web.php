@@ -47,6 +47,11 @@ Route::middleware('auth')->group(function () {
     Route::group(['as' => 'carpet.', 'prefix' => 'carpet/'], function () {
         Route::resource('cell', App\Http\Controllers\Carpet\CellController::class);
         Route::resource('anbar', App\Http\Controllers\Carpet\AnbarController::class);
+        Route::group(['as' => 'qr_code.', 'prefix' => 'qr_code/'], function () {
+            Route::get('one', [\App\Http\Controllers\Carpet\QrCodeController::class, 'one'])->name('one');
+            Route::post('get_cell', [\App\Http\Controllers\Carpet\QrCodeController::class, 'get_cell'])->name('get_cell');
+            Route::get('multi', [\App\Http\Controllers\Carpet\QrCodeController::class, 'multi'])->name('multi');
+        });
     });
 });
 

@@ -97,8 +97,8 @@
                             <div class="according-menu"></div>
                         </a>
                         <ul class="sidebar-submenu">
-                            <li><a href="">یک محصول</a></li>
-                            <li><a href="">چند محصول</a></li>
+                            <li><a href="{{route('carpet.qr_code.one')}}">یک محصول</a></li>
+                            <li><a href="{{route('carpet.qr_code.multi')}}">چند محصول</a></li>
                         </ul>
                     </li>
 
