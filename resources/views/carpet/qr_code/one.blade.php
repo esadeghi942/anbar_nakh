@@ -32,8 +32,6 @@
                         <button type="submit" class="btn btn-primary mt-3">جستجو سلول ها</button>
                     </form>
                     <div id="result" style="display: none">
-                        <div id="customer"></div>
-
                     </div>
                 </div>
             </div>
@@ -57,7 +55,8 @@
                 data: data,
                 success: function (data) {
                     dest.show();
-                    $('#customer').html(data['customer']);
+                    dest.append(data['customer']);
+                    dest.append('<br>');
                     for (var i = 0; i < data['cells'].length; i++) {
                         dest.append('<div class="' + data[i]['id'] + '">' + data['cells'][i]['code'] - data['cells'][i]['anbar'] + '</div>');
                     }

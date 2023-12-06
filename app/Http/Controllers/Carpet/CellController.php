@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Carpet;
 
 use App\Http\Controllers\Controller;
+use App\Models\Anbar;
 use App\Models\Cell;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
 class CellController extends Controller
@@ -13,8 +15,8 @@ class CellController extends Controller
      */
     public function index()
     {
-        $cells=Cell::all();
-        return view('carpet.cell.index',compact('cells'));
+        $cells = Cell::all();
+        return view('carpet.cell.index', compact('cells'));
     }
 
     /**
@@ -22,7 +24,9 @@ class CellController extends Controller
      */
     public function create()
     {
-        //
+        $anbars = Anbar::all();
+        $customers = Customer::all();
+        return view('carpet.cell.create', compact('anbars', 'customers'));
     }
 
     /**
@@ -30,7 +34,9 @@ class CellController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Cell::create($request->all());
+        return redirect()->route('carpet.cell.index')->with('success', trans('panel.success create', ['item' => trans('panel.cell')]));
+
     }
 
     /**
@@ -46,7 +52,9 @@ class CellController extends Controller
      */
     public function edit(Cell $cell)
     {
-        //
+        $anbars = Anbar::all();
+        $customers = Customer::all();
+        return view('carpet.cell.edit', compact('anbars', 'customers', 'cell'));
     }
 
     /**
@@ -54,7 +62,9 @@ class CellController extends Controller
      */
     public function update(Request $request, Cell $cell)
     {
-        //
+        $cell->update($request->all());
+        return redirect()->route('carpet.cell.index')->with('success', trans('panel.success edit', ['item' => trans('panel.cell')]));
+
     }
 
     /**
@@ -62,6 +72,10 @@ class CellController extends Controller
      */
     public function destroy(Cell $cell)
     {
-        //
+        if ($cell->qrCodes()->exists())
+            return redirect()->route('carpet.cell.index')->withErrors('QR کدهایی از این سلول وجود دارد امکان حذف نیست.');
+        $cell->delete();
+        return redirect()->route('carpet.cell.index')->with('success', trans('panel.success delete', ['item' => trans('panel.cell')]));
+
     }
 }

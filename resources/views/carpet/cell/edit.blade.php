@@ -22,27 +22,10 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-body">
-                        <form method="post" action="{{route('carpet.cell.update',$customer)}}">
+                        <form method="post" action="{{route('carpet.cell.update',$cell)}}">
                             @csrf
                             @method('put')
-                            <div class="row">
-                                <div class="form-group col-12 col-sm-6 col-md-4">
-                                    <label class="control-label" for="day">{{__('panel.customer')}}
-                                        <span class="required">*</span>
-                                    </label>
-                                    <input type="text" id="name" name="name"
-                                           value="{{old('name',$customer->name)}}" class="form-control">
-                                </div>
-
-                                <div class="form-group col-12 col-sm-6 col-md-4">
-                                    <label class="control-label" for="day">{{__('panel.phone')}}
-                                        <span class="required">*</span>
-                                    </label>
-                                    <input type="text" id="phone" name="phone"
-                                           value="{{old('phone',$customer->phone)}}" class="form-control" required>
-                                </div>
-
-                            </div>
+                            @include('carpet.cell.form')
                             <button type="submit" class="btn btn-success mt-3">{{__('panel.save')}}</button>
                         </form>
 

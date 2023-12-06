@@ -65,6 +65,10 @@ class DeviceController extends Controller
      */
     public function destroy(Device $device)
     {
-        //
+        if ($device->string_experts()->exists())
+            return redirect()->route('device.index')->withErrors('خروجی هایی از این دستگاه وجود دارد امکان حذف نیست.');
+        $device->delete();
+        return redirect()->route('device.index')->with('success', trans('panel.success delete', ['item' => trans('panel.device')]));
+
     }
 }

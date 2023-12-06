@@ -40,10 +40,9 @@ class ColorController extends Controller
     }
     public function destroy(Request $request,Color $color)
     {
-        if($color->orders()->exists())
-            return redirect()->back()->withErrors('امکان حذف وجود ندارد سفارشاتی از این رنگ وجود دارد');
-
+        if ($color->string_items()->exists())
+            return redirect()->route('string.color.index')->withErrors('مواردی از این رنگ در انبار وجود دارد امکان حذف نیست.');
         $color->delete();
-        return redirect()->route('string.color.index')->with('success',trans('panel.success delete',['item'=> trans('panel.color')]));
+        return redirect()->route('string.color.index')->with('success', trans('panel.success delete', ['item' => trans('panel.color')]));
     }
 }

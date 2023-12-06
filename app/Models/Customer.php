@@ -15,4 +15,9 @@ class Customer extends Model
     {
         return $this->hasMany(QrCode::class);
     }
+
+    public function cells()
+    {
+        return $this->hasMany(Cell::class);
+    }
 }

@@ -66,6 +66,12 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        //
+        if ($customer->cells()->exists())
+            return redirect()->route('customer.index')->withErrors('سلول هایی از این مشتری وجود دارد امکان حذف نیست.');
+        if ($customer->qrCodes()->exists())
+            return redirect()->route('customer.index')->withErrors('QR کدهایی از این مشتری وجود دارد امکان حذف نیست.');
+        $customer->delete();
+        return redirect()->route('customer.index')->with('success', trans('panel.success delete', ['item' => trans('panel.customer')]));
+
     }
 }

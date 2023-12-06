@@ -69,6 +69,10 @@ class CellController extends Controller
      */
     public function destroy(Cell $cell)
     {
-        //
+        if ($cell->string_items()->exists())
+            return redirect()->route('string.cell.index')->withErrors('مواردی از این سلول در انبار وجود دارد امکان حذف نیست.');
+        $cell->delete();
+        return redirect()->route('string.cell.index')->with('success', trans('panel.success delete', ['item' => trans('panel.cell')]));
+
     }
 }

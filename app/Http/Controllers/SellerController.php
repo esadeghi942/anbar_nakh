@@ -67,6 +67,10 @@ class SellerController extends Controller
      */
     public function destroy(Seller $seller)
     {
-        //
+        if ($seller->string_item()->exists())
+            return redirect()->route('seller.index')->withErrors('موجودی هایی از این فروشنده وجود دارد امکان حذف نیست.');
+        $seller->delete();
+        return redirect()->route('seller.index')->with('success', trans('panel.success delete', ['item' => trans('panel.seller')]));
+
     }
 }

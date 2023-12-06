@@ -29,7 +29,7 @@ class Item extends Model
         return $this->belongsTo(Grade::class);
     }
 
-    public function string_seller()
+    public function seller()
     {
         return $this->belongsTo(Seller::class,'seller_id');
     }

@@ -25,10 +25,11 @@
 
     <div class="container-fluid">
         <div class="row starter-main">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 col-sm-12">
                 <h3>{{ __('panel.cells')}}</h3>
+                <a href="{{route('carpet.cell.create')}}" class="btn btn-success float-end">ایجاد سلول جدید</a>
             </div>
-            <div class="card">
+            <div class="card mt-3">
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered">
@@ -53,10 +54,10 @@
                                     <td>
                                         <div class="back-ground" style="background-color: {{ $cell->color }}"></div>
                                     </td>
-                                    <td><a href="{{route('cell.edit',$cell)}}" class="btn"><i
+                                    <td><a href="{{route('carpet.cell.edit',$cell)}}" class="btn"><i
                                                 class="fa fa-edit"></i></a></td>
                                     <td>
-                                        <form action="{{ route('cell.destroy',$cell->id)}}" method="POST">
+                                        <form action="{{ route('carpet.cell.destroy',$cell->id)}}" method="POST">
                                             @method('DELETE')
                                             @csrf
                                             <button type="submit" class="btn"><i

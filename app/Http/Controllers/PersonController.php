@@ -68,6 +68,9 @@ class PersonController extends Controller
      */
     public function destroy(Person $person)
     {
-        //
+        if ($person->string_experts()->exists())
+            return redirect()->route('person.index')->withErrors('خروجی هایی از این شخص وجود دارد امکان حذف نیست.');
+        $person->delete();
+        return redirect()->route('person.index')->with('success', trans('panel.success delete', ['item' => trans('panel.person')]));
     }
 }

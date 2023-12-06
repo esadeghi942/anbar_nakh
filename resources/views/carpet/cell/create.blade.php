@@ -1,17 +1,10 @@
 @extends('layouts.panel')
-@section('css')
-    <style>
-        .form-group {
-            margin-top: 10px !important;
-        }
-    </style>
-@endsection
 @section('content')
     <div class="container-fluid">
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-sm-6">
-                    {{__('panel.search anbar',['item'=>__('panel.item')])}}
+                    {{__('panel.create item',['item'=>__('panel.cell')])}}
                 </div>
                 <div class="col-12 col-sm-6">
                     <ol class="breadcrumb">
@@ -29,25 +22,15 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{route('string.export.search')}}">
-                            @include('string.export.form')
-                            <button type="submit" class="btn btn-success mt-3">{{__('panel.search')}}</button>
+                        <form method="post" action="{{route('carpet.cell.store')}}">
+                            @csrf
+                            @include('carpet.cell.form')
+                            <button type="submit" class="btn btn-success mt-3">{{__('panel.save')}}</button>
                         </form>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
-
-@section('js')
-    <script>
-        $(document).on('change','#anbar',function (){
-            var val=$(this).val();
-            var dest=$('#cell').val('');
-            $('#cell option').hide();
-            $('#cell option[data-parent='+val+']').show();
-        });
-    </script>
-@endsection
-

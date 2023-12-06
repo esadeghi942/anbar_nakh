@@ -14,8 +14,8 @@ class AnbarController extends Controller
      */
     public function index()
     {
-        $anbars=Anbar::all();
-        return view('carpet.anbar.index',compact('anbars'));
+        $anbars = Anbar::all();
+        return view('carpet.anbar.index', compact('anbars'));
     }
 
     /**
@@ -32,7 +32,7 @@ class AnbarController extends Controller
     public function store(AnbarRequest $request)
     {
         Anbar::create($request->all());
-        return redirect()->route('carpet.anbar.index')->with('success',trans('panel.success create',['item'=>trans('panel.anbar')]));
+        return redirect()->route('carpet.anbar.index')->with('success', trans('panel.success create', ['item' => trans('panel.anbar')]));
 
     }
 
@@ -49,7 +49,7 @@ class AnbarController extends Controller
      */
     public function edit(Anbar $anbar)
     {
-        return view('carpet.anbar.edit',compact('anbar'));
+        return view('carpet.anbar.edit', compact('anbar'));
 
     }
 
@@ -59,7 +59,7 @@ class AnbarController extends Controller
     public function update(AnbarRequest $request, Anbar $anbar)
     {
         $anbar->update($request->all());
-        return redirect()->route('carpet.anbar.index')->with('success',trans('panel.success edit',['item'=>trans('panel.anbar')]));
+        return redirect()->route('carpet.anbar.index')->with('success', trans('panel.success edit', ['item' => trans('panel.anbar')]));
     }
 
     /**
@@ -67,6 +67,11 @@ class AnbarController extends Controller
      */
     public function destroy(Anbar $anbar)
     {
-        //
+        if ($anbar->cells()->exists())
+            return redirect()->route('carpet.anbar.index')->withErrors('سلول هایی از این انبار وجود دارد امکان حذف نیست.');
+        if ($anbar->qrCodes()->exists())
+            return redirect()->route('carpet.anbar.index')->withErrors(' کد QRهایی از این انبار وجود دارد امکان حذف نیست.');
+        $anbar->delete();
+        return redirect()->route('carpet.anbar.index')->with('success', trans('panel.success delete', ['item' => trans('panel.anbar')]));
     }
 }

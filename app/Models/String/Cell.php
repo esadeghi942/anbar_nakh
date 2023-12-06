@@ -15,12 +15,12 @@ class Cell extends Model
 
     public function string_items()
     {
-        return $this->hasMany(Item::class);
+        return $this->hasMany(Item::class,'string_cell_id');
     }
 
     public function string_anbar()
     {
-        return $this->belongsTo(Anbar::class);
+        return $this->belongsTo(Anbar::class,'string_anbar_id');
     }
 
     public function seller()

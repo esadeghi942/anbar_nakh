@@ -16,6 +16,6 @@ class Color extends Model
 
     public function string_items()
     {
-        return $this->hasMany(Item::class);
+        return $this->hasMany(Item::class,'string_color_id');
     }
 }
