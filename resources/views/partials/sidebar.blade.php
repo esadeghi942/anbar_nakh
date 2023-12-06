@@ -110,6 +110,13 @@
                            href="{{route('string.export.index')}}"> <i
                                 class="fa fa-arrow-up"></i><span>خروج/جستجو از انبار نخ</span></a></li>
 
+
+                    <li><a class="sidebar-link {{ $route == 'string.order_point.index' ? 'active' : '' }}"
+                           href="{{route('string.order_point.index')}}"> <i
+                                class="fa fa-hand-pointer"></i><span>نقطه سفارش ها</span></a></li>
+
+
+
                     <li>
                         <form class="sidebar-link" action="{{route('logout')}}" method="POST">
                             @csrf

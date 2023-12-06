@@ -40,6 +40,10 @@ return [
     'persons' => 'اشخاص',
     'person' => 'شخص',
 
+    'order_point' => 'نقطه سفارش',
+    'order_points' => 'نقطه سفارش ها',
+    'value'=>'مقدار',
+
     'devices' => 'دستگاه ها',
     'device' => 'دستگاه ',
 
