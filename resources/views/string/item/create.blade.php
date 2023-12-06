@@ -31,7 +31,7 @@
                     <div class="card-body">
                         <form method="post" action="{{route('string.item.store')}}">
                             @csrf
-                            @include('String.item.form')
+                            @include('string.item.form')
                             <button type="submit" class="btn btn-success mt-3">{{__('panel.save')}}</button>
                         </form>
 
