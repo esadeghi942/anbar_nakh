@@ -25,7 +25,7 @@
                         <form method="post" action="{{route('string.cell.update',$cell)}}">
                             @csrf
                             @method('put')
-                            @include('String.cell.form')
+                            @include('string.cell.form')
                             <button type="submit" class="btn btn-success mt-3">{{__('panel.save')}}</button>
                         </form>
 

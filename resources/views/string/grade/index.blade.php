@@ -22,7 +22,7 @@
                 <div class="card-body">
                     <form method="post" action="{{route('string.grade.store')}}">
                         @csrf
-                        @include('String.grade.form')
+                        @include('string.grade.form')
                         <button type="submit" class="btn btn-success mt-3">{{__('panel.save')}}</button>
                     </form>
                 </div>
