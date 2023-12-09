@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('material', App\Http\Controllers\String\MaterialController::class);
         Route::resource('grade', App\Http\Controllers\String\GradeController::class);
         Route::resource('item', App\Http\Controllers\String\ItemController::class);
-        Route::resource('order_point',\App\Http\Controllers\String\OrderPointController::class);
+        Route::resource('string_group',\App\Http\Controllers\String\StringGroupController::class);
         Route::get('exports/{item}', [App\Http\Controllers\String\ItemController::class,'exports'])->name('item.exports');
 
         Route::get('export', [App\Http\Controllers\String\ExportController::class,'index'])->name('export.index');

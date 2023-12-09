@@ -24,7 +24,8 @@ class ItemRequest extends FormRequest
     {
         return [
             'string_anbar_id'=>'required',
-            'weight'=>'required|numeric'
+            'weight'=>'required|numeric',
+            'type'=>'required'
         ];
     }
 

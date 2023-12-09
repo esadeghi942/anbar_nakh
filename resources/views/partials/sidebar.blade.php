@@ -111,8 +111,8 @@
                                 class="fa fa-arrow-up"></i><span>خروج/جستجو از انبار نخ</span></a></li>
 
 
-                    <li><a class="sidebar-link {{ $route == 'string.order_point.index' ? 'active' : '' }}"
-                           href="{{route('string.order_point.index')}}"> <i
+                    <li><a class="sidebar-link {{ $route == 'string.string_group.index' ? 'active' : '' }}"
+                           href="{{route('string.string_group.index')}}"> <i
                                 class="fa fa-hand-pointer"></i><span>نقطه سفارش ها</span></a></li>
 
 

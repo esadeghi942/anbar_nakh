@@ -64,11 +64,16 @@
                                         <tbody>
                                         <tr>
                                             <td>جنس</td>
-                                            <td>{{$item->string_material->name}}</td>
+                                            <td>{{$item->string_group->string_material->name}}</td>
                                         </tr>
                                         <tr>
                                             <td>رنگ</td>
-                                            <td>{{$item->string_color->name}}</td>
+                                            <td>{{$item->string_group->string_color->name}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>نمره</td>
+                                            <td>{{$item->string_group->string_grade->value}}</td>
                                         </tr>
 
                                         <tr>
@@ -76,10 +81,7 @@
                                             <td>{{$item->seller->name}}</td>
                                         </tr>
 
-                                        <tr>
-                                            <td>نمره</td>
-                                            <td>{{$item->string_grade->value}}</td>
-                                        </tr>
+
 
 
                                         <tr>

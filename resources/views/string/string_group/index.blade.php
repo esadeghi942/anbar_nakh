@@ -25,23 +25,6 @@
     <div class="container-fluid">
         <div class="row starter-main">
             <div class="col-12 col-sm-6">
-                <h3>{{__('panel.create item',[ 'item'=>__('panel.order_points') ])}}</h3>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <form method="post" action="{{route('string.order_point.store')}}">
-                        @csrf
-                        @include('string.order_point.form')
-                        <button type="submit" class="btn btn-success mt-3">{{__('panel.save')}}</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container-fluid">
-        <div class="row starter-main">
-            <div class="col-12 col-sm-6">
                 <h3>{{__('panel.order_points')}}</h3>
             </div>
             <div class="card">
@@ -54,29 +37,24 @@
                                 <th>{{__('panel.color')}}</th>
                                 <th>{{__('panel.material')}}</th>
                                 <th>{{__('panel.grade')}}</th>
-                                <th>{{__('panel.value')}}</th>
+                                <th>{{__('panel.order_point')}}</th>
+                                <th>{{__('panel.weight')}}</th>
+                                <th>{{__('panel.type')}}</th>
                                 <th scope="col">{{__('panel.edit')}}</th>
-                                <th scope="col">{{__('panel.delete')}}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($order_points as $i => $order_point)
+                            @foreach($string_groups as $i => $string_group)
                                 <tr>
                                     <td>{{ $i +1 }}</td>
-                                    <td>{{ $order_point->string_color->name }}</td>
-                                    <td>{{ $order_point->string_material->name }}</td>
-                                    <td>{{ $order_point->string_grade->value }}</td>
-                                    <td>{{ $order_point->value }}</td>
-                                    <td><a href="{{route('string.order_point.edit',$order_point)}}" class="btn"><i
+                                    <td>{{ $string_group->string_color->name }}</td>
+                                    <td>{{ $string_group->string_material->name }}</td>
+                                    <td>{{ $string_group->string_grade->value }}</td>
+                                    <td>{{ $string_group->order_pointer }}</td>
+                                    <td>{{ $string_group->total_weight }}</td>
+                                    <td>{{ $string_group->str_type }}</td>
+                                    <td><a href="{{route('string.string_group.edit',$string_group)}}" class="btn"><i
                                                 class="fa fa-edit"></i></a></td>
-                                    <td>
-                                        <form action="{{ route('string.order_point.destroy',$order_point->id)}}" method="POST">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button type="submit" class="btn"><i
-                                                    class="fa fa-trash"></i></button>
-                                        </form>
-                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>

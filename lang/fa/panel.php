@@ -42,6 +42,7 @@ return [
 
     'order_point' => 'نقطه سفارش',
     'order_points' => 'نقطه سفارش ها',
+    'string_group' => 'نقطه سفارش ',
     'value'=>'مقدار',
     'exist'=>'موجودی',
 
@@ -59,7 +60,7 @@ return [
     'qrcode'=>'کد QR',
     'grade' => 'نمره',
     'grades' => 'نمره ها',
-    'weight' => 'وزن',
+    'weight' => 'وزن(Kg)',
     'rest_weight' => 'وزن باقی مانده',
     'type' => 'نوع',
     'qr_code' => 'کد Qr',

@@ -94,14 +94,14 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($items as $i => $item)
+                            @foreach(collect($items) as $i => $item)
                                 <tr>
                                     <td>{{ $i +1 }}</td>
                                     <td>{{ $item->string_anbar->name }}</td>
                                     <td>{{ $item->string_cell->code }}</td>
-                                    <td>{{ $item->string_color->name }}</td>
-                                    <td>{{ $item->string_material->name }}</td>
-                                    <td>{{ $item->string_grade->value }}</td>
+                                    <td>{{ $item->string_group->string_color->name }}</td>
+                                    <td>{{ $item->string_group->string_material->name }}</td>
+                                    <td>{{ $item->string_group->string_grade->value }}</td>
                                     <td>{{$item->rest_weight}}</td>
                                     <td>
                                         <a href="{{route('string.item.show',$item)}}"><i

@@ -31,19 +31,19 @@
                                 <th>{{__('panel.color')}}</th>
                                 <th>{{__('panel.material')}}</th>
                                 <th>{{__('panel.grade')}}</th>
-                                <th>{{__('panel.value')}}</th>
-                                <th>{{__('panel.exist')}}</th>
+                                <th>{{__('panel.weight')}}</th>
+                                <th>{{__('panel.order_point')}}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($order_pointers as $i => $order_pointer)
+                            @foreach($string_groups as $i => $string_group)
                                 <tr>
                                     <td>{{ $i +1 }}</td>
-                                    <td>{{ $order_pointer->string_color->name }}</td>
-                                    <td>{{ $order_pointer->string_material->name }}</td>
-                                    <td>{{ $order_pointer->string_grade->value }}</td>
-                                    <td>{{ $order_pointer->value }}</td>
-                                    <td>{{ $order_pointer->exists }}</td>
+                                    <td>{{ $string_group->string_color->name }}</td>
+                                    <td>{{ $string_group->string_material->name }}</td>
+                                    <td>{{ $string_group->string_grade->value }}</td>
+                                    <td>{{ $string_group->total_weight }}</td>
+                                    <td>{{ $string_group->order_pointer }}</td>
                                 </tr>
                             @endforeach
                             </tbody>

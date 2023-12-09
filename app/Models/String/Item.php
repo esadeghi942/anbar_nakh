@@ -14,21 +14,6 @@ class Item extends Model
 
     protected $table = 'string_items';
 
-    public function string_color()
-    {
-        return $this->belongsTo(Color::class);
-    }
-
-    public function string_material()
-    {
-        return $this->belongsTo(Material::class);
-    }
-
-    public function string_grade()
-    {
-        return $this->belongsTo(Grade::class);
-    }
-
     public function seller()
     {
         return $this->belongsTo(Seller::class, 'seller_id');
@@ -37,6 +22,11 @@ class Item extends Model
     public function string_cell()
     {
         return $this->belongsTo(Cell::class);
+    }
+
+    public function string_group()
+    {
+        return $this->belongsTo(StringGroup::class);
     }
 
     public function string_anbar()

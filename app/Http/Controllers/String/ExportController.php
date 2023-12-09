@@ -14,6 +14,7 @@ use App\Models\String\Grade;
 use App\Models\String\Item;
 use App\Models\String\Material;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ExportController extends Controller
 {
@@ -24,7 +25,6 @@ class ExportController extends Controller
         $colors = Color::all();
         $materials = Material::all();
         $grades = Grade::all();
-
         $sellers = Seller::all();
         return view('string.export.index', compact('anbars', 'cells', 'colors', 'materials',
             'grades', 'sellers'));
@@ -34,7 +34,7 @@ class ExportController extends Controller
     public function search(Request $request)
     {
 
-        $query=Item::where('id','>',0);
+        $query=Item::join('string_groups','string_items.string_group_id','=','string_groups.id');
         $title=[];
         if(isset($request->string_anbar_id)) {
             $query->where('string_anbar_id', $request->string_anbar_id);
@@ -45,17 +45,17 @@ class ExportController extends Controller
             $title[]= ' سلول:'.Cell::find($request->string_cell_id)->name;
         }
         if(isset($request->string_material_id)) {
-            $query->where('string_material_id', $request->string_material_id);
+            $query->where('string_groups.string_material_id', $request->string_material_id);
             $title[]= ' جنس:'.Material::find($request->string_material_id)->name;
 
         }
         if(isset($request->string_color_id)) {
-            $query->where('string_color_id', $request->string_color_id);
+            $query->where('string_groups.string_color_id', $request->string_color_id);
             $title[]= ' رنگ:'.Color::find($request->string_color_id)->name;
 
         }
         if(isset($request->string_grade_id)) {
-            $query->where('string_grade_id', $request->string_grade_id);
+            $query->where('string_groups.string_grade_id', $request->string_grade_id);
             $title[]= ' نمره:'.Grade::find($request->string_grade_id)->value;
         }
         if(isset($request->seller_id)) {
@@ -83,6 +83,8 @@ class ExportController extends Controller
         ]);
         $rest_wight= $item->rest_weight;
         $item->update(['rest_weight'=> $rest_wight - $request->weight]);
+        $total_weight= $item->string_group->total_weight;
+        $item->string_group->update(['total_weight'=>$total_weight -  $request->weight]);
         return Response::success();
     }
 }
