@@ -43,6 +43,7 @@ return [
     'order_point' => 'نقطه سفارش',
     'order_points' => 'نقطه سفارش ها',
     'value'=>'مقدار',
+    'exist'=>'موجودی',
 
     'devices' => 'دستگاه ها',
     'device' => 'دستگاه ',

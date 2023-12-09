@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\String;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StringCellRequest;
 use App\Models\String\Anbar;
 use App\Models\String\Cell;
 use Illuminate\Http\Request;
@@ -30,7 +31,7 @@ class CellController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StringCellRequest $request)
     {
         Cell::create($request->all());
         return redirect()->route('string.cell.index')->with('success',trans('panel.success create',['item'=>trans('panel.cell')]));
@@ -56,7 +57,7 @@ class CellController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Cell $cell)
+    public function update(StringCellRequest $request, Cell $cell)
     {
         $cell->update($request->all());
         return redirect()->route('string.cell.index')->with('success',trans('panel.success edit',['item'=>trans('panel.cell')]));
