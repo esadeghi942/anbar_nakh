@@ -73,7 +73,7 @@
 
                                         <tr>
                                             <td>فروشنده</td>
-                                            <td>{{$item->string_seller->name}}</td>
+                                            <td>{{$item->seller->name}}</td>
                                         </tr>
 
                                         <tr>

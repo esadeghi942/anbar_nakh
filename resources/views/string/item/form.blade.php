@@ -3,7 +3,8 @@
         <label  for="day">{{__('panel.anbar')}}
             <span class="required">*</span>
         </label>
-        <select name="string_anbar_id" id="anbar" class="form-control form-select">
+        <select name="string_anbar_id" id="anbar" autocomplete="off" class="form-control form-select">
+           <option></option>
             @foreach($anbars as $anbar)
                 <option {{ isset($item) && $item->string_anbar_id == $anbar->id ? 'selected' : '' }} value="{{$anbar->id}}">{{$anbar->name}}</option>
             @endforeach
@@ -36,11 +37,17 @@
         <div class="m-checkbox-inline">
             <div class="radio radio-theme">
                 <input type="radio" name="type" id="type_1" value="pallet">
-                <label for="type_1"> پالت</label>
+                <label for="type_1">پالت آک</label>
             </div>
+
             <div class="radio radio-theme">
-                <input type="radio" name="type" id="type_2" value="used">
-                <label for="type_2"> مصرف شده</label>
+                <input type="radio" name="type" id="type_2" value="pocket">
+                <label for="type_2">گونی آک</label>
+            </div>
+
+            <div class="radio radio-theme">
+                <input type="radio" name="type" id="type_3" value="used">
+                <label for="type_3">مصرف شده</label>
             </div>
         </div>
     </div>

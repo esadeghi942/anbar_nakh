@@ -73,7 +73,7 @@
 
                                         <tr>
                                             <td>فروشنده</td>
-                                            <td>{{$item->string_seller->name}}</td>
+                                            <td>{{$item->seller->name}}</td>
                                         </tr>
 
                                         <tr>
@@ -89,7 +89,7 @@
 
                                         <tr>
                                             <td>نوع</td>
-                                            <td>{{ $item->type }}</td>
+                                            <td>{{ $item->str_type }}</td>
                                         </tr>
                                         </tbody>
                                     </table>

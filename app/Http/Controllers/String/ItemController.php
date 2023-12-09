@@ -4,6 +4,7 @@ namespace App\Http\Controllers\String;
 
 use App\Http\Controllers\Controller;
 
+use App\Http\Requests\ItemRequest;
 use App\Models\Seller;
 use App\Models\String\Anbar;
 use App\Models\String\Cell;
@@ -36,7 +37,7 @@ class ItemController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ItemRequest $request)
     {
         $data=$request->all();
         $qrcode=Item::create_qr_codes($request->all());
@@ -88,7 +89,7 @@ class ItemController extends Controller
         $title[]= ' جنس:'.$item->string_material->name;
         $title[]= ' رنگ:'.$item->string_color->name;
         $title[]= ' نمره:'.$item->string_grade->value;
-        $title[]= ' فروشنده:'.$item->string_seller->name;
+        $title[]= ' فروشنده:'.$item->seller->name;
         $title=implode(', ' ,$title);
         return view('string.item.exports',compact('exports','title'));
     }

@@ -31,7 +31,7 @@ class Item extends Model
 
     public function seller()
     {
-        return $this->belongsTo(Seller::class,'seller_id');
+        return $this->belongsTo(Seller::class, 'seller_id');
     }
 
     public function string_cell()
@@ -46,7 +46,25 @@ class Item extends Model
 
     public function string_exports()
     {
-        return $this->hasMany(Export::class,'string_item_id');
+        return $this->hasMany(Export::class, 'string_item_id');
+    }
+
+    public function getStrTypeAttribute()
+    {
+        $type = $this->type;
+        $res = '';
+        switch ($type) {
+            case 'pallet':
+                $res = 'پالت آک';
+                break;
+            case 'pocket':
+                $res = 'گونی آک';
+                break;
+            case 'used':
+                $res = 'مصرف شده';
+                break;
+        }
+        return $res;
     }
 
     public static function create_qr_codes($data)
