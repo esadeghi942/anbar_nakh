@@ -65,7 +65,7 @@ class GradeController extends Controller
      */
     public function destroy(Grade $grade)
     {
-        if ($grade->string_items()->exists())
+        if ($grade->string_groups()->exists())
             return redirect()->route('string.grade.index')->withErrors('مواردی از این نمره در انبار وجود دارد امکان حذف نیست.');
         $grade->delete();
         return redirect()->route('string.grade.index')->with('success', trans('panel.success delete', ['item' => trans('panel.grade')]));

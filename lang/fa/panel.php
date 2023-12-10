@@ -60,6 +60,9 @@ return [
     'qrcode'=>'کد QR',
     'grade' => 'نمره',
     'grades' => 'نمره ها',
+
+    'layer' => 'لا',
+    'layers' => 'لا ها',
     'weight' => 'وزن(Kg)',
     'rest_weight' => 'وزن باقی مانده',
     'type' => 'نوع',

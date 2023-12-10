@@ -28,6 +28,11 @@ class StringGroup extends Model
         return $this->belongsTo(Grade::class);
     }
 
+    public function string_layer()
+    {
+        return $this->belongsTo(Layer::class);
+    }
+
     public function string_items()
     {
         return $this->hasMany(Item::class);

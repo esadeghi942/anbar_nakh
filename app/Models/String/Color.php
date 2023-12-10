@@ -14,8 +14,8 @@ class Color extends Model
     protected  $table='string_colors';
 
 
-    public function string_items()
+    public function string_groups()
     {
-        return $this->hasMany(Item::class,'string_color_id');
+        return $this->hasMany(StringGroup::class);
     }
 }

@@ -37,6 +37,7 @@
                                 <th>{{__('panel.color')}}</th>
                                 <th>{{__('panel.material')}}</th>
                                 <th>{{__('panel.grade')}}</th>
+                                <th>{{__('panel.layer')}}</th>
                                 <th>{{__('panel.order_point')}}</th>
                                 <th>{{__('panel.weight')}}</th>
                                 <th>{{__('panel.type')}}</th>
@@ -45,11 +46,12 @@
                             </thead>
                             <tbody>
                             @foreach($string_groups as $i => $string_group)
-                                <tr>
+                                <tr class="{{ $string_group->order_pointer == 0 ? 'table-danger' : ''  }}">
                                     <td>{{ $i +1 }}</td>
                                     <td>{{ $string_group->string_color->name }}</td>
                                     <td>{{ $string_group->string_material->name }}</td>
                                     <td>{{ $string_group->string_grade->value }}</td>
+                                    <td>{{ $string_group->string_layer->value }}</td>
                                     <td>{{ $string_group->order_pointer }}</td>
                                     <td>{{ $string_group->total_weight }}</td>
                                     <td>{{ $string_group->str_type }}</td>

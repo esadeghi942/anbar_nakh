@@ -11,6 +11,7 @@ use App\Models\String\Cell;
 use App\Models\String\Color;
 use App\Models\String\Grade;
 use App\Models\String\Item;
+use App\Models\String\Layer;
 use App\Models\String\Material;
 use App\Models\String\StringGroup;
 use Illuminate\Http\Request;
@@ -30,9 +31,10 @@ class ItemController extends Controller
         $materials = Material::all();
         $sellers = Seller::all();
         $grades = Grade::all();
+        $layers = Layer::all();
         $anbars = Anbar::all();
         $cells = Cell::all();
-        return view('string.item.create', compact('colors', 'materials', 'sellers', 'grades', 'anbars', 'cells'));
+        return view('string.item.create', compact('colors', 'materials','layers', 'sellers', 'grades', 'anbars', 'cells'));
     }
 
     /**
@@ -48,10 +50,11 @@ class ItemController extends Controller
             'string_color_id'=> $request->string_color_id,
             'string_material_id'=> $request->string_material_id,
             'string_grade_id'=> $request->string_grade_id,
+            'string_layer_id'=> $request->string_layer_id,
             'total_weight'=>  $request->weight,
             'order_pointer'=>0
         ];
-        $string_group = StringGroup::where('string_color_id', $request->string_color_id)->where('string_material_id', $request->string_material_id)->where('string_grade_id', $request->string_grade_id)->first();
+        $string_group = StringGroup::where('string_color_id', $request->string_color_id)->where('string_material_id', $request->string_material_id)->where('string_grade_id', $request->string_grade_id)->where('string_layer_id', $request->string_layer_id)->first();
         if ($string_group)
             $string_group->update(['total_weight' => $string_group->total_weight + $request->weight]);
         else
@@ -104,6 +107,7 @@ class ItemController extends Controller
         $title[] = ' جنس:' . $item->string_group->string_material->name;
         $title[] = ' رنگ:' . $item->string_group->string_color->name;
         $title[] = ' نمره:' . $item->string_group->string_grade->value;
+        $title[] = ' لا:' . $item->string_group->string_layer->value;
         $title[] = ' فروشنده:' . $item->seller->name;
         $title = implode(', ', $title);
         return view('string.item.exports', compact('exports', 'title'));

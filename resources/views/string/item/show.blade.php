@@ -77,11 +77,14 @@
                                         </tr>
 
                                         <tr>
+                                            <td>لا</td>
+                                            <td>{{$item->string_group->string_layer->value}}</td>
+                                        </tr>
+
+                                        <tr>
                                             <td>فروشنده</td>
                                             <td>{{$item->seller->name}}</td>
                                         </tr>
-
-
 
 
                                         <tr>

@@ -40,7 +40,7 @@ class ColorController extends Controller
     }
     public function destroy(Request $request,Color $color)
     {
-        if ($color->string_items()->exists())
+        if ($color->string_groups()->exists())
             return redirect()->route('string.color.index')->withErrors('مواردی از این رنگ در انبار وجود دارد امکان حذف نیست.');
         $color->delete();
         return redirect()->route('string.color.index')->with('success', trans('panel.success delete', ['item' => trans('panel.color')]));

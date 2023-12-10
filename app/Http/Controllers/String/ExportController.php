@@ -12,6 +12,7 @@ use App\Models\String\Anbar;
 use App\Models\String\Color;
 use App\Models\String\Grade;
 use App\Models\String\Item;
+use App\Models\String\Layer;
 use App\Models\String\Material;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,8 +26,9 @@ class ExportController extends Controller
         $colors = Color::all();
         $materials = Material::all();
         $grades = Grade::all();
+        $layers=Layer::all();
         $sellers = Seller::all();
-        return view('string.export.index', compact('anbars', 'cells', 'colors', 'materials',
+        return view('string.export.index', compact('anbars','layers', 'cells', 'colors', 'materials',
             'grades', 'sellers'));
 
     }
@@ -34,7 +36,7 @@ class ExportController extends Controller
     public function search(Request $request)
     {
 
-        $query=Item::join('string_groups','string_items.string_group_id','=','string_groups.id');
+        $query=Item::rightJoin('string_groups','string_items.string_group_id','=','string_groups.id')->selectRaw('string_items.*');
         $title=[];
         if(isset($request->string_anbar_id)) {
             $query->where('string_anbar_id', $request->string_anbar_id);
@@ -57,6 +59,11 @@ class ExportController extends Controller
         if(isset($request->string_grade_id)) {
             $query->where('string_groups.string_grade_id', $request->string_grade_id);
             $title[]= ' نمره:'.Grade::find($request->string_grade_id)->value;
+        }
+
+        if(isset($request->string_layer_id)) {
+            $query->where('string_groups.string_layer_id', $request->string_layer_id);
+            $title[]= ' لا :'.Layer::find($request->string_layer_id)->value;
         }
         if(isset($request->seller_id)) {
             $query->where('seller_id', $request->seller_id);

@@ -87,6 +87,7 @@
                                 <th>{{__('panel.color')}}</th>
                                 <th>{{__('panel.material')}}</th>
                                 <th>{{__('panel.grade')}}</th>
+                                <th>{{__('panel.layer')}}</th>
                                 <th>{{__('panel.rest_weight')}}</th>
                                 <th scope="col">{{__('panel.get_qr_code')}}</th>
                                 <th>{{__('panel.exports')}}</th>
@@ -94,7 +95,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach(collect($items) as $i => $item)
+                            @foreach($items as $i => $item)
                                 <tr>
                                     <td>{{ $i +1 }}</td>
                                     <td>{{ $item->string_anbar->name }}</td>
@@ -102,6 +103,7 @@
                                     <td>{{ $item->string_group->string_color->name }}</td>
                                     <td>{{ $item->string_group->string_material->name }}</td>
                                     <td>{{ $item->string_group->string_grade->value }}</td>
+                                    <td>{{ $item->string_group->string_layer->value }}</td>
                                     <td>{{$item->rest_weight}}</td>
                                     <td>
                                         <a href="{{route('string.item.show',$item)}}"><i

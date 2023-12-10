@@ -12,8 +12,8 @@ class Material extends Model
 
     protected  $table='string_materials';
 
-    public function string_items()
+    public function string_groups()
     {
-        return $this->hasMany(Item::class,'string_material_id');
+        return $this->hasMany(StringGroup::class);
     }
 }

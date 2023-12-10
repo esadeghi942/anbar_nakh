@@ -59,6 +59,19 @@
     </div>
 
     <div class="form-group col-12 col-sm-6 col-md-4">
+        <label for="day">{{__('panel.layer')}}
+            <span class="required">*</span>
+        </label>
+        <select name="string_layer_id" class="form-control form-select">
+            <option></option>
+            @foreach($layers as $layer)
+                <option
+                    {{ isset($item) && $item->string_layer_id == $layer->id ? 'selected' : '' }} value="{{$layer->id}}">{{ $layer->value}}</option>
+            @endforeach
+        </select>
+    </div>
+
+    <div class="form-group col-12 col-sm-6 col-md-4">
         <label  for="day">{{__('panel.seller')}}
             <span class="required">*</span>
         </label>

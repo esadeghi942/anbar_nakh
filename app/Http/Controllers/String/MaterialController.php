@@ -66,7 +66,7 @@ class MaterialController extends Controller
      */
     public function destroy(Material $material)
     {
-        if ($material->string_items()->exists())
+        if ($material->string_groups()->exists())
             return redirect()->route('string.material.index')->withErrors('مواردی از این جنس در انبار وجود دارد امکان حذف نیست.');
         $material->delete();
         return redirect()->route('string.material.index')->with('success', trans('panel.success delete', ['item' => trans('panel.material')]));
