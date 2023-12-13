@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('export', [App\Http\Controllers\String\ExportController::class,'index'])->name('export.index');
         Route::get('search', [App\Http\Controllers\String\ExportController::class,'search'])->name('export.search');
+        Route::get('struct_cell', [App\Http\Controllers\String\ReportController::class,'struct_cell'])->name('report.struct_cell');
         Route::post('export', [App\Http\Controllers\String\ExportController::class,'export'])->name('export.export');
     });
 

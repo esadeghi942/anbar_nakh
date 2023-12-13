@@ -59,5 +59,12 @@ class StringGroup extends Model
         return $res;
     }
 
+    public function getTitleAttribute()
+    {
+        $str = '';
+        $elem = $this;
+        return $elem->string_color->name . ' ' . $elem->string_grade->value . ' ' . $elem->string_material->name . ' ' . $elem->string_layer->value;
+    }
+
 
 }

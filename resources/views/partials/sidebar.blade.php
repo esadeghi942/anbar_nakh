@@ -136,7 +136,7 @@
                                 <li><a class="submenu-title" href="#">آمارها<span class="sub-arrow"><i
                                                 class="fa fa-angle-left"></i></span></a>
                                     <ul class="nav-sub-childmenu submenu-content">
-                                        <li><a href="#">انبار ها در یک نگاه</a></li>
+                                        <li><a href="{{route('string.report.struct_cell')}}">انبار ها در یک نگاه</a></li>
                                         <li><a href="#">نمودارها</a></li>
                                     </ul>
                                 </li>

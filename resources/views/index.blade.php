@@ -80,9 +80,14 @@
             var options1 = {
                 chart: {
                     height: 350,
-                    type: 'area',
+                    type: 'line',
                     toolbar: {
                         show: false
+                    }
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: true,
                     }
                 },
                 dataLabels: {
