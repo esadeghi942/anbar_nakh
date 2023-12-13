@@ -48,12 +48,12 @@
                                 <div class="text-center">
                                     <div class="border-red">
                                         <h5>
-                                            ****{{$item->string_anbar->name}}****
+                                            ****{{$cell->string_anbar->name}}****
                                             <br>
-                                            {{$item->string_cell->code}}
+                                            {{$cell->code}}
                                         </h5>
                                         <div class="border-red">
-                                            {!! QrCode::encoding('UTF-8')->size(150)->generate(trim($item->qr_code)) !!}
+                                            {!! QrCode::encoding('UTF-8')->size(150)->generate(trim($cell->qr_code)) !!}
                                         </div>
                                     </div>
                                 </div>
@@ -64,33 +64,28 @@
                                         <tbody>
                                         <tr>
                                             <td>جنس</td>
-                                            <td>{{$item->string_material->name}}</td>
+                                            <td>{{$cell->string_group->string_material->name}}</td>
                                         </tr>
                                         <tr>
                                             <td>رنگ</td>
-                                            <td>{{$item->string_color->name}}</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>تامین کننده </td>
-                                            <td>{{$item->seller->name}}</td>
+                                            <td>{{$cell->string_group->string_color->name}}</td>
                                         </tr>
 
                                         <tr>
                                             <td>نمره</td>
-                                            <td>{{$item->string_grade->value}}</td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>وزن</td>
-                                            <td>{{$item->weight}}</td>
+                                            <td>{{$cell->string_group->string_grade->value}}</td>
                                         </tr>
 
                                         <tr>
-                                            <td>نوع</td>
-                                            <td>{{ $item->type }}</td>
+                                            <td>لا</td>
+                                            <td>{{$cell->string_group->string_layer->value}}</td>
                                         </tr>
+
+                                        <tr>
+                                            <td>وزن اولیه</td>
+                                            <td>{{$cell->weight}}</td>
+                                        </tr>
+
                                         </tbody>
                                     </table>
                                 </div>

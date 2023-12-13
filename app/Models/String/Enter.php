@@ -6,13 +6,13 @@ use App\Models\Seller;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Item extends Model
+class Enter extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
 
-    protected $table = 'string_items';
+    protected $table = 'string_enters';
 
     public function seller()
     {
@@ -34,10 +34,6 @@ class Item extends Model
         return $this->belongsTo(Anbar::class);
     }
 
-    public function string_exports()
-    {
-        return $this->hasMany(Export::class, 'string_item_id');
-    }
 
     public function getStrTypeAttribute()
     {

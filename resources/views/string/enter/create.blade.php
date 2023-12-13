@@ -29,9 +29,9 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-body">
-                        <form method="post" action="{{route('string.item.store')}}">
+                        <form method="post" action="{{route('string.enter.store')}}">
                             @csrf
-                            @include('string.item.form')
+                            @include('string.enter.form')
                             <button type="submit" class="btn btn-success mt-3">{{__('panel.save')}}</button>
                         </form>
 

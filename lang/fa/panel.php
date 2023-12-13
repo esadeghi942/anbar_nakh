@@ -2,7 +2,7 @@
 return [
     'panel' => 'پنل کاربری',
     'login' => 'ورود به سایت',
-    'dashboard' => 'پنل ادمین',
+    'dashboard' => 'داشبورد',
     'copy_right' => 'کپی رایت ©2022 - تمام حقوق محفوظ است',
     'admin' => 'ادمین',
     'running_request', 'در حال اجرای درخواست ...',
@@ -31,8 +31,8 @@ return [
     'until' => 'تا',
     'save' => 'ذخیره',
     'nothing found' => 'موردی یافت نشد',
-    'sellers' => 'فروشندگان',
-    'seller' => 'فروشنده',
+    'sellers' => 'تامین کنندگان',
+    'seller' => 'تامین کننده',
 
     'customers' => 'مشتریان',
     'customer' => 'مشتری',

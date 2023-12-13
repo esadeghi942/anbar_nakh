@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\String\Item;
+use App\Models\String\Enter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,7 +14,7 @@ class Seller extends Model
 
     public function string_item()
     {
-        return $this->hasMany(Item::class);
+        return $this->hasMany(Enter::class);
     }
 
 }

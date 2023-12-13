@@ -11,7 +11,7 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-sm-6">
-                    {{__('panel.enter anbar',['item'=>__('panel.item')])}}
+                    {{__('panel.export anbar',['item'=>__('panel.item')])}}
                 </div>
                 <div class="col-12 col-sm-6">
                     <ol class="breadcrumb">
@@ -29,18 +29,17 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-body">
-                        <form method="post" action="{{route('string.item.store')}}">
-                            @csrf
-                            @include('string.item.form')
-                            <button type="submit" class="btn btn-success mt-3">{{__('panel.save')}}</button>
+                        <form action="{{route('string.export.search')}}">
+                            @include('string.export.form')
+                            <button type="submit" class="btn btn-success mt-3">{{__('panel.search')}}</button>
                         </form>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+
 @section('js')
     <script>
         $(document).on('change','#anbar',function (){
@@ -51,3 +50,4 @@
         });
     </script>
 @endsection
+

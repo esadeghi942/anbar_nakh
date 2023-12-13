@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\String\Item;
+use App\Models\String\Enter;
 use App\Models\String\StringGroup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

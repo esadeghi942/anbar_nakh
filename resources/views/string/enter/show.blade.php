@@ -48,12 +48,12 @@
                                 <div class="text-center">
                                     <div class="border-red">
                                         <h5>
-                                            ****{{$item->string_anbar->name}}****
+                                            ****{{$enter->string_anbar->name}}****
                                             <br>
-                                            {{$item->string_cell->code}}
+                                            {{$enter->string_cell->code}}
                                         </h5>
                                         <div class="border-red">
-                                            {!! QrCode::encoding('UTF-8')->size(150)->generate(trim($item->qr_code)) !!}
+                                            {!! QrCode::encoding('UTF-8')->size(150)->generate(trim($enter->qr_code)) !!}
                                         </div>
                                     </div>
                                 </div>
@@ -64,37 +64,37 @@
                                         <tbody>
                                         <tr>
                                             <td>جنس</td>
-                                            <td>{{$item->string_group->string_material->name}}</td>
+                                            <td>{{$enter->string_group->string_material->name}}</td>
                                         </tr>
                                         <tr>
                                             <td>رنگ</td>
-                                            <td>{{$item->string_group->string_color->name}}</td>
+                                            <td>{{$enter->string_group->string_color->name}}</td>
                                         </tr>
 
                                         <tr>
                                             <td>نمره</td>
-                                            <td>{{$item->string_group->string_grade->value}}</td>
+                                            <td>{{$enter->string_group->string_grade->value}}</td>
                                         </tr>
 
                                         <tr>
                                             <td>لا</td>
-                                            <td>{{$item->string_group->string_layer->value}}</td>
+                                            <td>{{$enter->string_group->string_layer->value}}</td>
                                         </tr>
 
                                         <tr>
-                                            <td>فروشنده</td>
-                                            <td>{{$item->seller->name}}</td>
+                                            <td>تامین کننده </td>
+                                            <td>{{$enter->seller->name}}</td>
                                         </tr>
 
 
                                         <tr>
-                                            <td>وزن</td>
-                                            <td>{{$item->weight}}</td>
+                                            <td>وزن اولیه</td>
+                                            <td>{{$enter->weight}}</td>
                                         </tr>
 
                                         <tr>
                                             <td>نوع</td>
-                                            <td>{{ $item->str_type }}</td>
+                                            <td>{{ $enter->str_type }}</td>
                                         </tr>
                                         </tbody>
                                     </table>

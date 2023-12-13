@@ -30,42 +30,42 @@
                     <li><a class="sidebar-link {{ $route == 'index' ? 'active' : '' }}"
                            href="{{route('index')}}"> <i
                                 class="fa fa-home"></i><span>{{ __('panel.dashboard') }} </span></a></li>
-                  {{--  @if(auth()->user()->role == 'admin' || auth()->user()->role == 'carpet')
-                        <li class="sidebar-list">
-                            <a class="sidebar-link sidebar-title" href="#">
-                                <i class="fa fa-users"></i><span class="">مرکز تنظیم ساختار انبار فرش </span>
-                                <div class="according-menu"></div>
-                            </a>
-                            <ul class="sidebar-submenu">
-                                <li><a class="{{ $route == 'carpet.anbar.index' ? 'active' : '' }}"
-                                       href="{{route('carpet.anbar.index')}}">{{ __('panel.anbars') }}</a></li>
+                    {{--  @if(auth()->user()->role == 'admin' || auth()->user()->role == 'carpet')
+                          <li class="sidebar-list">
+                              <a class="sidebar-link sidebar-title" href="#">
+                                  <i class="fa fa-users"></i><span class="">مرکز تنظیم ساختار انبار فرش </span>
+                                  <div class="according-menu"></div>
+                              </a>
+                              <ul class="sidebar-submenu">
+                                  <li><a class="{{ $route == 'carpet.anbar.index' ? 'active' : '' }}"
+                                         href="{{route('carpet.anbar.index')}}">{{ __('panel.anbars') }}</a></li>
 
-                                <li><a class="{{ $route == 'carpet.cell.index' ? 'active' : '' }}"
-                                       href="{{route('carpet.cell.index')}}">{{ __('panel.cells') }}</a></li>
+                                  <li><a class="{{ $route == 'carpet.cell.index' ? 'active' : '' }}"
+                                         href="{{route('carpet.cell.index')}}">{{ __('panel.cells') }}</a></li>
 
-                                <li><a class="{{ $route == 'customer.index' ? 'active' : '' }}"
-                                       href="{{route('customer.index')}}"><span>{{ __('panel.customers') }}</span></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="sidebar-list">
-                            <a class="sidebar-link sidebar-title" href="#">
-                                <i class="fa fa-search"></i><span class="">ورود به انبار فرش</span>
-                                <div class="according-menu"></div>
-                            </a>
-                            <ul class="sidebar-submenu">
-                                <li><a href="{{route('carpet.qr_code.one')}}">یک محصول</a></li>
-                                <li><a href="{{route('carpet.qr_code.multi')}}">چند محصول</a></li>
-                            </ul>
-                        </li>
-                    @endif--}}
+                                  <li><a class="{{ $route == 'customer.index' ? 'active' : '' }}"
+                                         href="{{route('customer.index')}}"><span>{{ __('panel.customers') }}</span></a>
+                                  </li>
+                              </ul>
+                          </li>
+                          <li class="sidebar-list">
+                              <a class="sidebar-link sidebar-title" href="#">
+                                  <i class="fa fa-search"></i><span class="">ورود به انبار فرش</span>
+                                  <div class="according-menu"></div>
+                              </a>
+                              <ul class="sidebar-submenu">
+                                  <li><a href="{{route('carpet.qr_code.one')}}">یک محصول</a></li>
+                                  <li><a href="{{route('carpet.qr_code.multi')}}">چند محصول</a></li>
+                              </ul>
+                          </li>
+                      @endif--}}
                     @if(auth()->user()->role == 'admin' || auth()->user()->role == 'string')
                         <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
                                 <i class="fa fa-transgender"></i>
                                 مرکز نقل و انتقال انبار</a>
                             <ul class="sidebar-submenu">
-                                <li><a class="sidebar-link {{ $route == 'string.item.create' ? 'active' : '' }}"
-                                       href="{{route('string.item.create')}}"><span>ورود</span></a></li>
+                                <li><a class="sidebar-link {{ $route == 'string.enter.create' ? 'active' : '' }}"
+                                       href="{{route('string.enter.create')}}"><span>ورود</span></a></li>
                                 <li><a class="sidebar-link {{ $route == 'string.export.index' ? 'active' : '' }}"
                                        href="{{route('string.export.index')}}"><span>خروج</span></a></li>
 
@@ -107,7 +107,8 @@
                                                href="{{route('string.color.index')}}">{{ __('panel.colors') }}</a></li>
 
                                         <li><a class="{{ $route == 'string.material.index' ? 'active' : '' }}"
-                                               href="{{route('string.material.index')}}">{{ __('panel.materials') }}</a></li>
+                                               href="{{route('string.material.index')}}">{{ __('panel.materials') }}</a>
+                                        </li>
 
                                         <li><a class="{{ $route == 'string.grade.index' ? 'active' : '' }}"
                                                href="{{route('string.grade.index')}}">{{ __('panel.grades') }}</a></li>
@@ -119,28 +120,29 @@
                                 <li><a class="{{ $route == 'device.index' ? 'active' : '' }}"
                                        href="{{route('device.index')}}">{{ __('panel.devices') }}</a></li>
 
-                               <li><a class="sidebar-link {{ $route == 'string.string_group.index' ? 'active' : '' }}"
+                                <li><a class="sidebar-link {{ $route == 'string.string_group.index' ? 'active' : '' }}"
                                        href="{{route('string.string_group.index')}}">نقطه سفارش ها</a></li>
                             </ul>
                         </li>
+
+                        <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
+                                <i class="fa fa-bar-chart"></i>
+                                مرکز آمار</a>
+                            <ul class="sidebar-submenu">
+                                <li><a class="sidebar-link {{ $route == 'string.export.index' ? 'active' : '' }}"
+                                       href="{{route('string.export.index')}}"><span>گزارش</span></a></li>
+                                <li><a class="sidebar-link {{ $route == 'string.string_group.index' ? 'active' : '' }}"
+                                       href="#"><span>جستجو</span></a></li>
+                                <li><a class="submenu-title" href="#">آمارها<span class="sub-arrow"><i
+                                                class="fa fa-angle-left"></i></span></a>
+                                    <ul class="nav-sub-childmenu submenu-content">
+                                        <li><a href="#">انبار ها در یک نگاه</a></li>
+                                        <li><a href="#">نمودارها</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
                     @endif
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
-                            <i class="fa fa-bar-chart"></i>
-                           مرکز آمار</a>
-                        <ul class="sidebar-submenu">
-                            <li><a class="sidebar-link {{ $route == 'string.export.index' ? 'active' : '' }}"
-                                   href="{{route('string.export.index')}}"><span>گزارش</span></a></li>
-                            <li><a class="sidebar-link {{ $route == 'string.string_group.index' ? 'active' : '' }}"
-                                   href="#"><span>جستجو</span></a></li>
-                            <li><a class="submenu-title" href="#">آمارها<span class="sub-arrow"><i
-                                            class="fa fa-angle-left"></i></span></a>
-                                <ul class="nav-sub-childmenu submenu-content">
-                                    <li><a href="#">انبار ها در یک نگاه</a></li>
-                                    <li><a href="#">نمودارها</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
                     <li>
                         <form class="sidebar-link" action="{{route('logout')}}" method="POST">
                             @csrf

@@ -10,10 +10,11 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('string_items', function (Blueprint $table) {
+        Schema::create('string_enters', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('string_anbar_id')->unsigned();
-            $table->foreign('string_anbar_id')->references('id')->on('id')->on('string_anbars')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('string_anbar_id')->references('id')->on('string_anbars')->onDelete('cascade')->onUpdate('cascade');
+
 
             $table->bigInteger('string_cell_id')->unsigned();
             $table->foreign('string_cell_id')->references('id')->on('string_cells')->onDelete('cascade')->onUpdate('cascade');
@@ -25,9 +26,9 @@ return new class extends Migration {
             $table->foreign('seller_id')->references('id')->on('sellers')->onDelete('set null')->onUpdate('cascade');
 
             $table->float('weight');
-            $table->float('rest_weight');
             $table->string('type');
             $table->string('qr_code');
+
             $table->timestamps();
         });
     }

@@ -33,9 +33,10 @@ Route::middleware('auth')->group(function () {
         Route::resource('material', App\Http\Controllers\String\MaterialController::class);
         Route::resource('grade', App\Http\Controllers\String\GradeController::class);
         Route::resource('layer', App\Http\Controllers\String\LayerController::class);
-        Route::resource('item', App\Http\Controllers\String\ItemController::class);
+        Route::resource('enter', App\Http\Controllers\String\EnterController::class);
         Route::resource('string_group',\App\Http\Controllers\String\StringGroupController::class);
-        Route::get('exports/{item}', [App\Http\Controllers\String\ItemController::class,'exports'])->name('item.exports');
+        Route::get('cell/{cell}/export', [App\Http\Controllers\String\CellController::class,'exports'])->name('cell.exports');
+        Route::get('cell/{cell}/qr_code', [App\Http\Controllers\String\CellController::class,'qr_code'])->name('cell.qr_code');
 
         Route::get('export', [App\Http\Controllers\String\ExportController::class,'index'])->name('export.index');
         Route::get('search', [App\Http\Controllers\String\ExportController::class,'search'])->name('export.search');

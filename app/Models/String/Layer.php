@@ -12,4 +12,9 @@ class Layer extends Model
     protected $fillable = ['value'];
 
     protected  $table='string_layers';
+
+    public function string_groups()
+    {
+        return $this->hasMany(StringGroup::class);
+    }
 }

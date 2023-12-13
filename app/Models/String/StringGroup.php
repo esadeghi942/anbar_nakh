@@ -33,9 +33,15 @@ class StringGroup extends Model
         return $this->belongsTo(Layer::class);
     }
 
-    public function string_items()
+    public function string_enters()
     {
-        return $this->hasMany(Item::class);
+        return $this->hasMany(Enter::class);
+    }
+
+
+    public function string_exports()
+    {
+        return $this->hasMany(Export::class);
     }
 
     public function getStrTypeAttribute()

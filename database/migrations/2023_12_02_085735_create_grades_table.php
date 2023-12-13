@@ -16,6 +16,12 @@ return new class extends Migration
             $table->float('value');
             $table->timestamps();
         });
+
+        Schema::create('string_layers',function (Blueprint $table){
+            $table->id();
+            $table->integer('value');
+            $table->timestamps();
+        });
     }
 
     /**

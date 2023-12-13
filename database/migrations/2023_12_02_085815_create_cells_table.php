@@ -16,6 +16,12 @@ return new class extends Migration
             $table->string('code');
             $table->bigInteger('string_anbar_id')->unsigned();
             $table->foreign('string_anbar_id')->references('id')->on('string_anbars')->onDelete('cascade')->onUpdate('cascade');
+
+            $table->bigInteger('string_group_id')->unsigned()->nullable();
+            $table->foreign('string_group_id')->references('id')->on('string_groups')->onDelete('set null')->onUpdate('cascade');
+            $table->float('weight')->default(0);
+            $table->string('qr_code')->nullable();
+
             $table->timestamps();
         });
     }

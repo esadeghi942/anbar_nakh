@@ -40,9 +40,9 @@ class CellController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Cell $cell)
+    public function qr_code(Cell $cell)
     {
-        //
+        return view('string.cell.qr_code', compact('cell'));
     }
 
     /**
@@ -61,8 +61,6 @@ class CellController extends Controller
     {
         $cell->update($request->all());
         return redirect()->route('string.cell.index')->with('success',trans('panel.success edit',['item'=>trans('panel.cell')]));
-
-
     }
 
     /**
@@ -70,10 +68,20 @@ class CellController extends Controller
      */
     public function destroy(Cell $cell)
     {
-        if ($cell->string_items()->exists())
+        if ($cell->string_enters()->exists())
             return redirect()->route('string.cell.index')->withErrors('مواردی از این سلول در انبار وجود دارد امکان حذف نیست.');
         $cell->delete();
         return redirect()->route('string.cell.index')->with('success', trans('panel.success delete', ['item' => trans('panel.cell')]));
-
     }
+
+    public function exports(Cell $cell)
+    {
+        $exports = $cell->string_exports()->get();
+        $title = [];
+        $title[] = ' انبار:' . $cell->string_anbar->name;
+        $title[] = ' سلول:' . $cell->code;
+        $title = implode(', ', $title);
+        return view('string.cell.exports', compact('exports', 'title'));
+    }
+
 }

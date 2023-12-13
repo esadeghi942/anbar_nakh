@@ -18,10 +18,10 @@
 
     <div class="container-fluid">
         <div class="row starter-main">
-            <div class="col-12 col-sm-6">
-                <h3>{{__('panel.order_points')}}</h3>
-            </div>
             <div class="card">
+                <div class="card-title">
+                    <h2>جدول عبور از نقطه سفارش</h2>
+                </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered">
@@ -59,7 +59,7 @@
                 <div class="col-lg-12 col-sm-12 box-col-12">
                     <div class="card">
                         <div class="card-header pb-0">
-                            <h5>نمودار کلی</h5>
+                            <h5>نمودار نقطه سفارش و موجودی</h5>
                         </div>
                         <div class="card-body chart-block">
                             <div class="flot-chart-container morris-chart">
@@ -76,38 +76,42 @@
     <script src="{{asset('assets/js/chart/apex-chart/apex-chart.js')}}"></script>
     <script>
         var chart_data = {!! $chart_data !!};
-        var options1 = {
-            chart: {
-                height: 350,
-                type: 'area',
-                toolbar:{
-                    show: false
-                }
-            },
-            dataLabels: {
-                enabled: false
-            },
-            stroke: {
-                curve: 'smooth'
-            },
-            series: [{
-                name: 'موجودی انبار',
-                data: chart_data['total_weight']
-            }, {
-                name: 'نقطه سفارش',
-                data: chart_data['order_pointer'],
-            }],
+        if( chart_data.label && chart_data.label.length) {
+            var options1 = {
+                chart: {
+                    height: 350,
+                    type: 'area',
+                    toolbar: {
+                        show: false
+                    }
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                stroke: {
+                    curve: 'smooth'
+                },
+                series: [{
+                    name: 'موجودی انبار',
+                    data: chart_data['total_weight']
+                }, {
+                    name: 'نقطه سفارش',
+                    data: chart_data['order_pointer'],
+                }],
 
-            xaxis: {
-                type: 'categories',
-                categories: chart_data['label'],
-            },
-            colors:[ zetaAdminConfig.primary , zetaAdminConfig.secondary ]
+                xaxis: {
+                    type: 'categories',
+                    categories: chart_data['label'],
+                },
+                colors: [zetaAdminConfig.success, zetaAdminConfig.danger]
+            }
+            var chart1 = new ApexCharts(
+                document.querySelector("#area-spaline"),
+                options1
+            );
+            chart1.render();
         }
-        var chart1 = new ApexCharts(
-            document.querySelector("#area-spaline"),
-            options1
-        );
-        chart1.render();
+        else
+            $('#area-spaline').html('موردی ثبت نشده است.')
     </script>
 @endsection

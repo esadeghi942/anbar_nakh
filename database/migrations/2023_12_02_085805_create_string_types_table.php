@@ -25,6 +25,7 @@ return new class extends Migration
 
             $table->float('order_pointer');
             $table->boolean('active')->default(1);
+
             $table->float('total_weight');
 
             $table->unique([

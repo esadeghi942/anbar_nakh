@@ -15,10 +15,6 @@ class Export extends Model
 
     protected  $table='string_exports';
 
-    public function string_item()
-    {
-        return $this->belongsTo(Item::class,'string_item_id');
-    }
 
     public function device()
     {
@@ -28,5 +24,15 @@ class Export extends Model
     public function person()
     {
         return $this->belongsTo(Person::class);
+    }
+
+    public function string_cell()
+    {
+        return $this->belongsTo(Cell::class);
+    }
+
+    public function string_group()
+    {
+        return $this->belongsTo(StringGroup::class);
     }
 }

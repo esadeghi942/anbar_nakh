@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\String;
 
 use App\Http\Controllers\Controller;
+use App\Models\String\Enter;
 use App\Models\String\StringGroup;
 use Illuminate\Http\Request;
 
@@ -34,6 +35,5 @@ class StringGroupController extends Controller
     {
         $stringGroup->update($request->all());
         return redirect()->route('string.string_group.index')->with('success',trans('panel.success edit',['item'=>trans('panel.string_group')]));
-
     }
 }

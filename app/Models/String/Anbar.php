@@ -13,9 +13,9 @@ class Anbar extends Model
 
     protected $table = 'string_anbars';
 
-    public function string_items()
+    public function string_enters()
     {
-        return $this->hasMany(Item::class,'string_anbar_id');
+        return $this->hasMany(Enter::class,'string_anbar_id');
     }
 
     public function string_cells()

@@ -2,7 +2,6 @@
 
 namespace App\Models\String;
 
-use App\Models\Seller;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,9 +12,14 @@ class Cell extends Model
     protected $guarded=['id'];
     protected  $table='string_cells';
 
-    public function string_items()
+    public function string_enters()
     {
-        return $this->hasMany(Item::class,'string_cell_id');
+        return $this->hasMany(Enter::class,'string_cell_id');
+    }
+
+    public function string_exports()
+    {
+        return $this->hasMany(Export::class,'string_cell_id');
     }
 
     public function string_anbar()
@@ -23,8 +27,8 @@ class Cell extends Model
         return $this->belongsTo(Anbar::class,'string_anbar_id');
     }
 
-    public function seller()
+    public function string_group()
     {
-        return $this->belongsTo(Seller::class);
+        return $this->belongsTo(StringGroup::class,'string_group_id');
     }
 }

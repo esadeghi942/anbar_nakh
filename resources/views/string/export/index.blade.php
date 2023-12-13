@@ -11,7 +11,7 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-sm-6">
-                    {{__('panel.search anbar',['item'=>__('panel.item')])}}
+                    {{__('panel.export anbar',['item'=>__('panel.item')])}}
                 </div>
                 <div class="col-12 col-sm-6">
                     <ol class="breadcrumb">
