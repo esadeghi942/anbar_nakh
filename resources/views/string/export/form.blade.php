@@ -71,7 +71,7 @@
         </select>
     </div>
 
-    <div class="form-group col-12 col-sm-6 col-md-4">
+  {{--  <div class="form-group col-12 col-sm-6 col-md-4">
         <label  for="day">{{__('panel.seller')}}
             <span class="required">*</span>
         </label>
@@ -81,7 +81,7 @@
                 <option  {{ isset($item) && $item->seller_id == $seller->id ? 'selected' : '' }} value="{{$seller->id}}">{{ $seller->name}}</option>
             @endforeach
         </select>
-    </div>
+    </div>--}}
 </div>
 
 

@@ -81,11 +81,6 @@
                                             <td>{{$cell->string_group->string_layer->value}}</td>
                                         </tr>
 
-                                        <tr>
-                                            <td>وزن اولیه</td>
-                                            <td>{{$cell->weight}}</td>
-                                        </tr>
-
                                         </tbody>
                                     </table>
                                 </div>

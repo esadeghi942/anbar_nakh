@@ -61,8 +61,7 @@ class Enter extends Model
         $anbar = Anbar::find($data['string_anbar_id'])->code;
         $grade = Grade::find($data['string_grade_id'])->value;
         $color = Color::find($data['string_color_id'])->en_name;
-        $seller = Seller::find($data['seller_id'])->en_name;
-        $qrcode = '#' . $date . '@' . $anbar . '@' . $cell . '@' . $material . '@' . $data['type'] . '@' . $color . '@' . $grade . '@' . $seller . '@' . $data['weight'] . '#';
+        $qrcode = '#' . $date . '@' . $anbar . '@' . $cell . '@' . $material . '@' . $color . '@' . $grade . '#';
         return $qrcode;
     }
 

@@ -61,7 +61,7 @@
                       @endif--}}
                     @if(auth()->user()->role == 'admin' || auth()->user()->role == 'string')
                         <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
-                                <i class="fa fa-transgender"></i>
+                                <i class="fa fa-exchange"></i>
                                 مرکز نقل و انتقال انبار</a>
                             <ul class="sidebar-submenu">
                                 <li><a class="sidebar-link {{ $route == 'string.enter.create' ? 'active' : '' }}"

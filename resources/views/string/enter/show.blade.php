@@ -81,7 +81,7 @@
                                             <td>{{$enter->string_group->string_layer->value}}</td>
                                         </tr>
 
-                                        <tr>
+                                   {{--     <tr>
                                             <td>تامین کننده </td>
                                             <td>{{$enter->seller->name}}</td>
                                         </tr>
@@ -95,7 +95,7 @@
                                         <tr>
                                             <td>نوع</td>
                                             <td>{{ $enter->str_type }}</td>
-                                        </tr>
+                                        </tr>--}}
                                         </tbody>
                                     </table>
                                 </div>

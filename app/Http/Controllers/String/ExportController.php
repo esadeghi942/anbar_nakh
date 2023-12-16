@@ -41,7 +41,7 @@ class ExportController extends Controller
             $title[] = ' انبار:' . Anbar::find($request->string_anbar_id)->name;
         }
         if (isset($request->string_cell_id)) {
-            $query->where('string_cell_id', $request->string_cell_id);
+            $query->where('string_cells.id', $request->string_cell_id);
             $title[] = ' سلول:' . Cell::find($request->string_cell_id)->name;
         }
         if (isset($request->string_material_id)) {
@@ -63,10 +63,10 @@ class ExportController extends Controller
             $query->where('string_groups.string_layer_id', $request->string_layer_id);
             $title[] = ' لا :' . Layer::find($request->string_layer_id)->value;
         }
-        if (isset($request->seller_id)) {
+     /*   if (isset($request->seller_id)) {
             $query->where('seller_id', $request->seller_id);
             $title[] = ' تامین کننده:' . Seller::find($request->seller_id)->value;
-        }
+        }*/
         $title = implode(',', $title);
         $items = $query->get();
         $devices = Device::all();

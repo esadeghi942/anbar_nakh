@@ -31,6 +31,7 @@
                                 <th>{{__('panel.color')}}</th>
                                 <th>{{__('panel.material')}}</th>
                                 <th>{{__('panel.grade')}}</th>
+                                <th>{{__('panel.layer')}}</th>
                                 <th>{{__('panel.weight')}}</th>
                                 <th>{{__('panel.order_point')}}</th>
                             </tr>
@@ -43,6 +44,7 @@
                                     <td>{{ $string_group->string_color->name }}</td>
                                     <td>{{ $string_group->string_material->name }}</td>
                                     <td>{{ $string_group->string_grade->value }}</td>
+                                    <td>{{ $string_group->string_layer->value }}</td>
                                     <td>{{ $string_group->total_weight }}</td>
                                     <td>{{ $string_group->order_pointer }}</td>
                                 </tr>
