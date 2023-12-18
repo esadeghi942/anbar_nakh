@@ -255,7 +255,7 @@
             if ($('.persian-date-picker').length > 0) {
                 $('.persian-date-picker').persianDatepicker({
                     observer: true,
-                    format: 'YYYY-MM-DD',
+                    format: 'YYYY/MM/DD',
                     initialValue: false,
                     initialValueType: 'persian',
                     persianDigit:true,

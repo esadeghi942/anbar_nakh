@@ -6,7 +6,9 @@
         }
 
         .badge {
-            width: 30px;
+            width: 51px !important;
+            font-size: 1rem !important;
+            padding: 0.35rem !important;
         }
     </style>
 @endsection
@@ -15,7 +17,7 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-sm-6">
-                    <h4>  انبار نخ</h4>
+                    <h4> انبار نخ</h4>
                 </div>
                 <div class="col-12 col-sm-6">
                     <ol class="breadcrumb">
@@ -30,26 +32,47 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-body">
-                        <div style="margin:0  auto; width: fit-content">
-                            @foreach(range('A', 'M') as $char)
+                        <div style="margin: auto; width: fit-content">
+                            <div class="pt-4">
+                                @foreach(range('A', 'M') as $char)
+                                    <a class="badge badge-primary"> {{$char}} </a>
+                                @endforeach
+                            </div>
+                            @for($i=1;$i<9;$i++)
                                 <div class="pt-4">
-                                    @for($i=1;$i<8;$i++)
-                                        @php($cell=\App\Models\String\Cell::where('code',$char.sprintf('%02d', $i))->first())
-                                        <a title="{{isset($cell) && $cell->string_group_id ? $cell->weight. "\n" . $cell->string_group->title : '' }}"
+                                    @foreach(range('A', 'M') as $char)
+                                        @php($nameCell='M'.$char.sprintf('%02d', $i))
+                                        @php($cell=\App\Models\String\Cell::where('code',$nameCell)->first())
+                                        <a title="{{isset($cell) && $cell->string_group_id ? $cell->weight. $cell->string_group->title : '' }}"
                                            class="badge badge-{{ isset($cell) && $cell->string_group_id ? 'secondary' : 'success'}}">
-                                            {{sprintf('%02d', $i) }}</a>
-                                    @endfor
-                                    <a class="badge badge-primary">{{$char}}</a>
-                                    @for($i=17;$i>10 ;$i--)
-                                        @php($cell=\App\Models\String\Cell::where('code',$char.sprintf('%02d', $i))->first())
-                                        <a title="{{isset($cell) && $cell->string_group_id ? $cell->weight. "\n" . $cell->string_group->title : '' }}"
-                                           class="badge badge-{{ isset($cell) && $cell->string_group_id ? 'secondary' : 'success'}}">
-                                            {{sprintf('%02d', $i) }}</a>
-                                    @endfor
+                                            {{ $nameCell }}</a>
+                                    @endforeach
                                 </div>
+                            @endfor
+                            <div class="pt-4">
+                                @foreach(range('A', 'M') as $char)
+                                    <a class="badge badge-primary"> {{ $char }} </a>
+                                @endforeach
+                            </div>
 
-                            @endforeach
+                            @for($i=15;$i>10;$i--)
+                                <div class="pt-4">
+                                    @foreach(range('A', 'M') as $char)
+                                        @php($nameCell='M'.$char.sprintf('%02d', $i))
+                                        @php($cell=\App\Models\String\Cell::where('code',$nameCell)->first())
+                                        <a title="{{isset($cell) && $cell->string_group_id ? $cell->weight. $cell->string_group->title : '' }}"
+                                           class="badge badge-{{ isset($cell) && $cell->string_group_id ? 'secondary' : 'success'}}">
+                                            {{ $nameCell }}</a>
+                                    @endforeach
+                                </div>
+                            @endfor
+                            <div class="pt-4">
+                                @foreach(range('A', 'M') as $char)
+                                    <a class="badge badge-primary"> {{ $char }} </a>
+                                @endforeach
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -60,7 +83,7 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-sm-6">
-                    <h4>  انبار موقت</h4>
+                    <h4> انبار موقت</h4>
                 </div>
                 <div class="col-12 col-sm-6">
                     <ol class="breadcrumb">
@@ -84,16 +107,17 @@
                             @for($i=1;$i<8;$i++)
                                 <div class="pt-4">
                                     @foreach(range('A', 'N') as $char)
-                                        @php($cell=\App\Models\String\Cell::where('code',$char.sprintf('%02d', $i))->first())
-                                        <a title="{{isset($cell) && $cell->string_group_id ? $cell->weight. "\n" . $cell->string_group->title : '' }}"
+                                        @php($nameCell='T'.$char.sprintf('%02d', $i))
+                                        @php($cell=\App\Models\String\Cell::where('code',$nameCell)->first())
+                                        <a title="{{isset($cell) && $cell->string_group_id ? $cell->weight. $cell->string_group->title : '' }}"
                                            class="badge badge-{{ isset($cell) && $cell->string_group_id ? 'secondary' : 'success'}}">
-                                            {{sprintf('%02d', $i) }}</a>
+                                            {{ $nameCell }}</a>
                                     @endforeach
                                 </div>
                             @endfor
                             <div class="pt-4">
                                 @foreach(range('A', 'N') as $char)
-                                    <a class="badge badge-primary"> {{sprintf('%2s', $char)}} </a>
+                                    <a class="badge badge-primary"> {{ $char }} </a>
                                 @endforeach
                             </div>
                         </div>

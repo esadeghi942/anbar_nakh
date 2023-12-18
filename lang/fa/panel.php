@@ -92,5 +92,6 @@ return [
     'from delivery_date' => ' تاریخ تحویل از ',
     'end delivery_date' => 'تاریخ تحویل تا ',
     'search'=>'جستجو',
-    'export'=>'خروج'
+    'export'=>'خروج',
+    'lat'=>'لات'
 ];

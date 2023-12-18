@@ -113,5 +113,13 @@
                value="{{ old('weight') }}" class="form-control">
     </div>
 
+    <div class="form-group col-12 col-sm-6 col-md-4">
+        <label for="day">{{__('panel.lat')}}
+            <span class="required">*</span>
+        </label>
+        <input type="text" id="lat" name="lat"
+               value="{{ old('lat','وارد نشده') }}" class="form-control persian-date-picker">
+    </div>
+
 
 </div>
