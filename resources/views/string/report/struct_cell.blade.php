@@ -17,7 +17,7 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-sm-6">
-                    <h4> انبار نخ</h4>
+                    <h4> انبار نخ اصلی</h4>
                 </div>
                 <div class="col-12 col-sm-6">
                     <ol class="breadcrumb">
@@ -33,12 +33,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div style="margin: auto; width: fit-content">
-                            <div class="pt-4">
-                                @foreach(range('A', 'M') as $char)
-                                    <a class="badge badge-primary"> {{$char}} </a>
-                                @endforeach
-                            </div>
-                            @for($i=1;$i<9;$i++)
+                            @for($i=11;$i<16;$i++)
                                 <div class="pt-4">
                                     @foreach(range('A', 'M') as $char)
                                         @php($nameCell='M'.$char.sprintf('%02d', $i))
@@ -49,13 +44,14 @@
                                     @endforeach
                                 </div>
                             @endfor
+
                             <div class="pt-4">
                                 @foreach(range('A', 'M') as $char)
                                     <a class="badge badge-primary"> {{ $char }} </a>
                                 @endforeach
                             </div>
 
-                            @for($i=15;$i>10;$i--)
+                            @for($i=8;$i>0;$i--)
                                 <div class="pt-4">
                                     @foreach(range('A', 'M') as $char)
                                         @php($nameCell='M'.$char.sprintf('%02d', $i))
@@ -66,11 +62,6 @@
                                     @endforeach
                                 </div>
                             @endfor
-                            <div class="pt-4">
-                                @foreach(range('A', 'M') as $char)
-                                    <a class="badge badge-primary"> {{ $char }} </a>
-                                @endforeach
-                            </div>
                         </div>
 
                     </div>

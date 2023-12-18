@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\String;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ColorRequest;
 use App\Models\String\Color;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,7 @@ class ColorController extends Controller
 
     }
 
-    public function store(Request $request)
+    public function store(ColorRequest $request)
     {
         Color::create($request->all());
         return redirect()->route('string.color.index')->with('success',trans('panel.success create',['item'=> trans('panel.color')]));
@@ -33,7 +34,7 @@ class ColorController extends Controller
 
     }
 
-    public function update(Request $request,Color $color)
+    public function update(ColorRequest $request,Color $color)
     {
         $color->update($request->all());
         return redirect()->route('string.color.index')->with('success',trans('panel.success edit',['item'=> trans('panel.color')]));

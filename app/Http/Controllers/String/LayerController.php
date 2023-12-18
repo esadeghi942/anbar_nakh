@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\String;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\GradeRequest;
 use App\Models\String\Layer;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,7 @@ class LayerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(GradeRequest $request)
     {
         Layer::create($request->all());
         return redirect()->route('string.layer.index')->with('success',trans('panel.success create',['item'=>trans('panel.layer')]));
@@ -55,7 +56,7 @@ class LayerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Layer $layer)
+    public function update(GradeRequest $request, Layer $layer)
     {
         $layer->update($request->all());
         return redirect()->route('string.layer.index')->with('success',trans('panel.success edit',['item'=>trans('panel.layer')]));

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PersonRequest;
 use App\Models\Person;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,7 @@ class PersonController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PersonRequest $request)
     {
         Person::create($request->all());
         return redirect()->route('person.index')->with('success',trans('panel.success create',['item'=>trans('panel.person')]));
@@ -56,7 +57,7 @@ class PersonController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Person $person)
+    public function update(PersonRequest $request, Person $person)
     {
         $person->update($request->all());
         return redirect()->route('person.index')->with('success',trans('panel.success edit',['item'=>trans('panel.person')]));

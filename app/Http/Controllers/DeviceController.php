@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PersonRequest;
 use App\Models\Device;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,7 @@ class DeviceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PersonRequest $request)
     {
         Device::create($request->all());
         return redirect()->route('device.index')->with('success',trans('panel.success create',['item'=>trans('panel.device')]));
@@ -54,7 +55,7 @@ class DeviceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Device $device)
+    public function update(PersonRequest $request, Device $device)
     {
         $device->update($request->all());
         return redirect()->route('device.index')->with('success',trans('panel.success edit',['item'=>trans('panel.device')]));

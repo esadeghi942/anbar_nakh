@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ColorRequest;
 use App\Http\Requests\CustomerRequest;
 use App\Models\Seller;
 use Illuminate\Http\Request;
@@ -28,7 +29,7 @@ class SellerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CustomerRequest $request)
+    public function store(ColorRequest $request)
     {
         Seller::create($request->all());
         return redirect()->route('seller.index')->with('success',trans('panel.success create',['item'=>trans('panel.seller')]));
@@ -55,7 +56,7 @@ class SellerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(CustomerRequest $request, Seller $seller)
+    public function update(ColorRequest $request, Seller $seller)
     {
         $seller->update($request->all());
         return redirect()->route('seller.index')->with('success',trans('panel.success create',['item'=>trans('panel.seller')]));

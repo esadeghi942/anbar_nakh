@@ -20,7 +20,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::group(['middleware' => 'role_admin'], function () {
+    Route::group(['middleware' => 'role_string'], function () {
         Route::resource('seller', App\Http\Controllers\SellerController::class);
         Route::resource('customer', App\Http\Controllers\CustomerController::class);
         Route::resource('person', App\Http\Controllers\PersonController::class);

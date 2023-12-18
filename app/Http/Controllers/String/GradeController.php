@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\String;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\GradeRequest;
 use App\Models\String\Grade;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,7 @@ class GradeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(GradeRequest $request)
     {
         Grade::create($request->all());
         return redirect()->route('string.grade.index')->with('success',trans('panel.success create',['item'=>trans('panel.grade')]));
@@ -54,7 +55,7 @@ class GradeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Grade $grade)
+    public function update(GradeRequest $request, Grade $grade)
     {
         $grade->update($request->all());
         return redirect()->route('string.grade.index')->with('success',trans('panel.success edit',['item'=>trans('panel.grade')]));
