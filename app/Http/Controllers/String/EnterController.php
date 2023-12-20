@@ -31,7 +31,7 @@ class EnterController extends Controller
         $materials = Material::all();
         $sellers = Seller::all();
         $grades = Grade::all();
-        $layers = Layer::all();
+        $layers = Layer::orderBy('value')->get();
         $anbars = Anbar::all();
         $cells = Cell::all();
         return view('string.enter.create', compact('colors', 'materials', 'layers', 'sellers', 'grades', 'anbars', 'cells'));

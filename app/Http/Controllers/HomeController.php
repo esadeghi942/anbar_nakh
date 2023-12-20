@@ -23,7 +23,7 @@ class HomeController extends Controller
         $chart_data = [];
         foreach ($string_groups as $string_group) {
             $chart_data['label'][] = $string_group->title;
-            $chart_data['total_weight'][] = $string_group->string_cells()->sum('weight');
+            $chart_data['total_weight'][] = intval($string_group->string_cells()->sum('weight'));
             $chart_data['order_pointer'][] = $string_group->order_pointer;
         }
         $chart_data = json_encode($chart_data);

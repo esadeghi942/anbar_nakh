@@ -59,7 +59,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div id="result"></div>
+                            <h4 class="mt-3" id="result"></h4>
 
                             <button type="submit" class="btn btn-success mt-3">{{__('panel.free cells')}}</button>
                         </form>
@@ -87,11 +87,14 @@
                     url: "{{route('string.cell.free_one.search')}}",
                     method: 'post',
                     data: {
-                        'cell': value ,
-                        '_token':token
+                        'cell': value,
+                        '_token': token
                     },
                     success: function (data) {
-                        $('#result').html(data['cell'] + ' وزن ' + data['weight'] + '  متریال '+ data['material'])
+                        if (data['material'])
+                            $('#result').html(data['cell'] + ' وزن ' + data['weight'] + '  متریال ' + data['material']);
+                        else
+                            $('#result').html('این سلول حاوی هیچ متریالی نیست');
 
                     }
                 });
