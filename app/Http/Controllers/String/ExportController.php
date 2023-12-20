@@ -63,10 +63,7 @@ class ExportController extends Controller
             $query->where('string_groups.string_layer_id', $request->string_layer_id);
             $title[] = ' لا :' . Layer::find($request->string_layer_id)->value;
         }
-     /*   if (isset($request->seller_id)) {
-            $query->where('seller_id', $request->seller_id);
-            $title[] = ' تامین کننده:' . Seller::find($request->seller_id)->value;
-        }*/
+
         $title = implode(',', $title);
         $items = $query->get();
         $devices = Device::all();
@@ -88,9 +85,6 @@ class ExportController extends Controller
             'person_id' => $request->person,
             'weight' => $request->weight
         ]);
-
-        $total_weight = $item->string_group->total_weight;
-        $item->string_group->update(['total_weight' => $total_weight - $request->weight]);
 
         $new_wight = $item->weight - $request->weight;
         if ($new_wight == 0)

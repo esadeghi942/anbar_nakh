@@ -84,4 +84,13 @@ class CellController extends Controller
         return view('string.cell.exports', compact('exports', 'title'));
     }
 
+    public function enters(Cell $cell)
+    {
+        $enters = $cell->string_enters()->get();
+        $title = [];
+        $title[] = ' انبار:' . $cell->string_anbar->name;
+        $title[] = ' سلول:' . $cell->code;
+        $title = implode(', ', $title);
+        return view('string.cell.enters', compact('enters', 'title'));
+    }
 }

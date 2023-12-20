@@ -15,7 +15,7 @@ class Grade extends Model
 
     public function string_groups()
     {
-        return $this->hasMany(StringGroup::class);
+        return $this->hasMany(StringGroup::class,'string_grade_id');
     }
 
 }

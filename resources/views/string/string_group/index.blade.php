@@ -53,7 +53,7 @@
                                     <td>{{ $string_group->string_grade->value }}</td>
                                     <td>{{ $string_group->string_layer->value }}</td>
                                     <td>{{ $string_group->order_pointer }}</td>
-                                    <td>{{ $string_group->total_weight }}</td>
+                                    <td>{{ $string_group->string_cells()->sum('weight') }}</td>
                                     <td>{{ $string_group->str_type }}</td>
                                     <td><a href="{{route('string.string_group.edit',$string_group)}}" class="btn"><i
                                                 class="fa fa-edit"></i></a></td>

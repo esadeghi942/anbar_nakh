@@ -43,8 +43,8 @@ return [
     'order_point' => 'نقطه سفارش',
     'order_points' => 'نقطه سفارش ها',
     'string_group' => 'نقطه سفارش ',
-    'value'=>'مقدار',
-    'exist'=>'موجودی',
+    'value' => 'مقدار',
+    'exist' => 'موجودی',
 
     'devices' => 'دستگاه ها',
     'device' => 'دستگاه ',
@@ -57,7 +57,7 @@ return [
     'material' => 'جنس',
     'materials' => 'جنس ها',
 
-    'qrcode'=>'کد QR',
+    'qrcode' => 'کد QR',
     'grade' => 'نمره',
     'grades' => 'نمره ها',
 
@@ -91,7 +91,17 @@ return [
     'report' => 'گزارش گیری',
     'from delivery_date' => ' تاریخ تحویل از ',
     'end delivery_date' => 'تاریخ تحویل تا ',
-    'search'=>'جستجو',
-    'export'=>'خروج',
-    'lat'=>'لات'
+    'search' => 'جستجو',
+    'export' => 'خروج',
+    'lat' => 'لات',
+    'receipt' => 'رسید رول',
+    'weavers' => 'بافندگان',
+    'weaver' => 'بافنده',
+    'size' => 'اندازه',
+    'map' => 'نقشه',
+    'transfer' => 'جا به جایی',
+    'free cells' => 'آزاد کردن سلول',
+    'history enters'=>'تاریخچه ورودی ها',
+    'history exports'=>'تاریخچه خروجی ها',
+    'enters'=>'ورودی ها'
 ];

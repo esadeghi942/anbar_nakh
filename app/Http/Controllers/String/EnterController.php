@@ -49,7 +49,6 @@ class EnterController extends Controller
             'string_material_id' => $request->string_material_id,
             'string_grade_id' => $request->string_grade_id,
             'string_layer_id' => $request->string_layer_id,
-            'total_weight' => $request->weight,
             'order_pointer' => 0
         ];
         $data = $request->all();
@@ -60,9 +59,8 @@ class EnterController extends Controller
             if ($cell->string_group_id && $cell->string_group_id != $string_group->id)
                 return redirect()->back()->withErrors('در این سلول متریال متفاوتی وجود دارد امکان اضافه کردن به این سلول نیست.')->withInput();
            else {
-               $string_group->update(['total_weight' => $string_group->total_weight + $request->weight]);
                $enter = $string_group->string_enters()->create($data);
-               $cell->update(['weight' => $cell->weight + $request->weight]);
+               $cell->update(['string_group_id'=>$string_group->id,'weight' => $cell->weight + $request->weight]);
                return redirect()->route('string.enter.show', $enter);
            }
         } else {

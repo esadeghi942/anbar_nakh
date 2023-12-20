@@ -6,9 +6,29 @@
         }
 
         .badge {
-            width: 51px !important;
+            width: 51px;
             font-size: 1rem !important;
             padding: 0.35rem !important;
+        }
+
+        .badge-Acrylic {
+            background-color: #FFbd00;
+        }
+
+        .badge-Viscose {
+            background-color: #390099;
+        }
+
+        .badge-Polyester {
+            background-color: #FF0054;
+        }
+
+        .badge-PoudPanbe {
+            background-color: #FF5400;
+        }
+
+        .badge-empty {
+            background-color: #dadada;
         }
     </style>
 @endsection
@@ -33,13 +53,33 @@
                 <div class="card">
                     <div class="card-body">
                         <div style="margin: auto; width: fit-content">
+                            <div class="pt-4">
+                                <a class="badge badge-Acrylic" style="width: 100px; !important;">
+                                    اکریلیک
+                                </a>
+                                <a class="badge badge-Viscose" style="width: 100px; !important;">
+                                    ویسکوز
+                                </a>
+                                <a class="badge badge-Polyester" style="width: 100px; !important;">
+                                    پلی استر
+                                </a>
+                                <a class="badge badge-PoudPanbe" style="width: 100px; !important;">
+                                    پود پنبه
+                                </a>
+                                <a class="badge badge-empty" style="width: 100px; !important;">
+                                    خالی
+                                </a>
+                            </div>
+                        </div>
+
+                        <div style="margin: auto; width: fit-content">
                             @for($i=11;$i<16;$i++)
                                 <div class="pt-4">
                                     @foreach(range('A', 'M') as $char)
                                         @php($nameCell='M'.$char.sprintf('%02d', $i))
                                         @php($cell=\App\Models\String\Cell::where('code',$nameCell)->first())
                                         <a title="{{isset($cell) && $cell->string_group_id ? $cell->weight. $cell->string_group->title : '' }}"
-                                           class="badge badge-{{ isset($cell) && $cell->string_group_id ? 'secondary' : 'success'}}">
+                                           class="badge badge-{{ isset($cell) && $cell->string_group_id ?  $cell->string_group->string_material->en_name  : 'empty'}}">
                                             {{ $nameCell }}</a>
                                     @endforeach
                                 </div>
@@ -57,7 +97,7 @@
                                         @php($nameCell='M'.$char.sprintf('%02d', $i))
                                         @php($cell=\App\Models\String\Cell::where('code',$nameCell)->first())
                                         <a title="{{isset($cell) && $cell->string_group_id ? $cell->weight. $cell->string_group->title : '' }}"
-                                           class="badge badge-{{ isset($cell) && $cell->string_group_id ? 'secondary' : 'success'}}">
+                                           class="badge badge-{{ isset($cell) && $cell->string_group_id ?  $cell->string_group->string_material->en_name  : 'empty'}}">
                                             {{ $nameCell }}</a>
                                     @endforeach
                                 </div>
@@ -101,7 +141,7 @@
                                         @php($nameCell='T'.$char.sprintf('%02d', $i))
                                         @php($cell=\App\Models\String\Cell::where('code',$nameCell)->first())
                                         <a title="{{isset($cell) && $cell->string_group_id ? $cell->weight. $cell->string_group->title : '' }}"
-                                           class="badge badge-{{ isset($cell) && $cell->string_group_id ? 'secondary' : 'success'}}">
+                                           class="badge badge-{{ isset($cell) && $cell->string_group_id ?  $cell->string_group->string_material->en_name  : 'empty'}}">
                                             {{ $nameCell }}</a>
                                     @endforeach
                                 </div>

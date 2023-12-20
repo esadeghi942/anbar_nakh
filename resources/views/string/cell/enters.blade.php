@@ -25,7 +25,7 @@
     <div class="container-fluid">
         <div class="row starter-main">
             <div class="col-12 col-sm-12">
-                <h3>{{__('panel.exports') . $title }}
+                <h3>{{__('panel.enters') . $title }}
                 </h3>
             </div>
             <div class="card mt-3">
@@ -37,20 +37,21 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th>{{__('panel.type')}}</th>
-                                <th>{{__('panel.person')}}</th>
-                                <th>{{__('panel.device')}}</th>
+                                <th>{{__('panel.seller')}}</th>
+                                <th>{{__('panel.type')}}</th>
+                                <th>{{__('panel.lat')}}</th>
                                 <th>{{__('panel.weight')}}</th>
                                 <th>{{__('panel.date')}}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($exports as $i => $item)
+                            @foreach($enters as $i => $item)
                                 <tr>
                                     <td>{{ $i +1 }}</td>
                                     <td>{{ $item->string_group->title }}</td>
-
-                                    <td>{{ $item->person->name }}</td>
-                                    <td>{{ $item->device->name }}</td>
+                                    <td>{{ $item->seller->name }}</td>
+                                    <td>{{ $item->str_type }}</td>
+                                    <td>{{ $item->lat }}</td>
                                     <td>{{$item->weight}}</td>
                                     <td>{{jdate($item->create_at)->format('h:i Y/m/d')}}</td>
                                     {{--<td><a href="{{route('string.enter.edit',$cell)}}" class="btn"><i

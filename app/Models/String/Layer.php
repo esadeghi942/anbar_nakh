@@ -15,6 +15,6 @@ class Layer extends Model
 
     public function string_groups()
     {
-        return $this->hasMany(StringGroup::class);
+        return $this->hasMany(StringGroup::class,'string_layer_id');
     }
 }

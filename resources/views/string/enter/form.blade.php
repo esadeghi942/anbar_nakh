@@ -17,6 +17,7 @@
             <span class="required">*</span>
         </label>
         <select name="string_cell_id" id="cell" class="form-control form-select">
+            <option></option>
             @foreach($cells as $cell)
                 <option data-parent="{{$cell->string_anbar_id}}"
                         {{  old('string_cell_id') == $cell->id ? 'selected' : '' }} value="{{$cell->id}}">{{ $cell->code}}</option>
