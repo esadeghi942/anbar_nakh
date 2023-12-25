@@ -20,7 +20,7 @@ class StringGroup extends Model
 
     public function string_material()
     {
-        return $this->belongsTo(Material::class,'string_material_id');
+        return $this->belongsTo(Material::class, 'string_material_id');
     }
 
     public function string_grade()
@@ -46,7 +46,12 @@ class StringGroup extends Model
 
     public function string_cells()
     {
-        return $this->hasMany(Cell::class,'string_group_id');
+        return $this->hasMany(Cell::class, 'string_group_id');
+    }
+
+    public function string_group_qr_codes()
+    {
+        return $this->hasMany(GroupQrCode::class,'string_group_id');
     }
 
     public function getStrTypeAttribute()
@@ -67,7 +72,7 @@ class StringGroup extends Model
     public function getTitleAttribute()
     {
         $elem = $this;
-        return $elem->string_color->name . ' نمره ' . $elem->string_grade->value . ' ' . $elem->string_material->name . ' ' . $elem->string_layer->value .' لا';
+        return $elem->string_color->name . ' نمره ' . $elem->string_grade->value . ' ' . $elem->string_material->name . ' ' . $elem->string_layer->value . ' لا';
     }
 
 

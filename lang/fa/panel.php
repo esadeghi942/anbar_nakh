@@ -12,6 +12,7 @@ return [
     'operations' => 'عملیات',
     'delete' => 'حذف',
     'edit' => 'ویرایش',
+    'show'=>'نمایش',
     'registration date' => 'تاریخ ثبت اطلاعات',
     'day' => 'روز',
     'date' => 'تاریخ',

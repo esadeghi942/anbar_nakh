@@ -54,7 +54,7 @@ class EnterController extends Controller
         $data = $request->all();
         $qrcode = Enter::create_qr_codes($request->all());
         $data['qr_code'] = $qrcode;
-        unset($data['string_color_id'], $data['string_material_id'], $data['string_grade_id']);
+        unset($data['string_color_id'], $data['string_material_id'], $data['string_grade_id'],$data['string_layer_id']);
         if ($string_group) {
             if ($cell->string_group_id && $cell->string_group_id != $string_group->id)
                 return redirect()->back()->withErrors('در این سلول متریال متفاوتی وجود دارد امکان اضافه کردن به این سلول نیست.')->withInput();

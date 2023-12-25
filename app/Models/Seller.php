@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\String\Enter;
+use App\Models\String\GroupQrCode;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,6 +16,11 @@ class Seller extends Model
     public function string_item()
     {
         return $this->hasMany(Enter::class);
+    }
+
+    public function string_group_qr_codes()
+    {
+        return $this->hasMany(GroupQrCode::class,'seller_id');
     }
 
 }

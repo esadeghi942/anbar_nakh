@@ -36,7 +36,11 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/rating.css')}}">
     <link href="{{asset('css/persian-datepicker.min.css')}}" rel="stylesheet">
     <link href="{{asset('css/select2.min.css')}}" rel="stylesheet">
-
+    <style>
+        .ltr {
+            direction: ltr !important;
+        }
+    </style>
 </head>
 
 <body class="{{ session()->get('locale') == 'en' ? 'ltr' : 'rtl'}}">
@@ -60,8 +64,8 @@
         <div class="header-wrapper row m-0">
             <div class="header-logo-wrapper col-auto p-0">
                 <div class="logo-wrapper"><a href="{{route('index')}}"><img class="img-fluid"
-                                                                                    src="{{asset('img/LogoLight.png')}}"
-                                                                                    alt=""></a></div>
+                                                                            src="{{asset('img/LogoLight.png')}}"
+                                                                            alt=""></a></div>
                 <div class="toggle-sidebar">
                     <div class="status_toggle sidebar-toggle d-flex">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -248,67 +252,67 @@
     }
 
     $(document).ready(function () {
-            if ($('#language li.active').length) {
-                var elem = $('#language li.active a');
-                $('#lang_title').html(elem.html());
-            }
-            if ($('.persian-date-picker').length > 0) {
-                $('.persian-date-picker').persianDatepicker({
-                    observer: true,
-                    format: 'YYYY/MM/DD',
-                    initialValue: false,
-                    initialValueType: 'persian',
-                    persianDigit:true,
-                    autoClose: true,
-                    toolbox: {
-                        calendarSwitch:
-                            {
-                                enabled: false
-                            }
-                    }
-                });
-            }
-            $('.select2').select2();
+        if ($('#language li.active').length) {
+            var elem = $('#language li.active a');
+            $('#lang_title').html(elem.html());
+        }
+        if ($('.persian-date-picker').length > 0) {
+            $('.persian-date-picker').persianDatepicker({
+                observer: true,
+                format: 'YYYY/MM/DD',
+                initialValue: false,
+                initialValueType: 'persian',
+                persianDigit: true,
+                autoClose: true,
+                toolbox: {
+                    calendarSwitch:
+                        {
+                            enabled: false
+                        }
+                }
+            });
+        }
+        $('.select2').select2();
 
-            if ($('.bs-timepicker').length > 0) {
-                $('.bs-timepicker').timepicker();
-            }
-            @if($errors->any())
-            swal("{{implode('\n',$errors->all())}}", {
-                icon: "error",
-                button: "{{ __('panel.close') }}"
-            });
-            @endif
-            @if(session('danger'))
-            swal("{{session('danger')}}", {
-                icon: "error",
-                button: "{{ __('panel.close') }}"
-            });
-            @endif
-
-            @if(session('warninig'))
-            swal("{{session('warninig') }}", {
-                icon: "warning",
-                timer: 2000,
-                buttons: false,
-            });
-            @endif
-
-            @if(session('success'))
-            swal("{{ session('success') }}", {
-                icon: "success",
-                timer: 2000,
-                buttons: false,
-            });
-            @endif
-
-            @if(session('notification'))
-            swal("{{ session('notification') }}", {
-                icon: "success",
-                buttons: false,
-            });
-            @endif
+        if ($('.bs-timepicker').length > 0) {
+            $('.bs-timepicker').timepicker();
+        }
+        @if($errors->any())
+        swal("{{implode('\n',$errors->all())}}", {
+            icon: "error",
+            button: "{{ __('panel.close') }}"
         });
+        @endif
+        @if(session('danger'))
+        swal("{{session('danger')}}", {
+            icon: "error",
+            button: "{{ __('panel.close') }}"
+        });
+        @endif
+
+        @if(session('warninig'))
+        swal("{{session('warninig') }}", {
+            icon: "warning",
+            timer: 2000,
+            buttons: false,
+        });
+        @endif
+
+        @if(session('success'))
+        swal("{{ session('success') }}", {
+            icon: "success",
+            timer: 2000,
+            buttons: false,
+        });
+        @endif
+
+        @if(session('notification'))
+        swal("{{ session('notification') }}", {
+            icon: "success",
+            buttons: false,
+        });
+        @endif
+    });
     const handleErrorFunctionsWithToast = (e, form) => {
         var m = e.responseJSON.message;
         if (e.status == 422) {
@@ -336,7 +340,7 @@
         });
     }
 
-    function ajax_form_request(form,event){
+    function ajax_form_request(form, event) {
         form.find('input,select').removeClass('is-invalid');
         form.find('.errorinput').remove();
         const target = $(event.currentTarget);

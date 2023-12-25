@@ -54,6 +54,10 @@ Route::middleware('auth')->group(function () {
         Route::post('export', [App\Http\Controllers\String\ExportController::class, 'export'])->name('export.export');
         Route::get('receipt', [App\Http\Controllers\String\ReceiptController::class, 'index'])->name('receipt.index');
         Route::post('receipt', [App\Http\Controllers\String\ReceiptController::class, 'save'])->name('receipt.save');
+        Route::resource('group_qr_code', App\Http\Controllers\String\GroupQrCodeController::class);
+        Route::get('group_qr_code/{group_qr_code}/weight', [App\Http\Controllers\String\GroupQrCodeController::class, 'weight'])->name('group_qr_code.weight');
+        Route::post('group_qr_code/{group_qr_code}/weight', [App\Http\Controllers\String\GroupQrCodeController::class, 'save_weight'])->name('group_qr_code.save_weight');
+
     });
 
     Route::group(['middleware' => 'role_carpet'], function () {

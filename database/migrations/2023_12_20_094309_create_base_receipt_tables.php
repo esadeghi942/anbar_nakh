@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('carpet_sizes', function (Blueprint $table) {
+      /*  Schema::create('carpet_sizes', function (Blueprint $table) {
             $table->id();
             $table->float('size1');
             $table->float('size2');
@@ -30,11 +30,11 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('carpet_maps', function (Blueprint $table) {
+        Schema::create('carpet_weavers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->timestamps();
-        });
+        });*/
     }
 
     /**

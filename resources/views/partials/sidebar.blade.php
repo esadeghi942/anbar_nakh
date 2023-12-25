@@ -112,6 +112,14 @@
                                 <li><a class="sidebar-link {{ $route == 'string.transfer.index' ? 'active' : '' }}"
                                        href="{{route('string.transfer.index')}}"><span>جا به جایی</span></a></li>
 
+                                <li><a class="submenu-title" href="#">لیبل<span class="sub-arrow"><i
+                                                class="fa fa-angle-left"></i></span></a>
+                                    <ul class="nav-sub-childmenu submenu-content">
+                                        <li><a href="{{route('string.group_qr_code.create')}}">تولید لیبل</a></li>
+                                        <li><a href="{{route('string.group_qr_code.index')}}"> لیبل ها</a></li>
+                                    </ul>
+                                </li>
+
                                 <li><a class="submenu-title" href="#">آزاد کردن سلول<span class="sub-arrow"><i
                                                 class="fa fa-angle-left"></i></span></a>
                                     <ul class="nav-sub-childmenu submenu-content">
