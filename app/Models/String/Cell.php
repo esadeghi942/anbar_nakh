@@ -12,9 +12,9 @@ class Cell extends Model
     protected $guarded=['id'];
     protected  $table='string_cells';
 
-    public function string_enters()
+    public function string_qr_codes()
     {
-        return $this->hasMany(Enter::class,'string_cell_id');
+        return $this->belongsToMany(QrCode::class,'string_qr_code_cell','string_cell_id','string_qr_code_id')->withTimestamps();
     }
 
     public function string_exports()

@@ -1,10 +1,21 @@
 @extends('layouts.panel')
+@section('css')
+    <style>
+        .form-group {
+            margin-top: 10px !important;
+        }
+        .select2-container--default.select2-container--focus .select2-selection--multiple{
+            border: 1px solid black;
+            min-height: 35px;
+        }
+    </style>
+@endsection
 @section('content')
     <div class="container-fluid">
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-sm-6">
-                    {{__('panel.edit item',['item'=>__('panel.item')])}}
+                    جستجو کد qr
                 </div>
                 <div class="col-12 col-sm-6">
                     <ol class="breadcrumb">
@@ -22,16 +33,23 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-body">
-                        <form method="post" action="{{route('string.cell.update',$cell)}}">
-                            @csrf
-                            @method('put')
-                            @include('string.cell.form')
-                            <button type="submit" class="btn btn-success mt-3">{{__('panel.save')}}</button>
+                        <form action="{{route('string.group_qr_code.search')}}">
+                            @include('string.qr_code.enter.form')
+                            <button type="submit" class="btn btn-success mt-3">{{__('panel.search')}}</button>
                         </form>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+@section('js')
+    <script>
+        $(document).on('change','#anbar',function (){
+            var val=$(this).val();
+            var dest=$('#cell').val('');
+            $('#cell option').hide();
+            $('#cell option[data-parent='+val+']').show();
+        });
+    </script>
 @endsection

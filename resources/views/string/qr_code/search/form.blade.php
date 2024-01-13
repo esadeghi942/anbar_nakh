@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="form-group col-12 col-sm-6 col-md-2">
+    <div class="form-group col-12 col-sm-6 col-md-3">
         <label for="day">{{__('panel.material')}}
             <span class="required">*</span>
         </label>
@@ -11,7 +11,7 @@
         </select>
     </div>
 
-    <div class="form-group col-12 col-sm-6 col-md-2">
+    <div class="form-group col-12 col-sm-6 col-md-3">
         <label for="day">{{__('panel.color')}}
             <span class="required">*</span>
         </label>
@@ -23,7 +23,7 @@
         </select>
     </div>
 
-    <div class="form-group col-12 col-sm-6 col-md-1">
+    <div class="form-group col-12 col-sm-6 col-md-3">
         <label for="day">{{__('panel.grade')}}
             <span class="required">*</span>
         </label>
@@ -35,10 +35,8 @@
         </select>
     </div>
 
-
-    <div class="form-group col-12 col-sm-6 col-md-1">
+    <div class="form-group col-12 col-sm-6 col-md-3">
         <label for="day">{{__('panel.layer')}}
-            <span class="required">*</span>
         </label>
         <select name="string_layer_id" class="form-control form-select">
             @foreach($layers as $layer)
@@ -48,11 +46,11 @@
         </select>
     </div>
 
-    <div class="form-group col-12 col-sm-6 col-md-3">
+    <div class="form-group col-12 col-sm-6 col-md-4">
         <label for="day">{{__('panel.seller')}}
-            <span class="required">*</span>
         </label>
-        <select name="seller_id" class="form-control form-select">
+        <select name="seller" class="form-control form-select">
+            <option></option>
             @foreach($sellers as $seller)
                 <option
                     {{ old('seller_id') == $seller->id ? 'selected' : '' }} value="{{$seller->id}}">{{ $seller->name}}</option>
@@ -60,16 +58,7 @@
         </select>
     </div>
 
-
-    <div class="form-group col-12 col-sm-6 col-md-1">
-        <label for="day">{{__('panel.count')}}
-            <span class="required">*</span>
-        </label>
-        <input type="number" id="count" name="count"
-               value="{{ old('count',1) }}" class="form-control">
-    </div>
-
-    <div class="form-group col-12 col-sm-6 col-md-2">
+    <div class="form-group col-12 col-sm-6 col-md-4">
         <label for="day">{{__('panel.lat')}}
             <span class="required">*</span>
         </label>

@@ -15,12 +15,11 @@
         <div class="row starter-main">
             <div class="col-12 col-sm-6">
                 <h6>
-                    {{$group_qr_code->string_group->title. '  ' .$group_qr_code->seller->name }}
-
+                    {{$group_qr_code->string_group->title. ' فروشنده ' .$group_qr_code->seller->name . ' لات ' .$group_qr_code->lat  }}
                 </h6>
             </div>
             <div class="card">
-                <div class="card-body">
+                <div class="card-body"  id="print">
                     <div class="table-responsive">
                         <form method="post" action="{{route('string.group_qr_code.save_weight',$group_qr_code)}}">
                             @csrf
@@ -29,6 +28,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">{{__('panel.qrcode')}}</th>
+                                    <th scope="col">{{__('panel.cells')}}</th>
                                     <th scope="col">{{__('panel.weight')}}</th>
                                 </tr>
                                 </thead>
@@ -37,7 +37,8 @@
                                     <tr>
                                         <td>{{ $i +1 }}</td>
                                         <td class="ltr">{{ $qr_code->serial }}</td>
-                                        <td><input type="number" name="weight_{{$qr_code->id}}"
+                                        <td>{{ $qr_code->string_cells_code }}</td>
+                                        <td><input type="number" {{$qr_code->status == 4 ? 'disabled' : ''}} name="weight_{{$qr_code->id}}"
                                                    value="{{$qr_code->weight}}" class="form-control"></td>
                                     </tr>
                                 @endforeach
@@ -47,7 +48,21 @@
                         </form>
                     </div>
                 </div>
+                <div class="text-center" style="margin-top:20px;">
+                    <button class="btn btn-info" onclick="printdiv()" target="_blank">پرینت</button>
+                </div>
             </div>
         </div>
     </div>
+@endsection
+@section('js')
+    <script>
+        function printdiv() {
+            var printContents = document.getElementById('print').innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+        }
+    </script>
 @endsection

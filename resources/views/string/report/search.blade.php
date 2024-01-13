@@ -90,7 +90,9 @@
                                 <th>{{__('panel.layer')}}</th>
                                 <th>{{__('panel.rest_weight')}}</th>
                                 <th scope="col">{{__('panel.get_qr_code')}}</th>
+{{--
                                 <th>{{__('panel.exports')}}</th>
+--}}
                                 <th scope="col">{{__('panel.export anbar')}}</th>
                             </tr>
                             </thead>
@@ -109,11 +111,11 @@
                                         <a href="{{route('string.cell.qr_code',$item)}}"><i
                                                 class="fa fa-barcode"></i></a>
                                     </td>
-
+{{--
                                     <td>
                                         <a href="{{route('string.cell.exports',$item)}}"><i
                                                 class="fa fa-list"></i></a>
-                                    </td>
+                                    </td>--}}
                                     <td>
                                         <button class="btn export" type="button" data-bs-toggle="modal"
                                                 data-id="{{$item->id}}"

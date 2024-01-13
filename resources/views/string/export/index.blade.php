@@ -11,7 +11,7 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-sm-6">
-                    {{__('panel.export anbar',['item'=>__('panel.item')])}}
+                  خروج وزنی
                 </div>
                 <div class="col-12 col-sm-6">
                     <ol class="breadcrumb">

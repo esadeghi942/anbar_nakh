@@ -13,17 +13,18 @@ class HomeController extends Controller
     {
         //$order_pointer_string_groups = StringGroup::whereRaw('total_weight < order_pointer')->where('active', 1)->get();
         $order_pointer_string_groups =
-            StringGroup::join('string_cells', 'string_groups.id', '=', 'string_cells.string_group_id')
-                ->selectRaw('sum(string_cells.weight) as total_weight, string_groups.*')
-                ->where('string_cells.string_group_id', '!=', 'null')
-                ->groupBy('string_cells.string_group_id')
+            StringGroup::join('string_group_qr_codes', 'string_groups.id', '=', 'string_group_qr_codes.string_group_id')
+                ->join('string_qr_codes', 'string_group_qr_codes.id', '=', 'string_qr_codes.string_group_qr_code_id')
+                ->selectRaw('sum(string_qr_codes.weight) as total_weight, string_groups.*')
+                ->groupBy('string_group_qr_codes.string_group_id')
                 ->havingRaw('total_weight < string_groups.order_pointer')
                 ->whereRaw('string_groups.active=1')->get();
+
         $string_groups = StringGroup::where('active', 1)->get();
         $chart_data = [];
         foreach ($string_groups as $string_group) {
             $chart_data['label'][] = $string_group->title;
-            $chart_data['total_weight'][] = intval($string_group->string_cells()->sum('weight'));
+            $chart_data['total_weight'][] = intval($string_group->total_weight);
             $chart_data['order_pointer'][] = $string_group->order_pointer;
         }
         $chart_data = json_encode($chart_data);

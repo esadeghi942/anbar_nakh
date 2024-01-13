@@ -34,27 +34,56 @@ Route::middleware('auth')->group(function () {
         Route::resource('layer', App\Http\Controllers\String\LayerController::class);
         Route::resource('enter', App\Http\Controllers\String\EnterController::class);
         Route::resource('string_group', \App\Http\Controllers\String\StringGroupController::class);
-        Route::get('cell/{cell}/export', [App\Http\Controllers\String\CellController::class, 'exports'])->name('cell.exports');
         Route::get('cell/{cell}/qr_code', [App\Http\Controllers\String\CellController::class, 'qr_code'])->name('cell.qr_code');
-        Route::get('cell/{cell}/enters', [App\Http\Controllers\String\CellController::class, 'enters'])->name('cell.enters');
+        Route::post('cell/{cell}/weight', [App\Http\Controllers\String\CellController::class, 'save_weight'])->name('cell.save_weight');
 
-        Route::get('free_total',[App\Http\Controllers\String\FreeController::class, 'free_total'])->name('cell.free_total');
-        Route::post('free_total',[App\Http\Controllers\String\FreeController::class, 'free_total_save'])->name('cell.free_total.save');
-        Route::post('free_weight',[App\Http\Controllers\String\FreeController::class, 'free_weight'])->name('cell.free.weight');
-        Route::get('free_one',[App\Http\Controllers\String\FreeController::class, 'free_one'])->name('cell.free_one');
-        Route::post('free_one',[App\Http\Controllers\String\FreeController::class, 'free_one_save'])->name('cell.free_one.save');
-        Route::post('free_one_search',[App\Http\Controllers\String\FreeController::class, 'free_one_search'])->name('cell.free_one.search');
+        /*  Route::get('cell/{cell}/export', [App\Http\Controllers\String\CellController::class, 'exports'])->name('cell.exports');
+        Route::get('cell/{cell}/enters', [App\Http\Controllers\String\CellController::class, 'enters'])->name('cell.enters');*/
+
+        Route::get('free_total', [App\Http\Controllers\String\FreeController::class, 'free_total'])->name('cell.free_total');
+        Route::post('free_total', [App\Http\Controllers\String\FreeController::class, 'free_total_save'])->name('cell.free_total.save');
+        Route::post('free_weight', [App\Http\Controllers\String\FreeController::class, 'free_weight'])->name('cell.free.weight');
+        Route::get('free_one', [App\Http\Controllers\String\FreeController::class, 'free_one'])->name('cell.free_one');
+        Route::post('free_one', [App\Http\Controllers\String\FreeController::class, 'free_one_save'])->name('cell.free_one.save');
+        Route::post('free_one_search', [App\Http\Controllers\String\FreeController::class, 'free_one_search'])->name('cell.free_one.search');
 
         Route::get('transfer', [App\Http\Controllers\String\TransferController::class, 'index'])->name('transfer.index');
         Route::post('transfer', [App\Http\Controllers\String\TransferController::class, 'save'])->name('transfer.save');
 
         Route::get('export', [App\Http\Controllers\String\ExportController::class, 'index'])->name('export.index');
         Route::get('search', [App\Http\Controllers\String\ExportController::class, 'search'])->name('export.search');
-        Route::get('struct_cell', [App\Http\Controllers\String\ReportController::class, 'struct_cell'])->name('report.struct_cell');
+
+        Route::group(['as' => 'report.', 'prefix' => 'report/'], function () {
+            Route::get('struct_cell', [App\Http\Controllers\String\ReportController::class, 'struct_cell'])->name('struct_cell');
+            Route::get('index', [App\Http\Controllers\String\ReportController::class, 'index'])->name('index');
+            Route::get('search', [App\Http\Controllers\String\ReportController::class, 'search'])->name('search');
+        });
+
         Route::post('export', [App\Http\Controllers\String\ExportController::class, 'export'])->name('export.export');
+
         Route::get('receipt', [App\Http\Controllers\String\ReceiptController::class, 'index'])->name('receipt.index');
         Route::post('receipt', [App\Http\Controllers\String\ReceiptController::class, 'save'])->name('receipt.save');
+
+
         Route::resource('group_qr_code', App\Http\Controllers\String\GroupQrCodeController::class);
+        Route::get('enter_group_qr_code', [App\Http\Controllers\String\GroupQrCodeController::class, 'enter'])->name('group_qr_code.enter');
+        Route::get('group_qr_code/{type}/list', [App\Http\Controllers\String\GroupQrCodeController::class, 'listt'])->name('group_qr_code.list');
+        Route::get('group_qr_code/{groupQrCode}/exports', [App\Http\Controllers\String\GroupQrCodeController::class, 'exports'])->name('group_qr_code.exports');
+
+        Route::get('group_qr_code_search', [App\Http\Controllers\String\GroupQrCodeController::class, 'search'])->name('group_qr_code.search');
+        Route::post('group_qr_code/enter_cells', [App\Http\Controllers\String\GroupQrCodeController::class, 'enter_cells'])->name('group_qr_code.enter_cells');
+
+        Route::get('export_qr_code', [App\Http\Controllers\String\ExportController::class, 'export_multi_qr_codes'])->name('export_multi_qr_codes');
+        Route::post('export_qr_code', [App\Http\Controllers\String\ExportController::class, 'export_multi_qr_codes_save'])->name('export_multi_qr_codes.save');
+        Route::post('search_multi_qr_codes', [App\Http\Controllers\String\ExportController::class, 'search_multi_qr_codes'])->name('search_multi_qr_codes');
+
+        Route::get('search_qr_code', [App\Http\Controllers\String\QrCodeController::class, 'index'])->name('qr_code.index');
+        Route::post('qr_code_search', [App\Http\Controllers\String\QrCodeController::class, 'search'])->name('qr_code.search');
+
+        Route::post('qr_code/enter_weight', [App\Http\Controllers\String\QrCodeController::class, 'enter_weight'])->name('qr_code.enter_weight');
+        Route::post('qr_code/enter_cells', [App\Http\Controllers\String\QrCodeController::class, 'enter_cells'])->name('qr_code.enter_cells');
+        Route::post('qr_code/export_cells', [App\Http\Controllers\String\QrCodeController::class, 'export_cells'])->name('qr_code.export_cells');
+
         Route::get('group_qr_code/{group_qr_code}/weight', [App\Http\Controllers\String\GroupQrCodeController::class, 'weight'])->name('group_qr_code.weight');
         Route::post('group_qr_code/{group_qr_code}/weight', [App\Http\Controllers\String\GroupQrCodeController::class, 'save_weight'])->name('group_qr_code.save_weight');
 

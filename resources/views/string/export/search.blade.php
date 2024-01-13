@@ -71,7 +71,7 @@
     <div class="container-fluid">
         <div class="row starter-main">
             <div class="col-12 col-sm-12">
-                <h3>{{__('panel.items') . $title }}
+                <h3>{{__('panel.items') }}
                 </h3>
             </div>
             <div class="card mt-3">
@@ -84,13 +84,10 @@
                                 <th scope="col">#</th>
                                 <th>{{__('panel.anbar')}}</th>
                                 <th>{{__('panel.cell')}}</th>
-                                <th>{{__('panel.color')}}</th>
                                 <th>{{__('panel.material')}}</th>
-                                <th>{{__('panel.grade')}}</th>
-                                <th>{{__('panel.layer')}}</th>
-                                <th>{{__('panel.rest_weight')}}</th>
-                                <th scope="col">{{__('panel.get_qr_code')}}</th>
-                                <th>{{__('panel.exports')}}</th>
+                                <th>{{__('panel.weight')}}</th>
+                                <th scope="col">{{__('panel.serial')}}</th>
+                                <th scope="col">{{__('panel.qr_code')}}</th>
                                 <th scope="col">{{__('panel.export anbar')}}</th>
                             </tr>
                             </thead>
@@ -98,22 +95,21 @@
                             @foreach($items as $i => $item)
                                 <tr>
                                     <td>{{ $i +1 }}</td>
-                                    <td>{{ $item->string_anbar->name }}</td>
-                                    <td>{{ $item->code }}</td>
-                                    <td>{{ $item->string_group->string_color->name }}</td>
-                                    <td>{{ $item->string_group->string_material->name }}</td>
-                                    <td>{{ $item->string_group->string_grade->value }}</td>
-                                    <td>{{ $item->string_group->string_layer->value }}</td>
-                                    <td>{{$item->weight}}</td>
+                                    <td>{{ $item->string_cell->string_anbar->name }}</td>
+                                    <td>{{ $item->string_qr_code->string_group_qr_code->string_cells_code }}</td>
+                                    <td>{{ $item->string_qr_code->string_group_qr_code->string_group->title }}</td>
+
+                                    <td>{{$item->string_qr_code->weight}}</td>
+                                    <td>{{$item->string_qr_code->serial}}</td>
                                     <td>
-                                        <a href="{{route('string.cell.qr_code',$item)}}"><i
+                                        <a href="{{route('string.group_qr_code.show',$item->string_qr_code->string_group_qr_code)}}"><i
                                                 class="fa fa-barcode"></i></a>
                                     </td>
-
+{{--
                                     <td>
                                         <a href="{{route('string.cell.exports',$item)}}"><i
                                                 class="fa fa-list"></i></a>
-                                    </td>
+                                    </td>--}}
                                     <td>
                                         <button class="btn export" type="button" data-bs-toggle="modal"
                                                 data-id="{{$item->id}}"

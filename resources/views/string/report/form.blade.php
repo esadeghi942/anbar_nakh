@@ -15,14 +15,14 @@
         <label  for="day">{{__('panel.cell')}}
             <span class="required">*</span>
         </label>
-        <select name="string_cell_id" id="cell" class="form-control form-select" required>
+        <select name="string_cell_id" id="cell" class="form-control form-select">
             <option></option>
         @foreach($cells as $cell)
                 <option data-parent="{{$cell->string_anbar_id}}"  {{ isset($item) && $item->string_cell_id == $cell->id ? 'selected' : '' }} value="{{$cell->id}}">{{ $cell->code}}</option>
             @endforeach
         </select>
     </div>
-  {{--  <div class="form-group col-12 col-sm-6 col-md-4">
+    <div class="form-group col-12 col-sm-6 col-md-4">
         <label  for="day">{{__('panel.material')}}
             <span class="required">*</span>
         </label>
@@ -69,7 +69,7 @@
                     {{ isset($item) && $item->string_layer_id == $layer->id ? 'selected' : '' }} value="{{$layer->id}}">{{ $layer->value}}</option>
             @endforeach
         </select>
-    </div>--}}
+    </div>
 
   {{--  <div class="form-group col-12 col-sm-6 col-md-4">
         <label  for="day">{{__('panel.seller')}}

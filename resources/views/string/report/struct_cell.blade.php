@@ -117,13 +117,6 @@
                 <div class="col-12 col-sm-6">
                     <h4> انبار موقت</h4>
                 </div>
-                <div class="col-12 col-sm-6">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{route('index')}}"> <i
-                                    data-feather="home"></i></a>
-                        </li>
-                    </ol>
-                </div>
             </div>
         </div>
         <div class="row starter-main">
@@ -164,13 +157,6 @@
             <div class="row">
                 <div class="col-12 col-sm-6">
                     <h4> انبار CRP</h4>
-                </div>
-                <div class="col-12 col-sm-6">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{route('index')}}"> <i
-                                    data-feather="home"></i></a>
-                        </li>
-                    </ol>
                 </div>
             </div>
         </div>
@@ -219,12 +205,44 @@
         </div>
     </div>
 
+    <div class="container-fluid">
+
+       {{--
+         <div class="page-title">
+            <div class="row">
+                <div class="col-12 col-sm-6">
+                    <h4> سلول های ادغامی</h4>
+                </div>
+            </div>
+        </div>
+       <div class="row starter-main">
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-body">
+                        <div style="margin: auto; width: fit-content">
+                            <?php
+                            foreach ($qr_code_qroups as $qr_code_qroup) {
+                                $cells = App\Models\String\QrCodeCell::where('string_qr_code_id',$qr_code_qroup->string_qr_code_id)->get('string_cell_id');
+                                echo $qr_code_qroup->string_qr_code->string_group_qr_code->string_group->title;
+                                foreach ($cells as $cell) {
+                                    echo '<div class="pt-4">
+                                        <a class="badge badge-Acrylic" style="width: 100px; !important;">' . $cell->code .'</a></div>';
+                                }
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>--}}
+    </div>
+
 @endsection
 @section('js')
 
     <script>
-        $(document).ready(function (){
-            $('a:contains(MA11),a:contains(MB11),a:contains(MC11),a:contains(MA12),a:contains(MB12),a:contains(MC12)').css('background-color','black');
+        $(document).ready(function () {
+            $('a:contains(MA11),a:contains(MB11),a:contains(MC11),a:contains(MA12),a:contains(MB12),a:contains(MC12)').css('background-color', 'black');
         });
     </script>
 @endsection

@@ -6,6 +6,10 @@
             height: 25px;
             margin: auto;
         }
+
+        .dataTables_wrapper button {
+            color: black !important;
+        }
     </style>
 @endsection
 @section('content')
@@ -47,16 +51,14 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" id="basic-1">
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
                                 <th>{{__('panel.anbar')}}</th>
                                 <th>{{__('panel.code')}}</th>
-                                <th>{{__('panel.weight')}}</th>
                                 <th>{{__('panel.type')}}</th>
-                                <th>{{__('panel.history enters')}}</th>
-                                <th>{{__('panel.history exports')}}</th>
+                                <th>{{__('panel.qr_codes')}}</th>
                                 <th scope="col">{{__('panel.edit')}}</th>
                                 <th scope="col">{{__('panel.delete')}}</th>
                             </tr>
@@ -67,15 +69,11 @@
                                     <td>{{ $i +1 }}</td>
                                     <td>{{ $cell->string_anbar->name }}</td>
                                     <td>{{ $cell->code }}</td>
-                                    <td>{{ $cell->weight }}</td>
                                     <td>{{ $cell->string_group  ? $cell->string_group->title : '' }}</td>
-
-                                    <td><a href="{{route('string.cell.enters',$cell)}}" class="btn"><i
-                                                class="fa fa-history"></i></a></td>
-
-                                    <td><a href="{{route('string.cell.exports',$cell)}}" class="btn"><i
-                                                class="fa fa-history"></i></a></td>
-
+                                    <td>
+                                        <a href="{{route('string.cell.qr_code',$cell)}}"><i
+                                                class="fa fa-barcode"></i></a>
+                                    </td>
                                     <td><a href="{{route('string.cell.edit',$cell)}}" class="btn"><i
                                                 class="fa fa-edit"></i></a></td>
                                     <td>
@@ -85,6 +83,7 @@
                                             <button type="submit" class="btn"><i
                                                     class="fa fa-trash"></i></button>
                                         </form>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -94,4 +93,6 @@
             </div>
         </div>
     </div>
+@endsection
+@section('js')
 @endsection

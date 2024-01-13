@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\String;
 
 use App\Http\Controllers\Controller;
-use App\Models\String\Cell;
-use App\Models\String\Enter;
 use App\Models\String\StringGroup;
 use Illuminate\Http\Request;
 
@@ -40,11 +38,11 @@ class StringGroupController extends Controller
 
     public function destroy(StringGroup $stringGroup)
     {
-        if ($stringGroup->string_enters()->exists())
+        if ($stringGroup->group_qr_codes()->exists())
             return redirect()->route('string.string_group.index')->withErrors('مواردی از این متریال در ورود به انبار وجود دارد امکان حذف نیست.');
 
-        if ($stringGroup->string_exports()->exists())
-            return redirect()->route('string.string_group.index')->withErrors('مواردی از این متریال در  خروج از انبار وجود دارد امکان حذف نیست.');
+      /*  if ($stringGroup->string_exports()->exists())
+            return redirect()->route('string.string_group.index')->withErrors('مواردی از این متریال در  خروج از انبار وجود دارد امکان حذف نیست.');*/
 
         if ($stringGroup->string_cells()->exists())
             return redirect()->route('string.string_group.index')->withErrors('مواردی از این متریال در انبار وجود دارد امکان حذف نیست.');

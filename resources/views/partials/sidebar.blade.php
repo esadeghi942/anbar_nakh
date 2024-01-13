@@ -104,29 +104,37 @@
                                 <i class="fa fa-exchange"></i>
                                 مرکز نقل و انتقال انبار</a>
                             <ul class="sidebar-submenu">
-                                <li><a class="sidebar-link {{ $route == 'string.enter.create' ? 'active' : '' }}"
-                                       href="{{route('string.enter.create')}}"><span>ورود</span></a></li>
-                                <li><a class="sidebar-link {{ $route == 'string.export.index' ? 'active' : '' }}"
-                                       href="{{route('string.export.index')}}"><span>خروج</span></a></li>
-
-                                <li><a class="sidebar-link {{ $route == 'string.transfer.index' ? 'active' : '' }}"
-                                       href="{{route('string.transfer.index')}}"><span>جا به جایی</span></a></li>
-
-                                <li><a class="submenu-title" href="#">لیبل<span class="sub-arrow"><i
+                                <li><a class="submenu-title" href="#">ورود<span class="sub-arrow"><i
                                                 class="fa fa-angle-left"></i></span></a>
                                     <ul class="nav-sub-childmenu submenu-content">
-                                        <li><a href="{{route('string.group_qr_code.create')}}">تولید لیبل</a></li>
-                                        <li><a href="{{route('string.group_qr_code.index')}}"> لیبل ها</a></li>
+                                        <li><a href="{{route('string.enter.create')}}">وزنی</a></li>
+                                        <li><a href="{{route('string.group_qr_code.enter')}}">با کد QR</a></li>
                                     </ul>
                                 </li>
+                                <li><a class="submenu-title" href="#">خروج<span class="sub-arrow"><i
+                                                class="fa fa-angle-left"></i></span></a>
+                                    <ul class="nav-sub-childmenu submenu-content">
+                                        <li><a href="{{route('string.export.index')}}">وزنی</a></li>
+                                        <li><a href="{{route('string.export_multi_qr_codes')}}">با کد QR</a></li>
+                                    </ul>
+                                </li>
+                                <li><a class="sidebar-link {{ $route == 'string.qr_code.index' ? 'active' : '' }}"
+                                       href="{{route('string.qr_code.index')}}"><span>جستجوی کد QR</span></a></li>
 
-                                <li><a class="submenu-title" href="#">آزاد کردن سلول<span class="sub-arrow"><i
+                           {{--     <li><a class="sidebar-link {{ $route == 'string.transfer.index' ? 'active' : '' }}"
+                                       href="{{route('string.transfer.index')}}"><span>جا به جایی</span></a></li>
+--}}
+                                <li><a class="sidebar-link {{ $route == 'string.group_qr_code.create' ? 'active' : '' }}"
+                                       href="{{route('string.group_qr_code.create')}}">تولید لیبل</a></li>
+
+
+                               {{-- <li><a class="submenu-title" href="#">آزاد کردن سلول<span class="sub-arrow"><i
                                                 class="fa fa-angle-left"></i></span></a>
                                     <ul class="nav-sub-childmenu submenu-content">
                                         <li><a href="{{route('string.cell.free_total')}}">کلی</a></li>
                                         <li><a href="{{route('string.cell.free_one')}}">موردی</a></li>
                                     </ul>
-                                </li>
+                                </li>--}}
                             </ul>
                         </li>
                         <li class="sidebar-list">
@@ -173,6 +181,14 @@
 
                                 <li><a class="sidebar-link {{ $route == 'string.string_group.index' ? 'active' : '' }}"
                                        href="{{route('string.string_group.index')}}">نقطه سفارش ها</a></li>
+
+                                <li><a class="submenu-title" href="#">ورودی ها<span class="sub-arrow"><i
+                                                class="fa fa-angle-left"></i></span></a>
+                                    <ul class="nav-sub-childmenu submenu-content">
+                                        <li><a href="{{route('string.group_qr_code.list','label')}}">با لیبل</a></li>
+                                        <li><a href="{{route('string.group_qr_code.list','weight')}}">وزنی</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
 
@@ -180,8 +196,8 @@
                                 <i class="fa fa-bar-chart"></i>
                                 مرکز آمار</a>
                             <ul class="sidebar-submenu">
-                                <li><a class="sidebar-link {{ $route == 'string.export.index' ? 'active' : '' }}"
-                                       href="{{route('string.export.index')}}"><span>گزارش</span></a></li>
+                                <li><a class="sidebar-link {{ $route == 'string.report.index' ? 'active' : '' }}"
+                                       href="{{route('string.report.index')}}"><span>گزارش</span></a></li>
                                 <li><a class="sidebar-link {{ $route == 'string.string_group.index' ? 'active' : '' }}"
                                        href="#"><span>جستجو</span></a></li>
                                 <li><a class="submenu-title" href="#">آمارها<span class="sub-arrow"><i

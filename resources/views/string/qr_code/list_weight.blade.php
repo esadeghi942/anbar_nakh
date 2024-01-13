@@ -7,6 +7,53 @@
     </style>
 @endsection
 @section('content')
+    <div class="modal" id="export_cells" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{__('panel.export anbar')}}</h4>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" class="ajax_form" action="{{route('string.export.export')}}">
+                        @csrf
+                        <input type="hidden" id="id_item" name="id" value="">
+                        <div class="row">
+                            <div class="form-group col-12 col-sm-6 col-md-4">
+                                <label for="day">{{__('panel.person')}}
+                                    <span class="required">*</span>
+                                </label>
+                                <select class="form-control select2" name="person">
+                                    @foreach($persons as $person)
+                                        <option value="{{$person->id}}">{{$person->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group col-12 col-sm-6 col-md-4">
+                                <label for="day">{{__('panel.device')}}
+                                    <span class="required">*</span>
+                                </label>
+                                <select class="form-control select2" name="device">
+                                    @foreach($devices as $device)
+                                        <option value="{{$device->id}}">{{$device->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group col-12 col-sm-6 col-md-4">
+                                <label for="day">{{__('panel.weight')}}
+                                    <span class="required">*</span>
+                                </label>
+                                <input type="text" id="weight" name="weight"
+                                       value="{{old('weight',isset($item) ? $item->weight : '')}}" class="form-control">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success mt-3">{{__('panel.save')}}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal" id="enter_cells" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          style="padding-left: 17px" aria-modal="true">
         <div class="modal-dialog" role="document">
@@ -17,7 +64,7 @@
                             data-bs-original-title="" title=""></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{route('string.group_qr_code.enter_cells')}}" method="post" class="ajax_form">
+                    <form action="{{route('string.qr_code.enter_cells')}}" method="post" class="ajax_form">
                         @csrf
                         <input type="hidden" value="" name="id">
                         <div class="mb-3">
@@ -72,68 +119,70 @@
     <div class="container-fluid">
         <div class="row starter-main">
             <div class="col-12 col-sm-6">
-                <h3>{{__('panel.labels')}}</h3>
+                <h3>ورودی های وزنی</h3>
             </div>
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered"  id="basic-1">
+                        <table class="table table-bordered" id="basic-1">
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
+                                <th>{{__('panel.qrcode')}}</th>
                                 <th>{{__('panel.material')}}</th>
-                                <th>وزن موجود در سلول</th>
+                                <th>{{__('panel.rest_weight')}}</th>
+                                <th>{{__('panel.initial weight')}}</th>
                                 <th>{{__('panel.cells')}}</th>
-
-                                <th>{{__('panel.count without weight')}}</th>
                                 <th>{{__('panel.seller')}}</th>
                                 <th>{{__('panel.lat')}}</th>
+                                <th>{{__('panel.type')}}</th>
                                 <th>{{__('panel.date registered')}}</th>
-                                <th scope="col">{{__('panel.enter cells')}}</th>
-                                <th scope="col">{{__('panel.qrcode')}}</th>
-                                <th scope="col">{{__('panel.detail')}}</th>
+                                <th scope="col">واد کردن/جابجایی سلول</th>
+                                <th scope="col">{{__('panel.export')}}</th>
                                 <th scope="col">{{__('panel.exports')}}</th>
-
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($group_qr_codes as $i => $group_qr_code)
                                 <tr>
                                     <td>{{ $i +1 }}</td>
+                                    <td class="ltr">{{ $group_qr_code->string_qr_codes()->first() ? $group_qr_code->string_qr_codes()->first()->serial : 'خارج شده' }}</td>
                                     <td>{{ $group_qr_code->string_group->title }}</td>
-                                    <td>{{ $group_qr_code->string_qr_codes()->sum('weight') }}</td>
-                                    <td>{{ $group_qr_code->string_cells_code }}</td>
-                                    <td>{{ $group_qr_code->count_without_weight }}</td>
+                                    <td class="ltr">{{ $group_qr_code->string_qr_codes()->first()  ? $group_qr_code->string_qr_codes()->first()->weight  : '0' }}</td>
+                                    <td>{{ $group_qr_code->initial_weight }}</td>
+                                    <td>{{ $group_qr_code->string_qr_codes()->first() ? $group_qr_code->string_qr_codes()->first()->string_cells_code : '' }}</td>
                                     <td>{{ $group_qr_code->seller->name }}</td>
                                     <td>{{ $group_qr_code->lat }}</td>
+                                    <td>{{ $group_qr_code->str_type }}</td>
                                     <td>{{ jdate($group_qr_code->created_at)->format('Y/m/d H:i') }}</td>
 
                                     <td>
-                                        <button class="btn btn-primary enter_cell"
-                                                data-id="{{ $group_qr_code->id }}"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#enter_cells" data-whatever="@fat"
-                                                data-bs-original-title="" title=""><i class="fa fa-sign-in"></i>
-                                        </button>
+                                        @if($group_qr_code->string_qr_codes()->first())
+                                            <button class="btn btn-primary enter_cell"
+                                                    data-id="{{$group_qr_code->string_qr_codes()->first()->id }}"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#enter_cells" data-whatever="@fat"
+                                                    data-bs-original-title="" title=""><i class="fa fa-sign-in"></i>
+                                            </button>
+                                        @else
+                                            <span class="badge bg-warning">خارج شده</span>
+                                        @endif
                                     </td>
 
-                                    <td><a href="{{route('string.group_qr_code.show',$group_qr_code)}}" class="btn"><i
-                                                class="fa fa-barcode"></i></a></td>
+                                    <td>
+                                        @if($group_qr_code->string_qr_codes()->first())
+                                            <button class="btn export" type="button" data-bs-toggle="modal"
+                                                    data-id="{{$group_qr_code->id}}" data-bs-target="#export_cells">
+                                                <i class="fa fa-sign-out"></i>
+                                            </button>
+                                        @else
+                                            <span class="badge bg-warning">خارج شده</span>
+                                        @endif
+                                    </td>
 
-                                    <td><a href="{{route('string.group_qr_code.weight',$group_qr_code)}}" class="btn"><i
-                                                class="fa fa-gavel"></i></a></td>
-
-                                    <td><a href="{{route('string.group_qr_code.exports',$group_qr_code->id)}}" class="btn"><i
+                                    <td><a href="{{route('string.group_qr_code.exports',$group_qr_code->id)}}"
+                                           class="btn"><i
                                                 class="fa fa-list"></i></a></td>
-                                    {{--  <td>
-                                          <form action="{{ route('string.layer.destroy',$group_qr_code->id)}}"
-                                                method="POST">
-                                              @method('DELETE')
-                                              @csrf
-                                              <button type="submit" class="btn"><i
-                                                      class="fa fa-trash"></i></button>
-                                          </form>
-                                      </td>--}}
                                 </tr>
                             @endforeach
                             </tbody>
@@ -158,6 +207,10 @@
             $('#enter_cells input[name="id"]').val(val);
         });
 
+        $(document).on('click', '.export', function (event) {
+            var id = $(this).attr('data-id');
+            $('#id_item').val(id);
+        });
         $(document).on('submit', 'form.ajax_form', function (event) {
             event.preventDefault();
             var form = $(this);

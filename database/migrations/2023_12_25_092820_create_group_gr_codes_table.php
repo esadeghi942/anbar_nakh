@@ -30,7 +30,6 @@ return new class extends Migration
             $table->foreign('string_group_qr_code_id','string_group_qr_codes')->references('id')->on('string_group_qr_codes')->onDelete('cascade')->onUpdate('cascade');
 
             $table->string('serial');
-            $table->tinyInteger('status')->default(1);
             $table->float('weight')->nullable();
             $table->timestamps();
         });

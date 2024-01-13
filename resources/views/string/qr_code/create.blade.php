@@ -11,7 +11,7 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-sm-6">
-                    {{__('panel.enter anbar',['item'=>__('panel.item')])}}
+                   تولید لیبل
                 </div>
                 <div class="col-12 col-sm-6">
                     <ol class="breadcrumb">
@@ -34,7 +34,6 @@
                             @include('string.qr_code.form')
                             <button type="submit" class="btn btn-success mt-3">تولید لیبل</button>
                         </form>
-
                     </div>
                 </div>
             </div>

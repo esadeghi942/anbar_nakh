@@ -29,8 +29,8 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{route('string.export.search')}}">
-                            @include('string.export.form')
+                        <form action="{{route('string.report.search')}}">
+                            @include('string.report.form')
                             <button type="submit" class="btn btn-success mt-3">{{__('panel.search')}}</button>
                         </form>
                     </div>

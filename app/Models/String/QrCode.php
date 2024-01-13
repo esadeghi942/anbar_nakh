@@ -18,25 +18,21 @@ class QrCode extends Model
         return $this->belongsTo(GroupQrCode::class, 'string_group_qr_code_id');
     }
 
-    public function getStrStatusAttribute()
+    public function string_cells()
     {
-        $status = $this->status;
-        $str = '';
-        switch ($status) {
-            case 1:
-                $str = 'ثبت اولیه';
-                break;
-            case 2:
-                $str = 'ثبت وزن';
-                break;
-            case 3:
-                $str = 'ورود به انبار';
-                break;
-            case 4:
-                $str = 'خروج از انبار';
-                break;
-        }
-        return $str;
-
+        return $this->belongsToMany(Cell::class, 'string_qr_code_cell', 'string_qr_code_id', 'string_cell_id')->withTimestamps();
     }
+
+    public function getStringCellsCodeAttribute()
+    {
+        //$cells = explode(',', $this->string_cells);
+        $cells=$this->string_cells()->get()->pluck('id')->toArray();
+        $cells=array_unique($cells);
+        $codes = [];
+        foreach ($cells as $cell) {
+            $codes[] = Cell::find($cell)->code;
+        }
+        return implode(',', $codes);
+    }
+
 }

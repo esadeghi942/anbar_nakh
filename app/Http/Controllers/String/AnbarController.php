@@ -14,8 +14,8 @@ class AnbarController extends Controller
      */
     public function index()
     {
-        $anbars=Anbar::all();
-        return view('string.anbar.index',compact('anbars'));
+        $anbars = Anbar::all();
+        return view('string.anbar.index', compact('anbars'));
     }
 
     /**
@@ -32,7 +32,7 @@ class AnbarController extends Controller
     public function store(AnbarRequest $request)
     {
         Anbar::create($request->all());
-        return redirect()->route('string.anbar.index')->with('success',trans('panel.success create',['item'=>trans('panel.anbar')]));
+        return redirect()->route('string.anbar.index')->with('success', trans('panel.success create', ['item' => trans('panel.anbar')]));
 
     }
 
@@ -49,7 +49,7 @@ class AnbarController extends Controller
      */
     public function edit(Anbar $anbar)
     {
-        return view('string.anbar.edit',compact('anbar'));
+        return view('string.anbar.edit', compact('anbar'));
 
     }
 
@@ -59,7 +59,7 @@ class AnbarController extends Controller
     public function update(AnbarRequest $request, Anbar $anbar)
     {
         $anbar->update($request->all());
-        return redirect()->route('string.anbar.index')->with('success',trans('panel.success edit',['item'=>trans('panel.anbar')]));
+        return redirect()->route('string.anbar.index')->with('success', trans('panel.success edit', ['item' => trans('panel.anbar')]));
     }
 
     /**
@@ -69,8 +69,6 @@ class AnbarController extends Controller
     {
         if ($anbar->string_cells()->exists())
             return redirect()->route('string.anbar.index')->withErrors('مواردی از این انبار در انبار وجود دارد امکان حذف نیست.');
-        if ($anbar->string_enters()->exists())
-            return redirect()->route('string.anbar.index')->withErrors(' کد QRهایی از این انبار وجود دارد امکان حذف نیست.');
         $anbar->delete();
         return redirect()->route('string.anbar.index')->with('success', trans('panel.success delete', ['item' => trans('panel.anbar')]));
     }

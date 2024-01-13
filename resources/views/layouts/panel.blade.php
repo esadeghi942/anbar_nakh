@@ -31,6 +31,8 @@
     <!-- App css-->
     <link rel="stylesheet" type="text/css" href="{{asset('/assets/css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('/assets/css/custom_style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('/assets/css/vendors/datatables.css')}}">
+
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="{{asset('/assets/css/responsive.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/rating.css')}}">
@@ -244,12 +246,21 @@
 <link href="{{asset('css/toast.min.css')}}" rel="stylesheet"/>
 <script src="{{asset('js/toast.min.js')}}"></script>
 
+<script src="{{asset('assets/js/datatable/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('assets/js/datatable/datatables/datatable.custom.js')}}"></script>
+
+
 <!-- login js-->
 <!-- Plugin used-->
 <script>
     function log(str) {
         console.log(str);
     }
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
     $(document).ready(function () {
         if ($('#language li.active').length) {

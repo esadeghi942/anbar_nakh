@@ -59,6 +59,7 @@ return [
     'materials' => 'جنس ها',
 
     'qrcode' => 'کد QR',
+    'qr_codes' => 'کدهای QR در سلول',
     'grade' => 'نمره',
     'grades' => 'نمره ها',
 
@@ -66,15 +67,25 @@ return [
     'layers' => 'لا ها',
     'weight' => 'وزن(Kg)',
     'rest_weight' => 'وزن باقی مانده',
+    'initial weight' => 'وزن اولیه',
     'type' => 'نوع',
+    'detail'=>'مشخصات',
+    'serial'=>'شماره سریال',
+    'status'=>'وضعیت',
     'qr_code' => 'کد Qr',
+    'enter weight'=>'وارد کردن وزن',
     'get_qr_code' => 'دریافت کد Qr ',
     'enter anbar' => 'ورود به انبار',
     'export anbar' => 'خروج از انبار',
+    'export cell' => 'خروج از سلول',
+    'export date' => 'تاریخ خروج',
     'exports' => 'خروجی ها',
     'search anbar' => 'جستجو در انبار',
     'items' => 'اقلام',
+    'count without weight' => 'تعداد بدون وزن',
     'count' => 'تعداد',
+    'enter cells' => 'وارد کردن به سلول',
+    'labels'=>'لیبل ها',
     'count orders' => ' تعداد اقلام',
     'user registered' => 'کاربر ثبت کننده',
     'date registered' => 'تاریخ ثبت ',
@@ -104,5 +115,6 @@ return [
     'free cells' => 'آزاد کردن سلول',
     'history enters'=>'تاریخچه ورودی ها',
     'history exports'=>'تاریخچه خروجی ها',
-    'enters'=>'ورودی ها'
+    'enters'=>'ورودی ها',
+    'date enter cell'=>'تاریخ ورود به سلول'
 ];

@@ -26,9 +26,9 @@ class Export extends Model
         return $this->belongsTo(Person::class);
     }
 
-    public function string_cell()
+    public function string_qr_code()
     {
-        return $this->belongsTo(Cell::class);
+        return $this->belongsTo(QrCode::class,'string_group_qr_code_id');
     }
 
     public function string_group()

@@ -24,7 +24,7 @@ class ItemRequest extends FormRequest
     {
         return [
             'string_anbar_id'=>'required',
-            'string_cell_id'=>'required',
+            'cells'=>'required',
             'weight'=>'required|numeric',
             'type'=>'required'
         ];
@@ -36,7 +36,7 @@ class ItemRequest extends FormRequest
             'string_anbar_id'=>'انبار',
             'weight'=>'وزن',
             'type'=>'نوع',
-            'string_cell_id'=>'سلول',
+            'cells'=>'سلول',
         ];
     }
 }

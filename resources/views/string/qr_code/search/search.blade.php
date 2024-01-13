@@ -1,11 +1,4 @@
 @extends('layouts.panel')
-@section('css')
-    <style>
-        .dataTables_wrapper button {
-            color: black !important;
-        }
-    </style>
-@endsection
 @section('content')
     <div class="modal" id="enter_cells" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          style="padding-left: 17px" aria-modal="true">
@@ -17,7 +10,7 @@
                             data-bs-original-title="" title=""></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{route('string.group_qr_code.enter_cells')}}" method="post" class="ajax_form">
+                    <form action="{{route('string.group_qr_code.enter_cells')}}" method="post">
                         @csrf
                         <input type="hidden" value="" name="id">
                         <div class="mb-3">
@@ -36,8 +29,7 @@
                         <div class="mb-3">
                             <div id="cells">
                                 @foreach($cells as $cell)
-                                    <div class="form-check checkbox mb-0 cell-select"
-                                         data-parent="{{$cell->string_anbar->id}}" style="display: none">
+                                    <div class="form-check checkbox mb-0 cell-select" data-parent="{{$cell->string_anbar->id}}" style="display: none">
                                         <input type="checkbox" value="{{$cell->id}}" name="cells[]"
                                                id="cell_{{$cell->id}}">
                                         <label for="cell_{{$cell->id}}">{{ $cell->code }}</label>
@@ -77,23 +69,18 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered"  id="basic-1">
+                        <table class="table table-bordered">
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
                                 <th>{{__('panel.material')}}</th>
-                                <th>وزن موجود در سلول</th>
-                                <th>{{__('panel.cells')}}</th>
-
+                                <th>{{__('panel.count')}}</th>
                                 <th>{{__('panel.count without weight')}}</th>
                                 <th>{{__('panel.seller')}}</th>
                                 <th>{{__('panel.lat')}}</th>
-                                <th>{{__('panel.date registered')}}</th>
                                 <th scope="col">{{__('panel.enter cells')}}</th>
                                 <th scope="col">{{__('panel.qrcode')}}</th>
-                                <th scope="col">{{__('panel.detail')}}</th>
-                                <th scope="col">{{__('panel.exports')}}</th>
-
+                                <th scope="col">{{__('panel.weight')}}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -101,16 +88,12 @@
                                 <tr>
                                     <td>{{ $i +1 }}</td>
                                     <td>{{ $group_qr_code->string_group->title }}</td>
-                                    <td>{{ $group_qr_code->string_qr_codes()->sum('weight') }}</td>
-                                    <td>{{ $group_qr_code->string_cells_code }}</td>
+                                    <td>{{ $group_qr_code->count }}</td>
                                     <td>{{ $group_qr_code->count_without_weight }}</td>
                                     <td>{{ $group_qr_code->seller->name }}</td>
                                     <td>{{ $group_qr_code->lat }}</td>
-                                    <td>{{ jdate($group_qr_code->created_at)->format('Y/m/d H:i') }}</td>
-
                                     <td>
-                                        <button class="btn btn-primary enter_cell"
-                                                data-id="{{ $group_qr_code->id }}"
+                                        <button class="btn btn-primary enter_cell" data-id="{{ $group_qr_code->id }}"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#enter_cells" data-whatever="@fat"
                                                 data-bs-original-title="" title=""><i class="fa fa-sign-in"></i>
@@ -122,9 +105,6 @@
 
                                     <td><a href="{{route('string.group_qr_code.weight',$group_qr_code)}}" class="btn"><i
                                                 class="fa fa-gavel"></i></a></td>
-
-                                    <td><a href="{{route('string.group_qr_code.exports',$group_qr_code->id)}}" class="btn"><i
-                                                class="fa fa-list"></i></a></td>
                                     {{--  <td>
                                           <form action="{{ route('string.layer.destroy',$group_qr_code->id)}}"
                                                 method="POST">
@@ -149,21 +129,13 @@
         $(document).on('change', '#anbar', function () {
             var val = $(this).val();
             $('#cells .cell-select').hide();
-            $('#cells .cell-select input').prop('checked', false);
-            $('#cells .cell-select[data-parent=' + val + ']').show();
+            $('#cells .cell-select input').prop('checked',false);
+            $('#cells .cell-select[data-parent='+val+']').show();
         });
 
         $(document).on('click', '.enter_cell', function () {
             var val = $(this).attr('data-id');
             $('#enter_cells input[name="id"]').val(val);
-        });
-
-        $(document).on('submit', 'form.ajax_form', function (event) {
-            event.preventDefault();
-            var form = $(this);
-            var conf = confirm('آیا مطمئن به ذخیره اطلاعات هستید؟');
-            if (conf)
-                ajax_form_request(form, event);
         });
     </script>
 @endsection

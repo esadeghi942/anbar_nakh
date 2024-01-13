@@ -21,7 +21,7 @@ class GroupQrCode extends Model
 
     public function seller()
     {
-        return $this->belongsTo(Seller::class,'seller_id');
+        return $this->belongsTo(Seller::class, 'seller_id');
     }
 
     public function string_qr_codes()
@@ -29,17 +29,65 @@ class GroupQrCode extends Model
         return $this->hasMany(QrCode::class, 'string_group_qr_code_id');
     }
 
+    public function getCountWithoutWeightAttribute()
+    {
+        return $this->string_qr_codes()->where('weight', '=', null)->count();
+    }
+
+    public function string_exports()
+    {
+        return $this->hasMany(Export::class, 'string_group_qr_code_id');
+    }
+
+    public function getStrTypeAttribute()
+    {
+        $type = $this->type;
+        $res = '';
+        switch ($type) {
+            case 'pallet':
+                $res = 'پالت آک';
+                break;
+            case 'pocket':
+                $res = 'گونی آک';
+                break;
+            case 'used':
+                $res = 'مصرف شده';
+                break;
+            case 'converted':
+                $res = 'تبدیل شده';
+                break;
+
+            case 'label':
+                $res = 'لیبل';
+                break;
+        }
+        return $res;
+    }
+
+
     public function create_qr_codes($index)
     {
-        $number=sprintf("%04d",$index);
+        $number = sprintf("%04d", $index);
         $date = jdate()->format('Ymdhis');
-        $single_group = $this->string_group;
-        $material = $single_group->string_material->en_name;
-        $grade = $single_group->string_grade->value;
-        $color = $single_group->string_color->en_name;
-        $layer = $single_group->string_layer->value;
-        $qrcode = '#' . $date . '@' . $number .'@' .$this->id.'#';
+        //$single_group = $this->string_group;
+        $qrcode = '#' . $date . '@' . $number . '@' . $this->id . '#';
         return $qrcode;
+    }
+
+    public function getStringCellsCodeAttribute()
+    {
+        //$cells = explode(',', $this->string_cells);
+        $cells = [];
+        $qr_codes = $this->string_qr_codes()->get();
+
+        foreach ($qr_codes as $qr_code)
+            array_push($cells, ...$qr_code->string_cells()->get()->pluck('id')->toArray());
+        $cells=array_unique($cells);
+        $codes = [];
+        foreach ($cells as $cell) {
+            $codes[] = Cell::find($cell)->code;
+        }
+        return implode(',', $codes);
     }
 
 }

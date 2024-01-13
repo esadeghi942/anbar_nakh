@@ -34,10 +34,8 @@
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th>{{__('panel.color')}}</th>
-                                <th>{{__('panel.material')}}</th>
-                                <th>{{__('panel.grade')}}</th>
-                                <th>{{__('panel.layer')}}</th>
+                                <th>{{__('panel.type')}}</th>
+                                <th>{{__('panel.cells')}}</th>
                                 <th>{{__('panel.order_point')}}</th>
                                 <th>{{__('panel.weight')}}</th>
                                 <th>{{__('panel.type')}}</th>
@@ -48,12 +46,10 @@
                             @foreach($string_groups as $i => $string_group)
                                 <tr class="{{ $string_group->order_pointer == 0 ? 'table-danger' : ''  }}">
                                     <td>{{ $i +1 }}</td>
-                                    <td>{{ $string_group->string_color->name }}</td>
-                                    <td>{{ $string_group->string_material->name }}</td>
-                                    <td>{{ $string_group->string_grade->value }}</td>
-                                    <td>{{ $string_group->string_layer->value }}</td>
+                                    <td>{{ $string_group->title }}</td>
+                                    <td>{{ $string_group->string_cells_code }}</td>
                                     <td>{{ $string_group->order_pointer }}</td>
-                                    <td>{{ $string_group->string_cells()->sum('weight') }}</td>
+                                    <td>{{ $string_group->total_weight }}</td>
                                     <td>{{ $string_group->str_type }}</td>
                                     <td><a href="{{route('string.string_group.edit',$string_group)}}" class="btn"><i
                                                 class="fa fa-edit"></i></a></td>
