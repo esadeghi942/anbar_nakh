@@ -109,27 +109,45 @@ class ExportController extends Controller
             ->where('serial', $request->search)->where('type', 'label')->select('string_qr_codes.*')->first();
         if (!$qr_code) {
             $if_exported = Export::where('serial', $request->search)->first();
-            if($if_exported) {
-                $desc = "دستگاه ".$if_exported->device->name." , شخص ".$if_exported->person->name.", زمان خروج".jdate($if_exported->created_at)->format('Y/m/d');
+            if ($if_exported) {
+                $desc = "دستگاه " . $if_exported->device->name . " , شخص " . $if_exported->person->name . ", زمان خروج" . jdate($if_exported->created_at)->format('Y/m/d');
                 return Response::error(" کد qr با مشخصه $desc خارج شده است ");
-            }
-            else
+            } else
                 return Response::error('کد qr با این مشخصه یافت نشد.');
         }
         if (!$qr_code->weight)
             return Response::error('کد qr  وزنی ندارد ابتدا وزن این کد را وارد نمایید.');
         elseif (!$qr_code->string_cells()->count())
             return Response::error('کد qr  هنوز وارد سلولی نشده امکان خروج نیست.');
-
         $data['id'] = $qr_code->id;
         $data['cells'] = implode(',', $qr_code->string_cells()->get()->pluck('code')->toArray());
         $data['serial'] = $qr_code->serial;
         $data['material'] = $qr_code->string_group_qr_code->string_group->title;
         $data['weight'] = $qr_code->weight;
+
+        /*********************************/
+        $cells = $qr_code->string_cells()->get()->pluck('id')->toArray();
+        $qr_code->string_cells()->detach();
+        $qr_code->delete();
+        $qr_code->string_group_qr_code->string_exports()->create([
+            'string_group_id' => $qr_code->string_group_qr_code->string_group->id,
+            'device_id' => $request->device,
+            'person_id' => $request->person,
+            'weight' => $qr_code->weight,
+            'serial' => $qr_code->serial,
+        ]);
+        $cells = array_unique($cells);
+        foreach ($cells as $cell) {
+            $cell = Cell::find($cell);
+            if (!$cell->string_qr_codes()->count())
+                $cell->update(['string_group_id' => null]);
+        }
         return $data;
+        /*********************************/
+
     }
 
-    public function export_multi_qr_codes_save(Request $request)
+/*    public function export_multi_qr_codes_save(Request $request)
     {
         $cells = [];
         if (isset($request->qr_codes)) {
@@ -155,6 +173,6 @@ class ExportController extends Controller
             return redirect()->back()->with('success', 'عملیات با موفقیت انجام شد.');
         }
         return redirect()->back()->withErrors('کد qr وارد نشده است.');
-    }
+    }*/
 
 }

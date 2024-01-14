@@ -4,6 +4,21 @@
         .form-group {
             margin-top: 10px !important;
         }
+
+        .select2-container--default .select2-selection--multiple {
+            border: 1px solid #ced4da !important;
+        }
+
+        form .select2-container--default .select2-selection--multiple .select2-selection__choice{
+            padding: 2px 6px 2px 15px !important ;
+        }
+        .select2-container--default.select2-container--focus .select2-selection--multiple{
+            overflow: auto;
+        }
+
+        .select2-results__options .select2-results__option[aria-disabled=true] {
+            display: none;
+        }
     </style>
 @endsection
 @section('content')
@@ -25,29 +40,28 @@
     </div>
     <!-- Container-fluid starts-->
     <div class="container-fluid">
-        <div class="row starter-main">
-            <div class="container-fluid">
-                <div class="card">
-                    <div class="card-body">
-                        <form method="post" action="{{route('string.enter.store')}}">
-                            @csrf
-                            @include('string.enter.form')
-                            <button type="submit" class="btn btn-success mt-3">{{__('panel.save')}}</button>
-                        </form>
+        <div class="card">
+            <div class="card-body">
+                <form method="post" action="{{route('string.enter.store')}}">
+                    @csrf
+                    @include('string.enter.form')
+                    <button type="submit" class="btn btn-success mt-3">{{__('panel.save')}}</button>
+                </form>
 
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 @endsection
 @section('js')
     <script>
-        $(document).on('change','#anbar',function (){
-            var val=$(this).val();
-            var dest=$('#cell').val('');
-            $('#cell option').hide();
-            $('#cell option[data-parent='+val+']').show();
+        $(document).on('change', '#anbar', function () {
+            var val = $(this).val();
+            $('#cell').val('');
+            if(val) {
+                $('#cell option').prop("disabled", true);
+                $('#cell option[data-parent=' + val + ']').prop('disabled',false);
+            }
+            $('#cell').select2();
         });
     </script>
 @endsection

@@ -12,11 +12,11 @@
         </select>
     </div>
 
-    <div class="col-sm-6 col-md-2">
+    <div class="form-group col-sm-6 col-md-2">
         <label for="day">{{__('panel.cell')}}
             <span class="required">*</span>
         </label>
-        <select name="cells[]" id="cell" multiple="multiple" class="js-example-basic-single js-states form-control select2">
+        <select name="cells[]" id="cell" multiple="multiple" class="select2">
             @foreach($cells as $cell)
                 <option data-parent="{{$cell->string_anbar_id}}"
                         {{  old('string_cell_id') == $cell->id ? 'selected' : '' }} value="{{$cell->id}}">{{ $cell->code}}</option>
