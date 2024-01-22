@@ -5,6 +5,15 @@
             border: 1px solid red;
             padding: 10px;
         }
+
+        .details {
+            font-size: 15px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .f15{
+            font-size: 11px;
+        }
     </style>
 @endsection
 @section('content')
@@ -30,23 +39,28 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-body" id="print">
-                        <div class="row">
-                            @foreach($qr_codes as $qr_code)
-                                <div class="col-sm-3 col-md-2 border-red" style="min-width: 200px;">
-                                    <div class="text-center">
-                                        <h6>
-                                            {{$group_qr_code->string_group->title}}
-                                        </h6>
-                                        <div class="border-red">
-                                            {!! QrCode::encoding('UTF-8')->size(100)->generate(trim($qr_code->serial)) !!}
-                                        </div>
-                                        <div style="direction: ltr">
-                                            {{$qr_code->serial}}
-                                        </div>
+                        @foreach($qr_codes as $qr_code)
+                            <div class="row" style="border-bottom: 1px solid #EEEEEE">
+                                <div class="col-6">
+                                    <div class="details">
+                                        {{$group_qr_code->string_group->title}}
+                                    </div>
+                                    <div class="details f15" style="direction: ltr;">
+                                        {{$qr_code->serial}}
+                                    </div>
+                                    <div class="details">
+                                        {{$qr_code->string_group_qr_code->lat}}
+                                    </div>
+                                    <div class="details">
+                                        {{$qr_code->string_group_qr_code->seller->name}}
                                     </div>
                                 </div>
-                            @endforeach
-                        </div>
+                                <div class="border-red" style="width: fit-content">
+                                    {!! QrCode::encoding('UTF-8')->size(110)->generate(trim($qr_code->serial)) !!}
+                                </div>
+                            </div>
+                            <div style="break-after:page"></div>
+                        @endforeach
                     </div>
                     <div class="text-center" style="margin-top:20px;">
                         <button class="btn btn-info" onclick="printdiv()" target="_blank">پرینت</button>

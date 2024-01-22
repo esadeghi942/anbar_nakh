@@ -61,10 +61,6 @@ Route::middleware('auth')->group(function () {
 
         Route::post('export', [App\Http\Controllers\String\ExportController::class, 'export'])->name('export.export');
 
-        Route::get('receipt', [App\Http\Controllers\String\ReceiptController::class, 'index'])->name('receipt.index');
-        Route::post('receipt', [App\Http\Controllers\String\ReceiptController::class, 'save'])->name('receipt.save');
-
-
         Route::resource('group_qr_code', App\Http\Controllers\String\GroupQrCodeController::class);
         Route::get('enter_group_qr_code', [App\Http\Controllers\String\GroupQrCodeController::class, 'enter'])->name('group_qr_code.enter');
         Route::get('group_qr_code/{type}/list', [App\Http\Controllers\String\GroupQrCodeController::class, 'listt'])->name('group_qr_code.list');
@@ -95,11 +91,18 @@ Route::middleware('auth')->group(function () {
 
     });
     Route::group(['as' => 'carpet.', 'prefix' => 'carpet/', 'middleware' => 'role_carpet'], function () {
+
+
         Route::resource('cell', App\Http\Controllers\Carpet\CellController::class);
         Route::resource('anbar', App\Http\Controllers\Carpet\AnbarController::class);
         Route::resource('size', App\Http\Controllers\Carpet\SizeController::class);
         Route::resource('map', App\Http\Controllers\Carpet\MapController::class);
         Route::resource('color', App\Http\Controllers\Carpet\ColorController::class);
+        Route::resource('factor',\App\Http\Controllers\Carpet\FactorController::class);
+
+        Route::resource('company',\App\Http\Controllers\Carpet\CompanyControlle::class);
+        Route::resource('device',\App\Http\Controllers\Carpet\DeviceControlle::class);
+
 
         Route::group(['as' => 'qr_code.', 'prefix' => 'qr_code/'], function () {
             Route::get('one', [\App\Http\Controllers\Carpet\QrCodeController::class, 'one'])->name('one');

@@ -28,7 +28,7 @@
                 <h3>{{__('panel.order_points')}}</h3>
             </div>
             <div class="card">
-                <div class="card-body">
+                <div class="card-body" id="print">
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
@@ -59,7 +59,22 @@
                         </table>
                     </div>
                 </div>
+                <div class="text-center" style="margin-top:20px;">
+                    <button class="btn btn-info" onclick="printdiv()" target="_blank">پرینت</button>
+                </div>
             </div>
         </div>
     </div>
 @endsection
+@section('js')
+    <script>
+        function printdiv() {
+            var printContents = document.getElementById('print').innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+        }
+    </script>
+@endsection
+

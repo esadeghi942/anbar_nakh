@@ -22,10 +22,10 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-body">
-                        <form method="post" action="{{route('string.color.update',$data)}}">
+                        <form method="post" action="{{route('carpet.color.update',$data)}}">
                             @csrf
                             @method('put')
-                            @include('BaseForm')
+                            @include('carpet.BaseForm')
                             <button type="submit" class="btn btn-success mt-3">{{__('panel.save')}}</button>
                         </form>
 

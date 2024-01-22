@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Carpet;
 
 use App\Helpers\Response;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PersonRequest;
 use App\Models\Carpet\Map;
+use App\Models\Person;
 use Illuminate\Http\Request;
 
 class MapController extends Controller
@@ -14,7 +16,8 @@ class MapController extends Controller
      */
     public function index()
     {
-        return view('carpet.map.index');
+        $maps=Map::all();
+        return view('carpet.map.index',compact('maps'));
     }
 
     /**
@@ -28,10 +31,10 @@ class MapController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PersonRequest $request)
     {
         Map::create($request->all());
-        return Response::success();
+        return redirect()->route('carpet.map.index')->with('success', trans('panel.success create', ['item' => trans('panel.map')]));
     }
 
     /**
@@ -47,7 +50,8 @@ class MapController extends Controller
      */
     public function edit(Map $map)
     {
-        return view('carpet.map.edit',compact('map'));
+        $data=$map;
+        return view('carpet.map.edit',compact('data'));
     }
 
     /**
@@ -56,7 +60,7 @@ class MapController extends Controller
     public function update(Request $request, Map $map)
     {
         $map->update($request->all());
-        return Response::success();
+        return redirect()->route('carpet.map.index')->with('success', trans('panel.success edit', ['item' => trans('panel.map')]));
     }
 
     /**
@@ -65,6 +69,6 @@ class MapController extends Controller
     public function destroy(Map $map)
     {
         $map->delete();
-        return Response::success();
+        return redirect()->route('carpet.map.index')->with('success', trans('panel.success delete', ['item' => trans('panel.map')]));
     }
 }

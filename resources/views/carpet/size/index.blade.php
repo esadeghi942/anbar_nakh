@@ -16,13 +16,13 @@
     <div class="container-fluid">
         <div class="row starter-main">
             <div class="col-12 col-sm-6">
-                <h3>{{__('panel.create item',[ 'item'=>__('panel.color') ])}}</h3>
+                <h3>{{__('panel.create item',[ 'item'=>__('panel.sizes') ])}}</h3>
             </div>
             <div class="card">
                 <div class="card-body">
-                    <form method="post" action="{{route('string.color.store')}}">
+                    <form method="post" action="{{route('carpet.size.store')}}">
                         @csrf
-                        @include('BaseForm')
+                        @include('carpet.size.form')
                         <button type="submit" class="btn btn-success mt-3">{{__('panel.save')}}</button>
                     </form>
                 </div>
@@ -32,7 +32,7 @@
     <div class="container-fluid">
         <div class="row starter-main">
             <div class="col-12 col-sm-6">
-                <h3>{{__('panel.colors')}}</h3>
+                <h3>{{__('panel.sizes')}}</h3>
             </div>
             <div class="card">
                 <div class="card-body">
@@ -41,21 +41,21 @@
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th>{{__('panel.color')}}</th>
-                                <th>{{__('panel.english name')}}</th>
+                                <th>{{__('panel.size 1')}}</th>
+                                <th>{{__('panel.size 2')}}</th>
                                 <th scope="col">{{__('panel.edit')}}</th>
                                 <th scope="col">{{__('panel.delete')}}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($colors as $i => $color)
+                            @foreach($sizes as $i => $size)
                                 <tr>
                                     <td>{{ $i +1 }}</td>
-                                    <td>{{ $color->name }}</td>
-                                    <td>{{ $color->en_name }}</td>
-                                    <td><a href="{{route('string.color.edit',$color)}}" class="btn"><i class="fa fa-edit"></i></a></td>
+                                    <td>{{ $size->size1 }}</td>
+                                    <td>{{ $size->size2 }}</td>
+                                    <td><a href="{{route('carpet.size.edit',$size)}}" class="btn"><i class="fa fa-edit"></i></a></td>
                                     <td>
-                                        <form action="{{ route('string.color.destroy',$color->id)}}" method="POST">
+                                        <form action="{{ route('carpet.size.destroy',$size->id)}}" method="POST">
                                             @method('DELETE')
                                             @csrf
                                             <button type="submit" class="btn"><i

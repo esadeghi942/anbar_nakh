@@ -14,7 +14,8 @@ class SizeController extends Controller
      */
     public function index()
     {
-        return view('carpet.sixe.index');
+        $sizes=Size::all();
+        return view('carpet.size.index',compact('sizes'));
     }
 
     /**
@@ -31,7 +32,7 @@ class SizeController extends Controller
     public function store(Request $request)
     {
         Size::create($request->all());
-        return Response::success();
+        return redirect()->route('carpet.size.index')->with('success', trans('panel.success create', ['item' => trans('panel.size')]));
     }
 
     /**
@@ -47,7 +48,8 @@ class SizeController extends Controller
      */
     public function edit(Size $size)
     {
-        return view('carpet.size.edit',compact('size'));
+        $data=$size;
+        return view('carpet.size.edit',compact('data'));
     }
 
     /**
@@ -56,7 +58,7 @@ class SizeController extends Controller
     public function update(Request $request, Size $size)
     {
         $size->update($request->all());
-        return Response::success();
+        return redirect()->route('carpet.size.index')->with('success', trans('panel.success edit', ['item' => trans('panel.size')]));
     }
 
     /**
@@ -65,6 +67,6 @@ class SizeController extends Controller
     public function destroy(Size $size)
     {
         $size->delete();
-        return Response::success();
+        return redirect()->route('carpet.size.index')->with('success', trans('panel.success delete', ['item' => trans('panel.size')]));
     }
 }

@@ -30,6 +30,7 @@
                     <li><a class="sidebar-link {{ $route == 'index' ? 'active' : '' }}"
                            href="{{route('index')}}"> <i
                                 class="fa fa-home"></i><span>{{ __('panel.dashboard') }} </span></a></li>
+
                     @if(auth()->user()->role == 'admin' || auth()->user()->role == 'carpet')
                         <li class="sidebar-list">
                             <a class="sidebar-link sidebar-title" href="#">
@@ -53,7 +54,40 @@
                                                href="{{route('weaver.index')}}">{{ __('panel.weavers') }}</a></li>
                                     </ul>
                                 </li>
-                                <li><a class="submenu-title" href="#">فرش<span class="sub-arrow"><i
+                                <li><a class="submenu-title" href="#">فرش
+                                        <span class="sub-arrow"><i
+                                                class="fa fa-angle-left"></i></span></a>
+                                    <ul class="nav-sub-childmenu submenu-content">
+                                        <li><a class="{{ $route == 'carpet.color.index' ? 'active' : '' }}"
+                                               href="{{route('carpet.color.index')}}">{{ __('panel.colors') }}</a></li>
+
+                                        <li><a class="{{ $route == 'carpet.size.index' ? 'active' : '' }}"
+                                               href="{{route('carpet.size.index')}}">{{ __('panel.size') }}</a>
+                                        </li>
+
+                                        <li><a class="{{ $route == 'carpet.map.index' ? 'active' : '' }}"
+                                               href="{{route('carpet.map.index')}}">{{ __('panel.map') }}</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title" href="#">
+                                <i class="fa fa-puzzle-piece"></i><span class="">مرکز تنظیم ساختار انبار رول</span>
+                                <div class="according-menu"></div>
+                            </a>
+                            <ul class="sidebar-submenu">
+
+                                <li><a class="{{ $route == 'carpet.factor.index' ? 'active' : '' }}"
+                                       href="{{route('carpet.factor.index')}}">{{ __('panel.receipt') }}</a></li>
+
+                                <li><a class="{{ $route == 'carpet.device.index' ? 'active' : '' }}"
+                                       href="{{route('carpet.device.index')}}">{{ __('panel.devices') }}</a></li>
+
+                                <li><a class="{{ $route == 'carpet.company.index' ? 'active' : '' }}"
+                                       href="{{route('carpet.company.index')}}">{{ __('panel.companies') }}</a></li>
+
+                                <li><a class="submenu-title" href="#">رول<span class="sub-arrow"><i
                                                 class="fa fa-angle-left"></i></span></a>
                                     <ul class="nav-sub-childmenu submenu-content">
                                         <li><a class="{{ $route == 'carpet.color.index' ? 'active' : '' }}"
@@ -121,20 +155,21 @@
                                 <li><a class="sidebar-link {{ $route == 'string.qr_code.index' ? 'active' : '' }}"
                                        href="{{route('string.qr_code.index')}}"><span>جستجوی کد QR</span></a></li>
 
-                           {{--     <li><a class="sidebar-link {{ $route == 'string.transfer.index' ? 'active' : '' }}"
-                                       href="{{route('string.transfer.index')}}"><span>جا به جایی</span></a></li>
---}}
-                                <li><a class="sidebar-link {{ $route == 'string.group_qr_code.create' ? 'active' : '' }}"
+                                {{--     <li><a class="sidebar-link {{ $route == 'string.transfer.index' ? 'active' : '' }}"
+                                            href="{{route('string.transfer.index')}}"><span>جا به جایی</span></a></li>
+     --}}
+                                <li>
+                                    <a class="sidebar-link {{ $route == 'string.group_qr_code.create' ? 'active' : '' }}"
                                        href="{{route('string.group_qr_code.create')}}">تولید لیبل</a></li>
 
 
-                               {{-- <li><a class="submenu-title" href="#">آزاد کردن سلول<span class="sub-arrow"><i
-                                                class="fa fa-angle-left"></i></span></a>
-                                    <ul class="nav-sub-childmenu submenu-content">
-                                        <li><a href="{{route('string.cell.free_total')}}">کلی</a></li>
-                                        <li><a href="{{route('string.cell.free_one')}}">موردی</a></li>
-                                    </ul>
-                                </li>--}}
+                                {{-- <li><a class="submenu-title" href="#">آزاد کردن سلول<span class="sub-arrow"><i
+                                                 class="fa fa-angle-left"></i></span></a>
+                                     <ul class="nav-sub-childmenu submenu-content">
+                                         <li><a href="{{route('string.cell.free_total')}}">کلی</a></li>
+                                         <li><a href="{{route('string.cell.free_one')}}">موردی</a></li>
+                                     </ul>
+                                 </li>--}}
                             </ul>
                         </li>
                         <li class="sidebar-list">
@@ -210,11 +245,6 @@
                                 </li>
                             </ul>
                         </li>
-                        @if(auth()->user()->role == 'admin' || auth()->user()->role == 'carpet')
-                            <li><a class="sidebar-link {{ $route == 'string.receipt.index' ? 'active' : '' }}"
-                                   href="{{route('string.receipt.index')}}"> <i
-                                        class="fa fa-list"></i><span>{{ __('panel.receipt') }} </span></a></li>
-                        @endif
                     @endif
                     <li>
                         <form class="sidebar-link" action="{{route('logout')}}" method="POST">

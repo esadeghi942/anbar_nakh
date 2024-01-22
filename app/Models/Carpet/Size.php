@@ -8,6 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Size extends Model
 {
     use HasFactory;
-    protected $guarded=['id'];
+
+    protected $table='carpet_sizes';
+
+    protected $fillable=['size1','size2'];
+
+    public function order()
+    {
+        return $this->hasMany(Order::class,'carpet_weaver_id');
+    }
 
 }

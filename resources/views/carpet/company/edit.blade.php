@@ -4,7 +4,7 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-sm-6">
-                    {{__('panel.edit item',['item'=>__('panel.map')])}}
+                    {{__('panel.edit item',['item'=>__('panel.company')])}}
                 </div>
                 <div class="col-12 col-sm-6">
                     <ol class="breadcrumb">
@@ -22,7 +22,7 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-body">
-                        <form method="post" action="{{route('carpet.map.update',$data)}}">
+                        <form method="post" action="{{route('carpet.company.update',$data)}}">
                             @csrf
                             @method('put')
                             @include('carpet.BaseForm')

@@ -8,6 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Map extends Model
 {
     use HasFactory;
-    protected $guarded=['id'];
+
+    protected $table='carpet_maps';
+
+    protected $fillable=['name'];
+
+    public function order()
+    {
+        return $this->hasMany(Order::class,'carpet_weaver_id');
+    }
 
 }

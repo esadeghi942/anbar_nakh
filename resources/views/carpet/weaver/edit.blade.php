@@ -4,7 +4,7 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-sm-6">
-                    {{__('panel.edit item',['item'=>__('panel.color')])}}
+                    {{__('panel.edit item',['item'=>__('panel.weaver')])}}
                 </div>
                 <div class="col-12 col-sm-6">
                     <ol class="breadcrumb">
@@ -22,10 +22,10 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-body">
-                        <form method="post" action="{{route('string.color.update',$data)}}">
+                        <form method="post" action="{{route('weaver.update',$data)}}">
                             @csrf
                             @method('put')
-                            @include('BaseForm')
+                            @include('carpet.BaseForm')
                             <button type="submit" class="btn btn-success mt-3">{{__('panel.save')}}</button>
                         </form>
 

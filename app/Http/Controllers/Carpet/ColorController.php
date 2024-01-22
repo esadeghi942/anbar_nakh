@@ -15,7 +15,8 @@ class ColorController extends Controller
      */
     public function index()
     {
-        return view('carpet.color.index');
+        $colors=Color::all();
+        return view('carpet.color.index',compact('colors'));
     }
 
     /**
@@ -32,7 +33,7 @@ class ColorController extends Controller
     public function store(PersonRequest $request)
     {
         Color::create($request->all());
-        return Response::success();
+        return redirect()->route('carpet.color.index')->with('success', trans('panel.success create', ['item' => trans('panel.color')]));
     }
 
     /**
@@ -48,7 +49,8 @@ class ColorController extends Controller
      */
     public function edit(Color $color)
     {
-        return view('carpet.color.edit',compact('color'));
+        $data=$color;
+        return view('carpet.color.edit',compact('data'));
     }
 
     /**
@@ -57,7 +59,7 @@ class ColorController extends Controller
     public function update(Request $request, Color $color)
     {
         $color->update($request->all());
-        return Response::success();
+        return redirect()->route('carpet.color.index')->with('success', trans('panel.success edit', ['item' => trans('panel.color')]));
     }
 
     /**
@@ -66,6 +68,6 @@ class ColorController extends Controller
     public function destroy(Color $color)
     {
         $color->delete();
-        Response::success();
+        return redirect()->route('carpet.color.index')->with('success', trans('panel.success delete', ['item' => trans('panel.color')]));
     }
 }

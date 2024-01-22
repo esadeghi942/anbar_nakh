@@ -88,7 +88,7 @@ class StringGroup extends Model
     public function getTitleAttribute()
     {
         $elem = $this;
-        return $elem->string_color->name . ' نمره ' . $elem->string_grade->value . ' ' . $elem->string_material->name . ' ' . $elem->string_layer->value . ' لا';
+        return $elem->string_color->name . $elem->string_grade->value . ' ' . $elem->string_material->name . ' ' . $elem->string_layer->value . ' لا';
     }
 
     public function getTotalWeightAttribute()

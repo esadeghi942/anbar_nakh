@@ -1,6 +1,5 @@
 @extends('layouts.panel')
 @section('content')
-
     <div class="container-fluid">
         <div class="page-title">
             <div class="row">
@@ -20,9 +19,9 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <form method="post" action="{{route('string.color.store')}}">
+                    <form method="post" action="{{route('carpet.color.store')}}">
                         @csrf
-                        @include('BaseForm')
+                        @include('carpet.BaseForm')
                         <button type="submit" class="btn btn-success mt-3">{{__('panel.save')}}</button>
                     </form>
                 </div>
@@ -42,7 +41,6 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th>{{__('panel.color')}}</th>
-                                <th>{{__('panel.english name')}}</th>
                                 <th scope="col">{{__('panel.edit')}}</th>
                                 <th scope="col">{{__('panel.delete')}}</th>
                             </tr>
@@ -52,10 +50,9 @@
                                 <tr>
                                     <td>{{ $i +1 }}</td>
                                     <td>{{ $color->name }}</td>
-                                    <td>{{ $color->en_name }}</td>
-                                    <td><a href="{{route('string.color.edit',$color)}}" class="btn"><i class="fa fa-edit"></i></a></td>
+                                    <td><a href="{{route('carpet.color.edit',$color)}}" class="btn"><i class="fa fa-edit"></i></a></td>
                                     <td>
-                                        <form action="{{ route('string.color.destroy',$color->id)}}" method="POST">
+                                        <form action="{{ route('carpet.color.destroy',$color->id)}}" method="POST">
                                             @method('DELETE')
                                             @csrf
                                             <button type="submit" class="btn"><i

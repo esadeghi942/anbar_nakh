@@ -15,7 +15,8 @@ class WeaverController extends Controller
      */
     public function index()
     {
-        return view('carpet.weaver.index');
+        $weavers = Weaver::all();
+        return view('carpet.weaver.index', compact('weavers'));
     }
 
     /**
@@ -32,7 +33,7 @@ class WeaverController extends Controller
     public function store(PersonRequest $request)
     {
         Weaver::create($request->all());
-        return Response::success();
+        return redirect()->route('weaver.index')->with('success',trans('panel.success create',['item'=> trans('panel.weaver')]));
     }
 
     /**
@@ -48,7 +49,8 @@ class WeaverController extends Controller
      */
     public function edit(Weaver $weaver)
     {
-        return view('carpet.weaver.edit',compact('weaver'));
+        $data = $weaver;
+        return view('carpet.weaver.edit', compact('data'));
 
     }
 
@@ -58,7 +60,7 @@ class WeaverController extends Controller
     public function update(PersonRequest $request, Weaver $weaver)
     {
         $weaver->update($request->all());
-        return Response::success();
+        return redirect()->route('weaver.index')->with('success', trans('panel.success edit', ['item' => trans('panel.weaver')]));
     }
 
     /**
@@ -67,6 +69,6 @@ class WeaverController extends Controller
     public function destroy(Weaver $weaver)
     {
         $weaver->delete();
-        return Response::success();
+        return redirect()->route('weaver.index')->with('success', trans('panel.success delete', ['item' => trans('panel.weaver')]));
     }
 }
