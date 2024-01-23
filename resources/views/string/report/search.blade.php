@@ -9,6 +9,7 @@
     </style>
 @endsection
 @section('content')
+{{--
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -55,6 +56,7 @@
             </div>
         </div>
     </div>
+--}}
 
     <div class="container-fluid">
         <div class="page-title">
@@ -75,69 +77,32 @@
                 </h3>
             </div>
             <div class="card mt-3">
-                <div class="card-body">
-
+                <div class="card-body" id="print">
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th>{{__('panel.anbar')}}</th>
-                                <th>{{__('panel.cell')}}</th>
-                                <th>{{__('panel.color')}}</th>
                                 <th>{{__('panel.material')}}</th>
-                                <th>{{__('panel.grade')}}</th>
-                                <th>{{__('panel.layer')}}</th>
+                                <th>{{__('panel.cells')}}</th>
                                 <th>{{__('panel.rest_weight')}}</th>
-                                <th scope="col">{{__('panel.get_qr_code')}}</th>
-{{--
-                                <th>{{__('panel.exports')}}</th>
---}}
-                                <th scope="col">{{__('panel.export anbar')}}</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($items as $i => $item)
                                 <tr>
                                     <td>{{ $i +1 }}</td>
-                                    <td>{{ $item->string_anbar->name }}</td>
-                                    <td>{{ $item->code }}</td>
-                                    <td>{{ $item->string_group->string_color->name }}</td>
-                                    <td>{{ $item->string_group->string_material->name }}</td>
-                                    <td>{{ $item->string_group->string_grade->value }}</td>
-                                    <td>{{ $item->string_group->string_layer->value }}</td>
-                                    <td>{{$item->weight}}</td>
-                                    <td>
-                                        <a href="{{route('string.cell.qr_code',$item)}}"><i
-                                                class="fa fa-barcode"></i></a>
-                                    </td>
-{{--
-                                    <td>
-                                        <a href="{{route('string.cell.exports',$item)}}"><i
-                                                class="fa fa-list"></i></a>
-                                    </td>--}}
-                                    <td>
-                                        <button class="btn export" type="button" data-bs-toggle="modal"
-                                                data-id="{{$item->id}}"
-                                                data-bs-target=".bd-example-modal-lg"><i class="fa fa-sign-out"></i>
-                                        </button>
-                                    </td>
-                                    {{--<td><a href="{{route('string.item.edit',$cell)}}" class="btn"><i
-                                                class="fa fa-edit"></i></a></td>
-
-                                    <td>
-                                        <form action="{{ route('string.item.destroy',$item->id)}}" method="POST">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button type="submit" class="btn"><i
-                                                    class="fa fa-trash"></i></button>
-                                        </form>
-                                    </td> --}}
+                                    <td>{{ $item->title }}</td>
+                                    <td>{{ $item->string_cells_code }}</td>
+                                    <td>{{ $item->total_weight2 }}</td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
                     </div>
+                </div>
+                <div class="text-center" style="margin-top:20px;">
+                    <button class="btn btn-info" onclick="printdiv()" target="_blank">پرینت</button>
                 </div>
             </div>
         </div>
@@ -145,6 +110,13 @@
 @endsection
 @section('js')
     <script>
+            function printdiv() {
+            var printContents = document.getElementById('print').innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+        }
         $(document).on('click', '.export', function (event) {
             var id = $(this).attr('data-id');
             $('#id_item').val(id);

@@ -10,9 +10,12 @@ use App\Models\String\Anbar;
 use App\Models\String\Cell;
 use App\Models\String\Color;
 use App\Models\String\Grade;
+use App\Models\String\GroupQrCode;
 use App\Models\String\Layer;
 use App\Models\String\Material;
+use App\Models\String\QrCode;
 use App\Models\String\QrCodeCell;
+use App\Models\String\StringGroup;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
@@ -39,16 +42,16 @@ class ReportController extends Controller
     public function search(Request $request)
     {
 
-        $query = Cell::join('string_groups', 'string_cells.string_group_id', '=', 'string_groups.id')->selectRaw('string_cells.*');
+        $query = StringGroup::join('string_group_qr_codes', 'string_group_qr_codes.string_group_id', '=', 'string_groups.id')->join('string_qr_codes', 'string_qr_codes.string_group_qr_code_id', '=', 'string_group_qr_codes.id');
         $title = [];
-        if (isset($request->string_anbar_id)) {
+       /* if (isset($request->string_anbar_id)) {
             $query->where('string_anbar_id', $request->string_anbar_id);
             $title[] = ' انبار:' . Anbar::find($request->string_anbar_id)->name;
         }
         if (isset($request->string_cell_id)) {
             $query->where('string_cells.id', $request->string_cell_id);
             $title[] = ' سلول:' . Cell::find($request->string_cell_id)->name;
-        }
+        }*/
         if (isset($request->string_material_id)) {
             $query->where('string_groups.string_material_id', $request->string_material_id);
             $title[] = ' جنس:' . Material::find($request->string_material_id)->name;
@@ -68,9 +71,17 @@ class ReportController extends Controller
             $query->where('string_groups.string_layer_id', $request->string_layer_id);
             $title[] = ' لا :' . Layer::find($request->string_layer_id)->value;
         }
-
+        if (isset($request->lat)) {
+            $query->where('string_group_qr_codes.lat', $request->lat);
+            $title[] = ' لات :' . $request->lat;
+        }
+        if (isset($request->seller)) {
+            $query->where('string_group_qr_codes.seller_id', $request->seller);
+            $title[] = ' تامین کننده :' . Seller::find($request->seller)->name;
+        }
         $title = implode(',', $title);
-        $items = $query->get();
+        //dd($query->groupBy('string_groups.id')->selectRaw('string_groups.*,sum(string_qr_codes.weight) as total_weight')->get());
+        $items = $query->groupBy('string_groups.id')->selectRaw('string_groups.*,sum(string_qr_codes.weight) as total_weight2')->get();
         $devices = Device::all();
         $persons = Person::all();
         return view('string.report.search', compact('items', 'title', 'devices', 'persons'));
