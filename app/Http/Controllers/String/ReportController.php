@@ -23,7 +23,7 @@ class ReportController extends Controller
     public function struct_cell()
     {
         $qr_code_qroups = QrCodeCell::groupBy('string_qr_code_id')->get();
-        return view('string.report.struct_cell',compact('qr_code_qroups'));
+        return view('string.report.struct_cell', compact('qr_code_qroups'));
     }
 
     public function index()
@@ -44,14 +44,14 @@ class ReportController extends Controller
 
         $query = StringGroup::join('string_group_qr_codes', 'string_group_qr_codes.string_group_id', '=', 'string_groups.id')->join('string_qr_codes', 'string_qr_codes.string_group_qr_code_id', '=', 'string_group_qr_codes.id');
         $title = [];
-       /* if (isset($request->string_anbar_id)) {
-            $query->where('string_anbar_id', $request->string_anbar_id);
-            $title[] = ' انبار:' . Anbar::find($request->string_anbar_id)->name;
-        }
-        if (isset($request->string_cell_id)) {
-            $query->where('string_cells.id', $request->string_cell_id);
-            $title[] = ' سلول:' . Cell::find($request->string_cell_id)->name;
-        }*/
+        /* if (isset($request->string_anbar_id)) {
+             $query->where('string_anbar_id', $request->string_anbar_id);
+             $title[] = ' انبار:' . Anbar::find($request->string_anbar_id)->name;
+         }
+         if (isset($request->string_cell_id)) {
+             $query->where('string_cells.id', $request->string_cell_id);
+             $title[] = ' سلول:' . Cell::find($request->string_cell_id)->name;
+         }*/
         if (isset($request->string_material_id)) {
             $query->where('string_groups.string_material_id', $request->string_material_id);
             $title[] = ' جنس:' . Material::find($request->string_material_id)->name;
@@ -85,5 +85,18 @@ class ReportController extends Controller
         $devices = Device::all();
         $persons = Person::all();
         return view('string.report.search', compact('items', 'title', 'devices', 'persons'));
+    }
+
+
+    public function total()
+    {
+        $materials = Material::all();
+        $results = [];
+
+        foreach ($materials as $material) {
+            $query = StringGroup::join('string_group_qr_codes', 'string_group_qr_codes.string_group_id', '=', 'string_groups.id')->join('string_qr_codes', 'string_qr_codes.string_group_qr_code_id', '=', 'string_group_qr_codes.id')->where('string_groups.string_material_id', $material->id);
+            $results[$material->name] = $query->groupBy('string_groups.string_material_id')->selectRaw('sum(string_qr_codes.weight) as total_weight2')->first();
+        }
+        return view('string.report.total', compact('results'));
     }
 }

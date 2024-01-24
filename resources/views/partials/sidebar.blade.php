@@ -231,8 +231,15 @@
                                 <i class="fa fa-bar-chart"></i>
                                 مرکز آمار</a>
                             <ul class="sidebar-submenu">
-                                <li><a class="sidebar-link {{ $route == 'string.report.index' ? 'active' : '' }}"
-                                       href="{{route('string.report.index')}}"><span>گزارش</span></a></li>
+                                <li><a class="submenu-title" href="#">گزارش<span class="sub-arrow"><i
+                                                class="fa fa-angle-left"></i></span></a>
+                                    <ul class="nav-sub-childmenu submenu-content">
+                                        <li><a href="{{route('string.report.index')}}">فیلتر دار</a></li>
+                                        <li><a href="{{route('string.report.total')}}">کلی</a></li>
+                                    </ul>
+                                </li>
+
+
                                 <li><a class="sidebar-link {{ $route == 'string.string_group.index' ? 'active' : '' }}"
                                        href="#"><span>جستجو</span></a></li>
                                 <li><a class="submenu-title" href="#">آمارها<span class="sub-arrow"><i

@@ -97,6 +97,10 @@
                                     <td>{{ $item->total_weight2 }}</td>
                                 </tr>
                             @endforeach
+                            <tr>
+                                <td colspan="3">جمع</td>
+                                <td>{{ $items->sum('total_weight2') }}</td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>

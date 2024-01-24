@@ -57,6 +57,8 @@ Route::middleware('auth')->group(function () {
             Route::get('struct_cell', [App\Http\Controllers\String\ReportController::class, 'struct_cell'])->name('struct_cell');
             Route::get('index', [App\Http\Controllers\String\ReportController::class, 'index'])->name('index');
             Route::get('search', [App\Http\Controllers\String\ReportController::class, 'search'])->name('search');
+
+            Route::get('total', [App\Http\Controllers\String\ReportController::class, 'total'])->name('total');
         });
 
         Route::post('export', [App\Http\Controllers\String\ExportController::class, 'export'])->name('export.export');
@@ -98,10 +100,10 @@ Route::middleware('auth')->group(function () {
         Route::resource('size', App\Http\Controllers\Carpet\SizeController::class);
         Route::resource('map', App\Http\Controllers\Carpet\MapController::class);
         Route::resource('color', App\Http\Controllers\Carpet\ColorController::class);
-        Route::resource('factor',\App\Http\Controllers\Carpet\FactorController::class);
+        Route::resource('factor', \App\Http\Controllers\Carpet\FactorController::class);
 
-        Route::resource('company',\App\Http\Controllers\Carpet\CompanyControlle::class);
-        Route::resource('device',\App\Http\Controllers\Carpet\DeviceControlle::class);
+        Route::resource('company', \App\Http\Controllers\Carpet\CompanyControlle::class);
+        Route::resource('device', \App\Http\Controllers\Carpet\DeviceControlle::class);
 
 
         Route::group(['as' => 'qr_code.', 'prefix' => 'qr_code/'], function () {
