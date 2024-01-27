@@ -42,8 +42,8 @@
                                     <td>{{ $i +1 }}</td>
                                     <td>{{ $export->serial }}</td>
                                     <td>{{ $export->weight }}</td>
-                                    <td>{{ $export->device->name }}</td>
-                                    <td>{{ $export->person->name }}</td>
+                                    <td>{{ $export->device ? $export->device->name : 'خروجی جهت صفر کردن' }}</td>
+                                    <td>{{ $export->person ?  $export->person->name : 'خروجی جهت صفر کردن' }}</td>
                                     <td>{{ jdate($export->created_at)->format('Y/m/d') }}</td>
                             @endforeach
                             </tbody>

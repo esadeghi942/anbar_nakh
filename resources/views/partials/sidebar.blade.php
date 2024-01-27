@@ -162,14 +162,18 @@
                                     <a class="sidebar-link {{ $route == 'string.group_qr_code.create' ? 'active' : '' }}"
                                        href="{{route('string.group_qr_code.create')}}">تولید لیبل</a></li>
 
+                                <li>
+                                    <a class="sidebar-link {{ $route == 'string.cell.free_one' ? 'active' : '' }}"
+                                       href="{{route('string.cell.free_one')}}">آزاد کردن سلول</a></li>
 
-                                {{-- <li><a class="submenu-title" href="#">آزاد کردن سلول<span class="sub-arrow"><i
+
+                               {{--  <li><a class="submenu-title" href="#">آزاد کردن سلول<span class="sub-arrow"><i
                                                  class="fa fa-angle-left"></i></span></a>
                                      <ul class="nav-sub-childmenu submenu-content">
                                          <li><a href="{{route('string.cell.free_total')}}">کلی</a></li>
                                          <li><a href="{{route('string.cell.free_one')}}">موردی</a></li>
                                      </ul>
-                                 </li>--}}
+                                 </li> --}}
                             </ul>
                         </li>
                         <li class="sidebar-list">

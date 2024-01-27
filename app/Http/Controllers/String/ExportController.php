@@ -110,7 +110,10 @@ class ExportController extends Controller
         if (!$qr_code) {
             $if_exported = Export::where('serial', $request->search)->first();
             if ($if_exported) {
-                $desc = "دستگاه " . $if_exported->device->name . " , شخص " . $if_exported->person->name . ", زمان خروج" . jdate($if_exported->created_at)->format('Y/m/d');
+                if(!$if_exported->device || !$if_exported->person)
+                    $desc = 'خروجی جهت صفر کردن سلول در تاریخ : '. jdate($if_exported->created_at)->format('Y/m/d');
+                else
+                    $desc = "دستگاه " . $if_exported->device->name . " , شخص " . $if_exported->person->name . ", زمان خروج" . jdate($if_exported->created_at)->format('Y/m/d');
                 return Response::error(" کد qr با مشخصه $desc خارج شده است ");
             } else
                 return Response::error('کد qr با این مشخصه یافت نشد.');

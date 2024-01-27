@@ -59,7 +59,18 @@
                                     </select>
                                 </div>
                             </div>
-                            <h4 class="mt-3" id="result"></h4>
+                            <div class="mt-3" style="display: none" id="result">
+                                <h4></h4>
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>بارکد</th>
+                                        <th>وزن</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
 
                             <button type="submit" class="btn btn-success mt-3">{{__('panel.free cells')}}</button>
                         </form>
@@ -91,10 +102,21 @@
                         '_token': token
                     },
                     success: function (data) {
-                        if (data['material'])
-                            $('#result').html(data['cell'] + ' وزن ' + data['weight'] + '  متریال ' + data['material']);
-                        else
-                            $('#result').html('این سلول حاوی هیچ متریالی نیست');
+                        $('#result').show();
+                        if (data['material']) {
+                            $('#result h4').html(data['cell'] + '  متریال ' + data['material']);
+                            $('#result table').show();
+                            for (var i = 0; i < data['barcodes'].length; i++) {
+                                $('#result table tbody').append('<tr>' +
+                                    '<td>' + data['barcodes'][i]['serial'] + '</td>' +
+                                    '<td>' + data['barcodes'][i]['weight'] + '</td>' +
+                                    '</tr>')
+                            }
+                        } else {
+                            $('#result h4').html('این سلول حاوی هیچ متریالی نیست');
+                            $('#result table tbody').html('');
+                            $('#result table').hide();
+                        }
 
                     }
                 });

@@ -30,6 +30,9 @@
         .badge-empty {
             background-color: #dadada;
         }
+        .badge-PolyCheSup {
+            background-color: #a8dea4;
+        }
     </style>
 @endsection
 @section('content')
@@ -65,6 +68,9 @@
                                 </a>
                                 <a class="badge badge-PoudPanbe" style="width: 100px; !important;">
                                     پود پنبه
+                                </a>
+                                <a class="badge badge-PolyCheSup" style="width: 100px; !important;">
+                                    چله ساپورتی
                                 </a>
                                 <a class="badge badge-empty" style="width: 100px; !important;">
                                     خالی

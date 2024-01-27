@@ -33,7 +33,10 @@ class QrCodeController extends Controller
         if (!$qr_code) {
             $if_exported = Export::where('serial', $request->search)->first();
             if($if_exported) {
-                $desc = "دستگاه ".$if_exported->device->name." , شخص ".$if_exported->person->name.", زمان خروج".jdate($if_exported->created_at)->format('Y/m/d');
+                if(!$if_exported->device || !$if_exported->person)
+                    $desc = 'خروجی جهت صفر کردن سلول در تاریخ : '. jdate($if_exported->created_at)->format('Y/m/d');
+                else
+                    $desc = "دستگاه ".$if_exported->device->name." , شخص ".$if_exported->person->name.", زمان خروج".jdate($if_exported->created_at)->format('Y/m/d');
                 return ['status' => 'danger', 'message' =>" کد qr با مشخصه $desc خارج شده است "];
             }
             return ['status' => 'danger', 'message' => 'کد qr با این مشخصه یافت نشد.'];
