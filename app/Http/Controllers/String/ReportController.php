@@ -99,4 +99,28 @@ class ReportController extends Controller
         }
         return view('string.report.total', compact('results'));
     }
+
+    public function search_in_cell()
+    {
+        $anbars = Anbar::all();
+        $cells = Cell::all();
+        return view('string.report.search_in_cell', compact('anbars', 'cells'));
+    }
+
+    public function result_search_in_cell(Request $request)
+    {
+        $cell_id = isset($request->cell) ? $request->cell : 0;
+        $cell = Cell::find($cell_id);
+        $data['anbar'] = $cell->string_anbar->name;
+        $data['cell'] = $cell->code;
+        $data['material'] = $cell->string_group ? $cell->string_group->title : '';
+        $data['id'] = $cell->id;
+        $barcodes=$cell->string_qr_codes()->get();
+        foreach ($barcodes as $i=>$barcode){
+            $data['barcodes'][$i]['cells']=$barcode->string_cells_code;
+            $data['barcodes'][$i]['weight']=$barcode->weight;
+            $data['barcodes'][$i]['serial']=$barcode->serial;
+        }
+        return $data;
+    }
 }

@@ -31,4 +31,11 @@ class Cell extends Model
     {
         return $this->belongsTo(StringGroup::class,'string_group_id');
     }
+
+    public function getLatAttribute()
+    {
+        $lat=$this->string_qr_codes()->first()->string_group_qr_code->lat;
+       return $lat;
+    }
+
 }

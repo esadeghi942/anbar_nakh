@@ -57,8 +57,11 @@ Route::middleware('auth')->group(function () {
             Route::get('struct_cell', [App\Http\Controllers\String\ReportController::class, 'struct_cell'])->name('struct_cell');
             Route::get('index', [App\Http\Controllers\String\ReportController::class, 'index'])->name('index');
             Route::get('search', [App\Http\Controllers\String\ReportController::class, 'search'])->name('search');
-
             Route::get('total', [App\Http\Controllers\String\ReportController::class, 'total'])->name('total');
+
+            Route::get('search_in_cell', [App\Http\Controllers\String\ReportController::class, 'search_in_cell'])->name('search_in_cell');
+            Route::post('result_search_in_cell', [App\Http\Controllers\String\ReportController::class, 'result_search_in_cell'])->name('result_search_in_cell');
+
         });
 
         Route::post('export', [App\Http\Controllers\String\ExportController::class, 'export'])->name('export.export');

@@ -9,6 +9,7 @@
             width: 51px;
             font-size: 1rem !important;
             padding: 0.35rem !important;
+            background-color: #de0909;
         }
 
         .badge-Acrylic {
@@ -30,7 +31,7 @@
         .badge-empty {
             background-color: #dadada;
         }
-        .badge-PolyCheSup {
+        .badge-PolyCheSup,.badge-Chel {
             background-color: #31862BFF;
         }
     </style>
@@ -70,7 +71,10 @@
                                     پود پنبه
                                 </a>
                                 <a class="badge badge-PolyCheSup" style="width: 100px; !important;">
-                                    چله ساپورتی
+                                    چله
+                                </a>
+                                <a class="badge" style="width: 100px; !important;">
+                                   سایر
                                 </a>
                                 <a class="badge badge-empty" style="width: 100px; !important;">
                                     خالی
@@ -85,7 +89,7 @@
                                     @foreach(range('A', 'M') as $char)
                                         @php($nameCell='M'.$char.sprintf('%02d', $i))
                                         @php($cell=\App\Models\String\Cell::where('code',$nameCell)->first())
-                                        <a title="{{isset($cell) && $cell->string_group_id ? $cell->weight. $cell->string_group->title : '' }}"
+                                        <a title="{{isset($cell) && $cell->string_group_id ? $cell->lat .$cell->string_group->title : '' }}"
                                            class="badge badge-{{ isset($cell) && $cell->string_group_id ?  $cell->string_group->string_material->en_name  : 'empty'}}">
                                             {{ $nameCell }}</a>
                                     @endforeach
@@ -103,7 +107,7 @@
                                     @foreach(range('A', 'M') as $char)
                                         @php($nameCell='M'.$char.sprintf('%02d', $i))
                                         @php($cell=\App\Models\String\Cell::where('code',$nameCell)->first())
-                                        <a title="{{isset($cell) && $cell->string_group_id ? $cell->weight. $cell->string_group->title : '' }}"
+                                        <a title="{{isset($cell) && $cell->string_group_id ? $cell->lat. $cell->string_group->title: '' }}"
                                            class="badge badge-{{ isset($cell) && $cell->string_group_id ?  $cell->string_group->string_material->en_name  : 'empty'}}">
                                             {{ $nameCell }}</a>
                                     @endforeach
@@ -140,7 +144,7 @@
                                     @foreach(range('A', 'N') as $char)
                                         @php($nameCell='T'.$char.sprintf('%02d', $i))
                                         @php($cell=\App\Models\String\Cell::where('code',$nameCell)->first())
-                                        <a title="{{isset($cell) && $cell->string_group_id ? $cell->weight. $cell->string_group->title : '' }}"
+                                        <a title="{{isset($cell) && $cell->string_group_id ? $cell->lat. $cell->string_group->title : '' }}"
                                            class="badge badge-{{ isset($cell) && $cell->string_group_id ?  $cell->string_group->string_material->en_name  : 'empty'}}">
                                             {{ $nameCell }}</a>
                                     @endforeach
@@ -181,7 +185,7 @@
                                     @foreach(range('M', 'A') as $char)
                                         @php($nameCell='C'.$char.sprintf('%02d', $i))
                                         @php($cell=\App\Models\String\Cell::where('code',$nameCell)->first())
-                                        <a title="{{isset($cell) && $cell->string_group_id ? $cell->weight. $cell->string_group->title : '' }}"
+                                        <a title="{{isset($cell) && $cell->string_group_id ? $cell->lat. $cell->string_group->title : '' }}"
                                            class="badge badge-{{ isset($cell) && $cell->string_group_id ?  $cell->string_group->string_material->en_name  : 'empty'}}">
                                             {{ $nameCell }}</a>
                                     @endforeach
@@ -198,12 +202,13 @@
                                     @foreach(range('Z', 'N') as $char)
                                         @php($nameCell='C'.$char.sprintf('%02d', $i))
                                         @php($cell=\App\Models\String\Cell::where('code',$nameCell)->first())
-                                        <a title="{{isset($cell) && $cell->string_group_id ? $cell->weight. $cell->string_group->title : '' }}"
+                                        <a title="{{isset($cell) && $cell->string_group_id ? $cell->lat. $cell->string_group->title : '' }}"
                                            class="badge badge-{{ isset($cell) && $cell->string_group_id ?  $cell->string_group->string_material->en_name  : 'empty'}}">
                                             {{ $nameCell }}</a>
                                     @endforeach
                                 </div>
                             @endfor
+
                         </div>
                     </div>
                 </div>
@@ -212,7 +217,21 @@
     </div>
 
     <div class="container-fluid">
-
+        <div class="card">
+            <div class="card-body">
+                <div style="margin: auto; width: fit-content">
+                    <div class="pt-4">
+                        @for($i=8;$i>0;$i--)
+                            @php($nameCell='CND'.sprintf('%02d', $i))
+                            @php($cell=\App\Models\String\Cell::where('code',$nameCell)->first())
+                            <a title="{{isset($cell) && $cell->string_group_id ? $cell->lat. $cell->string_group->title : '' }}"
+                               class="badge badge-{{ isset($cell) && $cell->string_group_id ?  $cell->string_group->string_material->en_name  : 'empty'}}">
+                                {{ $nameCell }}</a>
+                        @endfor
+                    </div>
+                </div>
+            </div>
+        </div>
        {{--
          <div class="page-title">
             <div class="row">

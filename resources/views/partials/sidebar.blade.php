@@ -245,7 +245,7 @@
 
 
                                 <li><a class="sidebar-link {{ $route == 'string.string_group.index' ? 'active' : '' }}"
-                                       href="#"><span>جستجو</span></a></li>
+                                       href="{{ route('string.report.search_in_cell') }}"><span>جستجو</span></a></li>
                                 <li><a class="submenu-title" href="#">آمارها<span class="sub-arrow"><i
                                                 class="fa fa-angle-left"></i></span></a>
                                     <ul class="nav-sub-childmenu submenu-content">
