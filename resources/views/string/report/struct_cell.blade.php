@@ -31,7 +31,7 @@
             background-color: #dadada;
         }
         .badge-PolyCheSup {
-            background-color: #a8dea4;
+            background-color: #31862BFF;
         }
     </style>
 @endsection

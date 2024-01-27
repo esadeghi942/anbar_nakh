@@ -27,8 +27,8 @@ class ExportController extends Controller
         $cells = Cell::all();
         $colors = Color::all();
         $materials = Material::all();
-        $grades = Grade::all();
-        $layers = Layer::all();
+        $grades = Grade::orderBy('value')->get();
+        $layers = Layer::orderBy('value')->get();
         $sellers = Seller::all();
         return view('string.export.index', compact('anbars', 'layers', 'cells', 'colors', 'materials',
             'grades', 'sellers'));

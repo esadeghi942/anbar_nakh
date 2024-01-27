@@ -14,7 +14,7 @@ class GradeController extends Controller
      */
     public function index()
     {
-        $grades=Grade::all();
+        $grades=Grade::orderBy('value')->get();
         return view('string.grade.index',compact('grades'));
     }
 

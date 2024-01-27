@@ -21,7 +21,7 @@ class EnterController extends Controller
         $colors = Color::all();
         $materials = Material::all();
         $sellers = Seller::all();
-        $grades = Grade::all();
+        $grades = Grade::orderBy('value')->get();
         $layers = Layer::orderBy('value')->get();
         $anbars = Anbar::all();
         $cells = Cell::all();

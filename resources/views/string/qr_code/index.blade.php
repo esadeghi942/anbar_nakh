@@ -84,7 +84,7 @@
                                 <th>{{__('panel.material')}}</th>
                                 <th>وزن موجود در سلول</th>
                                 <th>{{__('panel.cells')}}</th>
-
+                                <th>تعداد کد qr</th>
                                 <th>{{__('panel.count without weight')}}</th>
                                 <th>{{__('panel.seller')}}</th>
                                 <th>{{__('panel.lat')}}</th>
@@ -93,7 +93,6 @@
                                 <th scope="col">{{__('panel.qrcode')}}</th>
                                 <th scope="col">{{__('panel.detail')}}</th>
                                 <th scope="col">{{__('panel.exports')}}</th>
-
                             </tr>
                             </thead>
                             <tbody>
@@ -103,6 +102,7 @@
                                     <td>{{ $group_qr_code->string_group->title }}</td>
                                     <td>{{ $group_qr_code->string_qr_codes()->sum('weight') }}</td>
                                     <td>{{ $group_qr_code->string_cells_code }}</td>
+                                    <td>{{ $group_qr_code->string_qr_codes()->count() }}</td>
                                     <td>{{ $group_qr_code->count_without_weight }}</td>
                                     <td>{{ $group_qr_code->seller->name }}</td>
                                     <td>{{ $group_qr_code->lat }}</td>

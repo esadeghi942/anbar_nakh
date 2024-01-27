@@ -50,7 +50,7 @@ class GroupQrCodeController extends Controller
         $colors = Color::all();
         $materials = Material::all();
         $sellers = Seller::all();
-        $grades = Grade::all();
+        $grades = Grade::orderBy('value')->get();
         $layers = Layer::orderBy('value')->get();
         return view('string.qr_code.create', compact('colors', 'materials', 'sellers', 'grades', 'layers'));
     }
@@ -104,7 +104,7 @@ class GroupQrCodeController extends Controller
         $colors = Color::all();
         $materials = Material::all();
         $sellers = Seller::all();
-        $grades = Grade::all();
+        $grades = Grade::orderBy('value')->get();
         $layers = Layer::orderBy('value')->get();
         $anbars = Anbar::all();
         $cells = Cell::all();

@@ -67,15 +67,15 @@ class FreeController extends Controller
             $cell = Cell::find($cell_id);
             $cell->update(['string_group_id' => null]);
             $qr_codes= $cell->string_qr_codes()->get();
-            foreach ($qr_codes as $qr_code){
+           /* foreach ($qr_codes as $qr_code){
                 $group_qr_code=$qr_code->string_group_qr_code;
                 $group_qr_code->string_exports()->create([
                     'string_group_id'=>$group_qr_code->string_group_id,
                     'weight'=>$qr_code->weight,
                     'serial'=>$qr_code->serial,
                 ]);
-            }
-            $cell->string_qr_codes()->delete();
+            }*/
+            $cell->string_qr_codes()->detach();
             return redirect()->back()->with('success', 'آزاد سازی با موفقیت انجام شد.');
         }
         return redirect()->back()->withErrors('سلول مورد نظر را وارد نمایید');
