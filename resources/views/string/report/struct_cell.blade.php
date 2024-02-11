@@ -6,7 +6,7 @@
         }
 
         .badge {
-            width: 51px;
+            width: 60px;
             font-size: 1rem !important;
             padding: 0.35rem !important;
             background-color: #de0909;
@@ -31,8 +31,25 @@
         .badge-empty {
             background-color: #dadada;
         }
-        .badge-PolyCheSup,.badge-Chel {
+
+        .badge-PolyCheSup, .badge-Chel {
             background-color: #31862BFF;
+        }
+
+
+        .box-holder {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .column {
+            flex-direction: column;
+            width: fit-content !important;
+
+        }
+
+        .column a {
+            margin-right: 0 !important;
         }
     </style>
 @endsection
@@ -74,7 +91,7 @@
                                     چله
                                 </a>
                                 <a class="badge" style="width: 100px; !important;">
-                                   سایر
+                                    سایر
                                 </a>
                                 <a class="badge badge-empty" style="width: 100px; !important;">
                                     خالی
@@ -85,31 +102,47 @@
 
                         <div style="margin: auto; width: fit-content">
                             @for($i=11;$i<16;$i++)
-                                <div class="pt-4">
+                                <div class="pt-4 row">
                                     @foreach(range('A', 'M') as $char)
                                         @php($nameCell='M'.$char.sprintf('%02d', $i))
+                                        @php($nameCellU='MU'.$char.sprintf('%02d', $i))
                                         @php($cell=\App\Models\String\Cell::where('code',$nameCell)->first())
-                                        <a title="{{isset($cell) && $cell->string_group_id ? $cell->lat .$cell->string_group->title : '' }}"
-                                           class="badge badge-{{ isset($cell) && $cell->string_group_id ?  $cell->string_group->string_material->en_name  : 'empty'}}">
-                                            {{ $nameCell }}</a>
+                                        @php($cellU=\App\Models\String\Cell::where('code',$nameCellU)->first())
+                                        <div class="box-holder column">
+                                            <a title="{{isset($cellU) && $cellU->string_group_id ? $cellU->lat .$cellU->string_group->title : '' }}"
+                                               class="badge badge-{{ isset($cellU) && $cellU->string_group_id ?  $cellU->string_group->string_material->en_name  : 'empty'}}">
+                                                {{ $nameCellU }}</a>
+                                            <a title="{{isset($cell) && $cell->string_group_id ? $cell->lat .$cell->string_group->title : '' }}"
+                                               class="badge badge-{{ isset($cell) && $cell->string_group_id ?  $cell->string_group->string_material->en_name  : 'empty'}}">
+                                                {{ $nameCell }}</a>
+                                        </div>
                                     @endforeach
                                 </div>
                             @endfor
 
-                            <div class="pt-4">
+                            <div class="pt-4 row">
                                 @foreach(range('A', 'M') as $char)
-                                    <a class="badge badge-primary"> {{ $char }} </a>
+                                    <div class="box-holder column">
+                                        <a class="badge badge-primary"> {{ $char }} </a>
+                                    </div>
                                 @endforeach
                             </div>
 
                             @for($i=8;$i>0;$i--)
-                                <div class="pt-4">
+                                <div class="pt-4 row">
                                     @foreach(range('A', 'M') as $char)
                                         @php($nameCell='M'.$char.sprintf('%02d', $i))
+                                        @php($nameCellU='MU'.$char.sprintf('%02d', $i))
                                         @php($cell=\App\Models\String\Cell::where('code',$nameCell)->first())
-                                        <a title="{{isset($cell) && $cell->string_group_id ? $cell->lat. $cell->string_group->title: '' }}"
-                                           class="badge badge-{{ isset($cell) && $cell->string_group_id ?  $cell->string_group->string_material->en_name  : 'empty'}}">
-                                            {{ $nameCell }}</a>
+                                        @php($cellU=\App\Models\String\Cell::where('code',$nameCellU)->first())
+                                        <div class="box-holder column">
+                                            <a title="{{isset($cellU) && $cellU->string_group_id ? $cell->lat. $cellU->string_group->title: '' }}"
+                                               class="badge badge-{{ isset($cellU) && $cellU->string_group_id ?  $cellU->string_group->string_material->en_name  : 'empty'}}">
+                                                {{ $nameCellU }}</a>
+                                            <a title="{{isset($cell) && $cell->string_group_id ? $cell->lat. $cell->string_group->title: '' }}"
+                                               class="badge badge-{{ isset($cell) && $cell->string_group_id ?  $cell->string_group->string_material->en_name  : 'empty'}}">
+                                                {{ $nameCell }}</a>
+                                        </div>
                                     @endforeach
                                 </div>
                             @endfor
@@ -232,34 +265,34 @@
                 </div>
             </div>
         </div>
-       {{--
-         <div class="page-title">
-            <div class="row">
-                <div class="col-12 col-sm-6">
-                    <h4> سلول های ادغامی</h4>
-                </div>
-            </div>
-        </div>
-       <div class="row starter-main">
-            <div class="container-fluid">
-                <div class="card">
-                    <div class="card-body">
-                        <div style="margin: auto; width: fit-content">
-                            <?php
-                            foreach ($qr_code_qroups as $qr_code_qroup) {
-                                $cells = App\Models\String\QrCodeCell::where('string_qr_code_id',$qr_code_qroup->string_qr_code_id)->get('string_cell_id');
-                                echo $qr_code_qroup->string_qr_code->string_group_qr_code->string_group->title;
-                                foreach ($cells as $cell) {
-                                    echo '<div class="pt-4">
-                                        <a class="badge badge-Acrylic" style="width: 100px; !important;">' . $cell->code .'</a></div>';
-                                }
-                            }
-                            ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>--}}
+        {{--
+          <div class="page-title">
+             <div class="row">
+                 <div class="col-12 col-sm-6">
+                     <h4> سلول های ادغامی</h4>
+                 </div>
+             </div>
+         </div>
+        <div class="row starter-main">
+             <div class="container-fluid">
+                 <div class="card">
+                     <div class="card-body">
+                         <div style="margin: auto; width: fit-content">
+                             <?php
+                             foreach ($qr_code_qroups as $qr_code_qroup) {
+                                 $cells = App\Models\String\QrCodeCell::where('string_qr_code_id',$qr_code_qroup->string_qr_code_id)->get('string_cell_id');
+                                 echo $qr_code_qroup->string_qr_code->string_group_qr_code->string_group->title;
+                                 foreach ($cells as $cell) {
+                                     echo '<div class="pt-4">
+                                         <a class="badge badge-Acrylic" style="width: 100px; !important;">' . $cell->code .'</a></div>';
+                                 }
+                             }
+                             ?>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>--}}
     </div>
 
 @endsection
@@ -267,7 +300,8 @@
 
     <script>
         $(document).ready(function () {
-            $('a:contains(MA11),a:contains(MB11),a:contains(MC11),a:contains(MA12),a:contains(MB12),a:contains(MC12)').css('background-color', 'black');
+            $('a:contains(MA11),a:contains(MB11),a:contains(MC11),a:contains(MA12),a:contains(MB12),a:contains(MC12),' +
+            'a:contains(MUA11),a:contains(MUB11),a:contains(MUC11),a:contains(MUA12),a:contains(MUB12),a:contains(MUC12)').css('background-color', 'black');
         });
     </script>
 @endsection

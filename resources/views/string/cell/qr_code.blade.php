@@ -93,7 +93,7 @@
                                         <td class="ltr">{{ $qr_code->string_group_qr_code->lat }}</td>
                                         <td class="ltr">{{ $qr_code->string_group_qr_code->seller->name }}</td>
                                         <td class="ltr">{{ jdate($qr_code->string_cells()->where('string_cell_id',$cell->id)->first()->created_at)->format('Y/m/d') }}</td>
-                                        <td><input type="number" name="weight_{{$qr_code->id}}"
+                                        <td><input type="text" name="weight_{{$qr_code->id}}"
                                                    value="{{$qr_code->weight}}" class="form-control"></td>
                                         <td>
                                             <button class="btn export" type="button" data-bs-toggle="modal"
