@@ -167,13 +167,13 @@
                                        href="{{route('string.cell.free_one')}}">آزاد کردن سلول</a></li>
 
 
-                               {{--  <li><a class="submenu-title" href="#">آزاد کردن سلول<span class="sub-arrow"><i
-                                                 class="fa fa-angle-left"></i></span></a>
-                                     <ul class="nav-sub-childmenu submenu-content">
-                                         <li><a href="{{route('string.cell.free_total')}}">کلی</a></li>
-                                         <li><a href="{{route('string.cell.free_one')}}">موردی</a></li>
-                                     </ul>
-                                 </li> --}}
+                                {{--  <li><a class="submenu-title" href="#">آزاد کردن سلول<span class="sub-arrow"><i
+                                                  class="fa fa-angle-left"></i></span></a>
+                                      <ul class="nav-sub-childmenu submenu-content">
+                                          <li><a href="{{route('string.cell.free_total')}}">کلی</a></li>
+                                          <li><a href="{{route('string.cell.free_one')}}">موردی</a></li>
+                                      </ul>
+                                  </li> --}}
                             </ul>
                         </li>
                         <li class="sidebar-list">
@@ -252,6 +252,18 @@
                                         <li><a href="{{route('string.report.struct_cell')}}">انبار ها در یک نگاه</a>
                                         </li>
                                         <li><a href="#">نمودارها</a></li>
+                                    </ul>
+                                </li>
+
+                                <li><a class="submenu-title" href="#">گزارش انبار<span class="sub-arrow"><i
+                                                class="fa fa-angle-left"></i></span></a>
+                                    <ul class="nav-sub-childmenu submenu-content">
+                                        @foreach(App\Models\String\Anbar::all() as $anbar)
+                                            <li>
+                                                <a href="{{route('string.report.anbar',$anbar->id)}}">{{$anbar->name}}
+                                                </a>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </li>
                             </ul>

@@ -209,13 +209,13 @@
                     <div class="card-body">
                         <div style="margin: auto; width: fit-content">
                             <div class="pt-4">
-                                @foreach(range('M', 'A') as $char)
+                                @foreach(range('A', 'M') as $char)
                                     <a class="badge badge-primary"> {{$char}} </a>
                                 @endforeach
                             </div>
-                            @for($i=1;$i<9;$i++)
+                            @for($i=8;$i>0;$i--)
                                 <div class="pt-4">
-                                    @foreach(range('M', 'A') as $char)
+                                    @foreach(range('A', 'M') as $char)
                                         @php($nameCell='C'.$char.sprintf('%02d', $i))
                                         @php($cell=\App\Models\String\Cell::where('code',$nameCell)->first())
                                         <a title="{{isset($cell) && $cell->string_group_id ? $cell->lat. $cell->string_group->title : '' }}"
@@ -226,13 +226,13 @@
                             @endfor
 
                             <div class="pt-4">
-                                @foreach(range('Z', 'N') as $char)
+                                @foreach(range('N', 'Z') as $char)
                                     <a class="badge badge-primary"> {{$char}} </a>
                                 @endforeach
                             </div>
-                            @for($i=1;$i<9;$i++)
+                            @for($i=8;$i>0;$i--)
                                 <div class="pt-4">
-                                    @foreach(range('Z', 'N') as $char)
+                                    @foreach(range('N', 'Z') as $char)
                                         @php($nameCell='C'.$char.sprintf('%02d', $i))
                                         @php($cell=\App\Models\String\Cell::where('code',$nameCell)->first())
                                         <a title="{{isset($cell) && $cell->string_group_id ? $cell->lat. $cell->string_group->title : '' }}"

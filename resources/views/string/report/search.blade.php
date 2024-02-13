@@ -85,6 +85,8 @@
                                 <th scope="col">#</th>
                                 <th>{{__('panel.material')}}</th>
                                 <th>{{__('panel.cells')}}</th>
+                                <th>{{__('panel.seller')}}</th>
+                                <th>{{__('panel.lat')}}</th>
                                 <th>{{__('panel.rest_weight')}}</th>
                             </tr>
                             </thead>
@@ -92,8 +94,10 @@
                             @foreach($items as $i => $item)
                                 <tr>
                                     <td>{{ $i +1 }}</td>
-                                    <td>{{ $item->title }}</td>
+                                    <td>{{ $item->string_group->title }}</td>
                                     <td>{{ $item->string_cells_code }}</td>
+                                    <td>{{ $item->seller->name }}</td>
+                                    <td>{{ $item->lat }}</td>
                                     <td>{{ $item->total_weight2 }}</td>
                                 </tr>
                             @endforeach

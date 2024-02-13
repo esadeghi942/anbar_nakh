@@ -4,6 +4,9 @@
     .form-group {
         margin-top: 10px !important;
     }
+    .select2-results__options li[aria-disabled="true"]{
+        display: none;
+    }
 </style>
 @endsection
 @section('content')
@@ -48,7 +51,7 @@
                                 <label for="day">{{__('panel.cell')}}
                                     <span class="required">*</span>
                                 </label>
-                                <select name="cell" id="cell" class="form-control form-select">
+                                <select name="cell" id="cell" class="form-control form-select select2">
                                     <option></option>
                                     @foreach($cells as $cell)
                                     <option data-parent="{{$cell->string_anbar_id}}" data-detail="{{$cell}}"
@@ -81,8 +84,9 @@
     $(document).on('change', '#anbar', function () {
         var val = $(this).val();
         var dest = $('#cell').val('');
-        $('#cell option').hide();
-        $('#cell option[data-parent=' + val + ']').show();
+        $('#cell option').prop('disabled',true);
+        $('#cell option[data-parent=' + val + ']').prop('disabled',false);
+        $('#cell').select2();
     });
 
 

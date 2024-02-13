@@ -55,6 +55,7 @@ Route::middleware('auth')->group(function () {
 
         Route::group(['as' => 'report.', 'prefix' => 'report/'], function () {
             Route::get('struct_cell', [App\Http\Controllers\String\ReportController::class, 'struct_cell'])->name('struct_cell');
+            Route::get('anbar/{anbar}', [App\Http\Controllers\String\ReportController::class, 'anbar'])->name('anbar');
             Route::get('index', [App\Http\Controllers\String\ReportController::class, 'index'])->name('index');
             Route::get('search', [App\Http\Controllers\String\ReportController::class, 'search'])->name('search');
             Route::get('total', [App\Http\Controllers\String\ReportController::class, 'total'])->name('total');
