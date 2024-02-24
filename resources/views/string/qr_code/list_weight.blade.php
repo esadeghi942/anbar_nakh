@@ -64,7 +64,9 @@
                             data-bs-original-title="" title=""></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{route('string.qr_code.enter_cells')}}" method="post" class="ajax_form">
+                    <h4 class="modal-title">سلول های مبدا:</h4>
+                    <label id="mabda"></label>
+                    <form action="{{route('string.qr_code.enter_cells')}}" method="post" class="enter_form">
                         @csrf
                         <input type="hidden" value="" name="id">
                         <div class="mb-3">
@@ -81,9 +83,9 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <div id="cells">
+                            <div id="cells" class="row">
                                 @foreach($cells as $cell)
-                                    <div class="form-check checkbox mb-0 cell-select"
+                                    <div class="form-check checkbox mb-0 cell-select col-sm-6"
                                          data-parent="{{$cell->string_anbar->id}}" style="display: none">
                                         <input type="checkbox" value="{{$cell->id}}" name="cells[]"
                                                id="cell_{{$cell->id}}">
@@ -161,6 +163,7 @@
                                             <button class="btn btn-primary enter_cell"
                                                     data-id="{{$group_qr_code->string_qr_codes()->first()->id }}"
                                                     data-bs-toggle="modal"
+                                                    data-mabda="{{ $group_qr_code->string_qr_codes()->first()->string_cells_code }}"
                                                     data-bs-target="#enter_cells" data-whatever="@fat"
                                                     data-bs-original-title="" title=""><i class="fa fa-sign-in"></i>
                                             </button>
@@ -204,7 +207,9 @@
 
         $(document).on('click', '.enter_cell', function () {
             var val = $(this).attr('data-id');
+            var mabda = $(this).attr('data-mabda');
             $('#enter_cells input[name="id"]').val(val);
+            $('#mabda').html(mabda);
         });
 
         $(document).on('click', '.export', function (event) {
@@ -215,6 +220,19 @@
             event.preventDefault();
             var form = $(this);
             var conf = confirm('آیا مطمئن به ذخیره اطلاعات هستید؟');
+            if (conf)
+                ajax_form_request(form, event);
+        });
+
+        $(document).on('submit', 'form.enter_form', function (event) {
+            event.preventDefault();
+            var form = $(this);
+            var mabda = $('#mabda').html();
+            log(mabda)
+            var dest = $('#cells input:checkbox:checked').map(function () {
+                return $(this).next("label").text();
+            }).get();
+            var conf = confirm('آیا مطمئن به ذخیره اطلاعات هستید؟ سلول مبدا : ' + mabda + ' سلول مقصد : ' + dest);
             if (conf)
                 ajax_form_request(form, event);
         });

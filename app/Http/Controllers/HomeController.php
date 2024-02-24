@@ -31,4 +31,23 @@ class HomeController extends Controller
 
         return view('index', compact('string_groups', 'chart_data', 'order_pointer_string_groups'));
     }
+
+    public function add_up_cells()
+    {
+        for ($i = 0; $i < 9; $i++) {
+            foreach (range('A', 'M') as $char) {
+                $nameCellU = 'MU' . $char . sprintf('%02d', $i);
+                Cell::create(['code' => $nameCellU, 'string_anbar_id' => 3]);
+            }
+        }
+
+        for ($i = 11; $i < 16; $i++) {
+            foreach (range('A', 'M') as $char) {
+                $nameCellU = 'MU' . $char . sprintf('%02d', $i);
+                Cell::create(['code' => $nameCellU, 'string_anbar_id' => 3]);
+
+            }
+        }
+
+    }
 }
