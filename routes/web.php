@@ -21,6 +21,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::group(['middleware' => 'role_admin'], function () {
+        Route::resource('company', \App\Http\Controllers\CompanyControlle::class);
+    });
     Route::group(['middleware' => 'role_string'], function () {
         Route::resource('seller', App\Http\Controllers\SellerController::class);
         Route::resource('person', App\Http\Controllers\PersonController::class);
@@ -106,8 +109,6 @@ Route::middleware('auth')->group(function () {
         Route::resource('map', App\Http\Controllers\Carpet\MapController::class);
         Route::resource('color', App\Http\Controllers\Carpet\ColorController::class);
         Route::resource('factor', \App\Http\Controllers\Carpet\FactorController::class);
-
-        Route::resource('company', \App\Http\Controllers\Carpet\CompanyControlle::class);
         Route::resource('device', \App\Http\Controllers\Carpet\DeviceControlle::class);
 
 

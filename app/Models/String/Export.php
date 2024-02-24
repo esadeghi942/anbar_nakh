@@ -2,6 +2,7 @@
 
 namespace App\Models\String;
 
+use App\Models\Carpet\Company;
 use App\Models\Device;
 use App\Models\Person;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -34,5 +35,10 @@ class Export extends Model
     public function string_group()
     {
         return $this->belongsTo(StringGroup::class);
+    }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
     }
 }

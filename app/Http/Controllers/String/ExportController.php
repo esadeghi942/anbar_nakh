@@ -4,6 +4,7 @@ namespace App\Http\Controllers\String;
 
 use App\Helpers\Response;
 use App\Http\Controllers\Controller;
+use App\Models\Carpet\Company;
 use App\Models\Seller;
 use App\Models\String\Cell;
 use App\Models\Device;
@@ -32,7 +33,6 @@ class ExportController extends Controller
         $sellers = Seller::all();
         return view('string.export.index', compact('anbars', 'layers', 'cells', 'colors', 'materials',
             'grades', 'sellers'));
-
     }
 
     public function search(Request $request)
@@ -62,7 +62,8 @@ class ExportController extends Controller
          }*/
         $devices = Device::all();
         $persons = Person::all();
-        return view('string.export.search', compact('items', 'devices', 'persons'));
+        $companies = Company::all();
+        return view('string.export.search', compact('items', 'devices', 'persons','companies'));
     }
 
     // in export with weight we have total weight in weight but in qr_code we dont have
@@ -72,12 +73,15 @@ class ExportController extends Controller
         $qrCode = $item->string_qr_codes()->first();
         if ($request->weight > $qrCode->weight)
             return Response::error('مقدار وزن وارد شده از وزن موجود بیشتر است.');
+        $data_cells=implode(',', $qrCode->string_cells()->get()->pluck('code')->toArray());
         $item->string_exports()->create([
             'string_group_id' => $item->string_group_id,
             'device_id' => $request->device,
             'person_id' => $request->person,
+            'company_id' => $request->company,
             'weight' => $request->weight,
             'serial' => $qrCode->serial,
+            'string_cells'=>$data_cells
         ]);
 
         $new_wight = $qrCode->weight - $request->weight;
@@ -99,7 +103,8 @@ class ExportController extends Controller
     {
         $persons = Person::all();
         $devices = Device::all();
-        return view('string.export.multi_qr_codes.index', compact('persons', 'devices'));
+        $companies = Company::all();
+        return view('string.export.multi_qr_codes.index', compact('persons', 'devices','companies'));
     }
 
     public function search_multi_qr_codes(Request $request)
@@ -130,16 +135,19 @@ class ExportController extends Controller
 
         /*********************************/
         $cells = $qr_code->string_cells()->get()->pluck('id')->toArray();
+        $cells = array_unique($cells);
         $qr_code->string_cells()->detach();
-        $qr_code->delete();
         $qr_code->string_group_qr_code->string_exports()->create([
             'string_group_id' => $qr_code->string_group_qr_code->string_group->id,
             'device_id' => $request->device,
             'person_id' => $request->person,
+            'company_id' => $request->company,
             'weight' => $qr_code->weight,
             'serial' => $qr_code->serial,
+            'string_cells'=> $data['cells']
         ]);
-        $cells = array_unique($cells);
+        $qr_code->delete();
+
         foreach ($cells as $cell) {
             $cell = Cell::find($cell);
             if (!$cell->string_qr_codes()->count())

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Carpet;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PersonRequest;
@@ -13,7 +13,7 @@ class CompanyControlle extends Controller
     public function index()
     {
         $companies=Company::all();
-        return view('carpet.company.index',compact('companies'));
+        return view('company.index',compact('companies'));
     }
     /**
      * Store a newly created resource in storage.
@@ -21,7 +21,7 @@ class CompanyControlle extends Controller
     public function store(PersonRequest $request)
     {
         Company::create($request->all());
-        return redirect()->route('carpet.company.index')->with('success', trans('panel.success create', ['item' => trans('panel.company')]));
+        return redirect()->route('company.index')->with('success', trans('panel.success create', ['item' => trans('panel.company')]));
     }
 
     /**
@@ -30,7 +30,7 @@ class CompanyControlle extends Controller
     public function edit(Company $company)
     {
         $data=$company;
-        return view('carpet.company.edit',compact('data'));
+        return view('company.edit',compact('data'));
     }
 
     /**
@@ -39,7 +39,7 @@ class CompanyControlle extends Controller
     public function update(PersonRequest $request, Company $company)
     {
         $company->update($request->all());
-        return redirect()->route('carpet.company.index')->with('success', trans('panel.success edit', ['item' => trans('panel.company')]));
+        return redirect()->route('company.index')->with('success', trans('panel.success edit', ['item' => trans('panel.company')]));
     }
 
     /**
@@ -48,7 +48,7 @@ class CompanyControlle extends Controller
     public function destroy(Company $company)
     {
         $company->delete();
-        return redirect()->route('carpet.company.index')->with('success', trans('panel.success delete', ['item' => trans('panel.company')]));
+        return redirect()->route('company.index')->with('success', trans('panel.success delete', ['item' => trans('panel.company')]));
     }
 
 }

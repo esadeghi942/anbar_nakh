@@ -4,6 +4,7 @@ namespace App\Http\Controllers\String;
 
 use App\Helpers\Response;
 use App\Http\Controllers\Controller;
+use App\Models\Carpet\Company;
 use App\Models\Device;
 use App\Models\Person;
 use App\Models\String\Anbar;
@@ -40,7 +41,9 @@ class GroupQrCodeController extends Controller
             $group_qr_codes = GroupQrCode::where('type', '!=', 'label')->get();
             $persons = Person::all();
             $devices = Device::all();
-            return view('string.qr_code.list_weight', compact('group_qr_codes', 'anbars', 'cells','devices','persons'));
+            $companies=Company::all();
+
+            return view('string.qr_code.list_weight', compact('group_qr_codes', 'anbars', 'cells','devices','persons','companies'));
 
         }
     }

@@ -4,6 +4,9 @@
         .form-group {
             margin-top: 10px !important;
         }
+        .select2-results__options .select2-results__option[aria-disabled=true] {
+            display: none;
+        }
     </style>
 @endsection
 @section('content')
@@ -45,8 +48,9 @@
         $(document).on('change','#anbar',function (){
             var val=$(this).val();
             var dest=$('#cell').val('');
-            $('#cell option').hide();
-            $('#cell option[data-parent='+val+']').show();
+            $('#cell option').prop('disabled',true);
+            $('#cell option[data-parent='+val+']').prop('disabled',false);
+            $('#cell').select2();
         });
     </script>
 @endsection

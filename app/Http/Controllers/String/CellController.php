@@ -4,6 +4,7 @@ namespace App\Http\Controllers\String;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StringCellRequest;
+use App\Models\Carpet\Company;
 use App\Models\Device;
 use App\Models\Person;
 use App\Models\String\Anbar;
@@ -47,8 +48,8 @@ class CellController extends Controller
         $qr_codes=$cell->string_qr_codes()->get();
         $persons = Person::all();
         $devices = Device::all();
-
-        return view('string.cell.qr_code', compact('qr_codes','cell','persons','devices'));
+        $companies=Company::all();
+        return view('string.cell.qr_code', compact('qr_codes','cell','persons','devices','companies'));
     }
 
     /**
@@ -90,25 +91,4 @@ class CellController extends Controller
         }
         return redirect()->route('string.group_qr_code.index')->with('success', trans('panel.success done'));
     }
-
-
-    /* public function exports(Cell $cell)
-     {
-         $exports = $cell->string_exports()->get();
-         $title = [];
-         $title[] = ' انبار:' . $cell->string_anbar->name;
-         $title[] = ' سلول:' . $cell->code;
-         $title = implode(', ', $title);
-         return view('string.cell.exports', compact('exports', 'title'));
-     }
-
-     public function enters(Cell $cell)
-     {
-         $enters = $cell->string_enters()->get();
-         $title = [];
-         $title[] = ' انبار:' . $cell->string_anbar->name;
-         $title[] = ' سلول:' . $cell->code;
-         $title = implode(', ', $title);
-         return view('string.cell.enters', compact('enters', 'title'));
-     }*/
 }

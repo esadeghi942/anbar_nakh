@@ -31,6 +31,18 @@
                            href="{{route('index')}}"> <i
                                 class="fa fa-home"></i><span>{{ __('panel.dashboard') }} </span></a></li>
 
+                    @if(auth()->user()->role == 'admin')
+                        <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title" href="#">
+                                <i class="fa fa-list"></i><span class="">اطلاعات پایه</span>
+                                <div class="according-menu"></div>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li><a class="{{ $route == 'company.index' ? 'active' : '' }}"
+                                       href="{{route('company.index')}}">{{ __('panel.companies') }}</a></li>
+                            </ul>
+                        </li>
+                    @endif
                     @if(auth()->user()->role == 'admin' || auth()->user()->role == 'carpet')
                         <li class="sidebar-list">
                             <a class="sidebar-link sidebar-title" href="#">
@@ -83,9 +95,6 @@
 
                                 <li><a class="{{ $route == 'carpet.device.index' ? 'active' : '' }}"
                                        href="{{route('carpet.device.index')}}">{{ __('panel.devices') }}</a></li>
-
-                                <li><a class="{{ $route == 'carpet.company.index' ? 'active' : '' }}"
-                                       href="{{route('carpet.company.index')}}">{{ __('panel.companies') }}</a></li>
 
                                 <li><a class="submenu-title" href="#">رول<span class="sub-arrow"><i
                                                 class="fa fa-angle-left"></i></span></a>

@@ -33,6 +33,16 @@
                                 </select>
                             </div>
                             <div class="form-group col-12 col-sm-6 col-md-4">
+                                <label for="day">{{__('panel.company')}}
+                                    <span class="required">*</span>
+                                </label>
+                                <select class="form-control select2" name="company">
+                                    @foreach($companies as $company)
+                                        <option value="{{$company->id}}">{{$company->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group col-12 col-sm-6 col-md-4">
                                 <label for="day">{{__('panel.weight')}}
                                     <span class="required">*</span>
                                 </label>

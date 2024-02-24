@@ -30,9 +30,11 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th>{{__('panel.qr_code')}}</th>
+                                <th>{{__('panel.cells')}}</th>
                                 <th>{{__('panel.weight')}}</th>
                                 <th>{{__('panel.device')}}</th>
                                 <th>{{__('panel.person')}}</th>
+                                <th>{{__('panel.company')}}</th>
                                 <th>{{__('panel.export date')}}</th>
                             </tr>
                             </thead>
@@ -40,10 +42,12 @@
                             @foreach($exports as $i => $export)
                                 <tr>
                                     <td>{{ $i +1 }}</td>
-                                    <td>{{ $export->serial }}</td>
+                                    <td class="ltr">{{ $export->serial }}</td>
+                                    <td>{{ $export->string_cells }}</td>
                                     <td>{{ $export->weight }}</td>
                                     <td>{{ $export->device ? $export->device->name : 'خروجی جهت صفر کردن' }}</td>
                                     <td>{{ $export->person ?  $export->person->name : 'خروجی جهت صفر کردن' }}</td>
+                                    <td>{{$export->company ? $export->company->name : ''}}</td>
                                     <td>{{ jdate($export->created_at)->format('Y/m/d') }}</td>
                             @endforeach
                             </tbody>

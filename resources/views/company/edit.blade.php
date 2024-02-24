@@ -22,7 +22,7 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-body">
-                        <form method="post" action="{{route('carpet.company.update',$data)}}">
+                        <form method="post" action="{{route('company.update',$data)}}">
                             @csrf
                             @method('put')
                             @include('carpet.BaseForm')

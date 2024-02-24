@@ -9,7 +9,7 @@ class Company extends Model
 {
     use HasFactory;
 
-    protected $table='carpet_companies';
+    protected $table='companies';
     protected $fillable=['name'];
 
     public function factor()

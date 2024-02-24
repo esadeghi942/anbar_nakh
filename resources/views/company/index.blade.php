@@ -1,15 +1,5 @@
 @extends('layouts.panel')
-@section('css')
-    <style>
-        .back-ground {
-            width: 25px;
-            height: 25px;
-            margin: auto;
-        }
-    </style>
-@endsection
 @section('content')
-
     <div class="container-fluid">
         <div class="page-title">
             <div class="row">
@@ -24,46 +14,50 @@
 
     <div class="container-fluid">
         <div class="row starter-main">
-            <div class="col-12 col-sm-12">
-                <h3>{{__('panel.exports') . $title }}
-                </h3>
+            <div class="col-12 col-sm-6">
+                <h3>{{__('panel.create item',[ 'item'=>__('panel.company') ])}}</h3>
             </div>
-            <div class="card mt-3">
+            <div class="card">
                 <div class="card-body">
-
+                    <form method="post" action="{{route('company.store')}}">
+                        @csrf
+                        @include('carpet.BaseForm')
+                        <button type="submit" class="btn btn-success mt-3">{{__('panel.save')}}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row starter-main">
+            <div class="col-12 col-sm-6">
+                <h3>{{__('panel.companies')}}</h3>
+            </div>
+            <div class="card">
+                <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th>{{__('panel.type')}}</th>
-                                <th>{{__('panel.person')}}</th>
-                                <th>{{__('panel.device')}}</th>
-                                <th>{{__('panel.weight')}}</th>
-                                <th>{{__('panel.date')}}</th>
+                                <th>{{__('panel.company')}}</th>
+                                <th scope="col">{{__('panel.edit')}}</th>
+                                <th scope="col">{{__('panel.delete')}}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($exports as $i => $item)
+                            @foreach($companies as $i => $company)
                                 <tr>
                                     <td>{{ $i +1 }}</td>
-                                    <td>{{ $item->string_group->title }}</td>
-
-                                    <td>{{ $item->person->name }}</td>
-                                    <td>{{ $item->device->name }}</td>
-                                    <td>{{$item->weight}}</td>
-                                    <td>{{jdate($item->create_at)->format('h:i Y/m/d')}}</td>
-                                    {{--<td><a href="{{route('string.enter.edit',$cell)}}" class="btn"><i
-                                                class="fa fa-edit"></i></a></td>
-
+                                    <td>{{ $company->name }}</td>
+                                    <td><a href="{{route('company.edit',$company)}}" class="btn"><i class="fa fa-edit"></i></a></td>
                                     <td>
-                                        <form action="{{ route('string.enter.destroy',$item->id)}}" method="POST">
+                                        <form action="{{ route('company.destroy',$company->id)}}" method="POST">
                                             @method('DELETE')
                                             @csrf
                                             <button type="submit" class="btn"><i
                                                     class="fa fa-trash"></i></button>
                                         </form>
-                                    </td> --}}
                                 </tr>
                             @endforeach
                             </tbody>
@@ -73,6 +67,4 @@
             </div>
         </div>
     </div>
-@endsection
-@section('js')
 @endsection
