@@ -44,14 +44,15 @@ class ReportController extends Controller
 
         $query = GroupQrCode::join('string_groups', 'string_group_qr_codes.string_group_id', '=', 'string_groups.id')->join('string_qr_codes', 'string_qr_codes.string_group_qr_code_id', '=', 'string_group_qr_codes.id');
         $title = [];
-        /* if (isset($request->string_anbar_id)) {
-             $query->where('string_anbar_id', $request->string_anbar_id);
+         if (isset($request->string_anbar_id)) {
+             $query->join('string_qr_code_cell', 'string_qr_code_cell.string_qr_code_id', '=', 'string_qr_codes.id')->join('string_cells', 'string_qr_code_cell.string_cell_id', '=', 'string_cells.id');
+             $query->where('string_cells.string_anbar_id', $request->string_anbar_id);
              $title[] = ' انبار:' . Anbar::find($request->string_anbar_id)->name;
          }
-         if (isset($request->string_cell_id)) {
-             $query->where('string_cells.id', $request->string_cell_id);
-             $title[] = ' سلول:' . Cell::find($request->string_cell_id)->name;
-         }*/
+        /*if (isset($request->string_cell_id)) {
+            $query->where('string_cells.id', $request->string_cell_id);
+            $title[] = ' سلول:' . Cell::find($request->string_cell_id)->name;
+        }*/
         if (isset($request->string_material_id)) {
             $query->where('string_groups.string_material_id', $request->string_material_id);
             $title[] = ' جنس:' . Material::find($request->string_material_id)->name;

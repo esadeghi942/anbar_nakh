@@ -1,7 +1,6 @@
 <div class="row">
-     {{-- <div class="form-group col-12 col-sm-6 col-md-4">
+     <div class="form-group col-12 col-sm-2 col-md-2">
           <label  for="day">{{__('panel.anbar')}}
-              <span class="required">*</span>
           </label>
           <select name="string_anbar_id" id="anbar" class="form-control form-select">
               <option></option>
@@ -11,17 +10,17 @@
           </select>
       </div>
 
-      <div class="form-group col-12 col-sm-6 col-md-4">
-          <label  for="day">{{__('panel.cell')}}
-              <span class="required">*</span>
-          </label>
-          <select name="cell" id="cell" class="form-control form-select">
-              <option></option>
-          @foreach($cells as $cell)
-                  <option data-parent="{{$cell->string_anbar_id}}"  {{ isset($item) && $item->string_cell_id == $cell->id ? 'selected' : '' }} value="{{$cell->id}}">{{ $cell->code}}</option>
-              @endforeach
-          </select>
-      </div>--}}
+    {{-- <div class="form-group col-12 col-sm-6 col-md-4">
+        <label  for="day">{{__('panel.cell')}}
+            <span class="required">*</span>
+        </label>
+        <select name="cell" id="cell" class="form-control form-select">
+            <option></option>
+        @foreach($cells as $cell)
+                <option data-parent="{{$cell->string_anbar_id}}"  {{ isset($item) && $item->string_cell_id == $cell->id ? 'selected' : '' }} value="{{$cell->id}}">{{ $cell->code}}</option>
+            @endforeach
+        </select>
+    </div>--}}
     <div class="form-group col-12 col-sm-6 col-md-2">
         <label for="day">{{__('panel.material')}}
             <span class="required">*</span>
