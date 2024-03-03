@@ -131,4 +131,6 @@ return [
     'weight_roll_sleepy_below'=>'وزن خاب زیر',
     'companies'=>'شرکت ها',
     'company'=>'شرکت',
+    'initial_count'=>'تعدا اولیه',
+    'rest_count'=>'تعداد باقی مانده'
 ];

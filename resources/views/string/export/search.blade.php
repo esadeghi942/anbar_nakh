@@ -26,6 +26,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <select class="form-control select2" name="person">
+                                    <option></option>
                                     @foreach($persons as $person)
                                         <option value="{{$person->id}}">{{$person->name}}</option>
                                     @endforeach
@@ -33,9 +34,9 @@
                             </div>
                             <div class="form-group col-12 col-sm-6 col-md-4">
                                 <label for="day">{{__('panel.device')}}
-                                    <span class="required">*</span>
                                 </label>
                                 <select class="form-control select2" name="device">
+                                    <option></option>
                                     @foreach($devices as $device)
                                         <option value="{{$device->id}}">{{$device->name}}</option>
                                     @endforeach
@@ -43,9 +44,9 @@
                             </div>
                             <div class="form-group col-12 col-sm-6 col-md-4">
                                 <label for="day">{{__('panel.company')}}
-                                    <span class="required">*</span>
                                 </label>
                                 <select class="form-control select2" name="company">
+                                    <option></option>
                                     @foreach($companies as $company)
                                         <option value="{{$company->id}}">{{$company->name}}</option>
                                     @endforeach
@@ -115,11 +116,11 @@
                                         <a href="{{route('string.group_qr_code.show',$item->string_qr_code->string_group_qr_code)}}"><i
                                                 class="fa fa-barcode"></i></a>
                                     </td>
-{{--
-                                    <td>
-                                        <a href="{{route('string.cell.exports',$item)}}"><i
-                                                class="fa fa-list"></i></a>
-                                    </td>--}}
+                                    {{--
+                                                                        <td>
+                                                                            <a href="{{route('string.cell.exports',$item)}}"><i
+                                                                                    class="fa fa-list"></i></a>
+                                                                        </td>--}}
                                     <td>
                                         <button class="btn export" type="button" data-bs-toggle="modal"
                                                 data-id="{{$item->id}}"

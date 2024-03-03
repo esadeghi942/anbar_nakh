@@ -26,6 +26,7 @@ class ItemRequest extends FormRequest
             'string_anbar_id'=>'required',
             'cells'=>'required',
             'weight'=>'required|numeric',
+            'count'=>'required|numeric',
             'type'=>'required'
         ];
     }

@@ -33,7 +33,7 @@ class EnterController extends Controller
      */
     public function store(ItemRequest $request)
     {
-        $string_group=StringGroup::find_or_create($request->string_color_id,$request->string_material_id, $request->string_grade_id, $request->string_layer_id);
+        $string_group = StringGroup::find_or_create($request->string_color_id, $request->string_material_id, $request->string_grade_id, $request->string_layer_id);
         $cells = $request->cells;
         foreach ($cells as $cell) {
             $cc = Cell::find($cell);
@@ -43,21 +43,21 @@ class EnterController extends Controller
 
         $data = $request->all();
         unset($data['string_color_id'], $data['string_material_id'], $data['string_grade_id'], $data['string_layer_id']);
-        $data['count'] = 1;
         $data['initial_weight'] = $request->weight;
         //$data['string_cells'] = implode(',', $request->cells);
 
         $group_qr_code = $string_group->string_group_qr_codes()->create($data);
         //1 beacouse count we need 1 qr_code
         $serial = $group_qr_code->create_qr_codes(1);
-        $qr_code=$group_qr_code->string_qr_codes()->create(['serial' => $serial, 'weight' => $request->weight]);
+        $qr_code = $group_qr_code->string_qr_codes()->create(['serial' => $serial, 'weight' => $request->weight, 'count' => $request->count]);
+
         $qr_code->string_cells()->sync($cells);
 
         foreach ($cells as $cell) {
             $cc = Cell::find($cell);
             $cc->update(['string_group_id' => $string_group->id]);
         }
-        return redirect()->back()->with('success','عملیات با موفقیت انجام شد.');
+        return redirect()->back()->with('success', 'عملیات با موفقیت انجام شد.');
     }
 
 }

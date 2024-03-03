@@ -32,6 +32,7 @@
                                 <th>{{__('panel.qr_code')}}</th>
                                 <th>{{__('panel.cells')}}</th>
                                 <th>{{__('panel.weight')}}</th>
+                                <th>{{__('panel.count')}}</th>
                                 <th>{{__('panel.device')}}</th>
                                 <th>{{__('panel.person')}}</th>
                                 <th>{{__('panel.company')}}</th>
@@ -45,8 +46,9 @@
                                     <td class="ltr">{{ $export->serial }}</td>
                                     <td>{{ $export->string_cells }}</td>
                                     <td>{{ $export->weight }}</td>
-                                    <td>{{ $export->device ? $export->device->name : 'خروجی جهت صفر کردن' }}</td>
-                                    <td>{{ $export->person ?  $export->person->name : 'خروجی جهت صفر کردن' }}</td>
+                                    <td>{{ $export->count }}</td>
+                                    <td>{{ $export->device ? $export->device->name : '' }}</td>
+                                    <td>{{ $export->person ?  $export->person->name : '' }}</td>
                                     <td>{{$export->company ? $export->company->name : ''}}</td>
                                     <td>{{ jdate($export->created_at)->format('Y/m/d') }}</td>
                             @endforeach

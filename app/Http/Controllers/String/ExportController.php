@@ -63,7 +63,7 @@ class ExportController extends Controller
         $devices = Device::all();
         $persons = Person::all();
         $companies = Company::all();
-        return view('string.export.search', compact('items', 'devices', 'persons','companies'));
+        return view('string.export.search', compact('items', 'devices', 'persons', 'companies'));
     }
 
     // in export with weight we have total weight in weight but in qr_code we dont have
@@ -73,18 +73,24 @@ class ExportController extends Controller
         $qrCode = $item->string_qr_codes()->first();
         if ($request->weight > $qrCode->weight)
             return Response::error('مقدار وزن وارد شده از وزن موجود بیشتر است.');
-        $data_cells=implode(',', $qrCode->string_cells()->get()->pluck('code')->toArray());
+
+        if ($request->count > $qrCode->count)
+            return Response::error('تعداد وارد شده از تعداد موجود بیشتر است.');
+
+        $data_cells = implode(',', $qrCode->string_cells()->get()->pluck('code')->toArray());
         $item->string_exports()->create([
             'string_group_id' => $item->string_group_id,
             'device_id' => $request->device,
             'person_id' => $request->person,
+            'count' => $request->count,
             'company_id' => $request->company,
             'weight' => $request->weight,
             'serial' => $qrCode->serial,
-            'string_cells'=>$data_cells
+            'string_cells' => $data_cells
         ]);
 
         $new_wight = $qrCode->weight - $request->weight;
+        $new_count = $qrCode->count - $request->count;
         if ($new_wight == 0) {
             $cells = $qrCode->string_cells()->get();
             $qrCode->string_cells()->detach();
@@ -94,7 +100,7 @@ class ExportController extends Controller
             }
             $qrCode->delete();
         }
-        $qrCode->update(['weight' => $new_wight]);
+        $qrCode->update(['weight' => $new_wight, 'count' => $new_count]);
 
         return Response::success();
     }
@@ -104,7 +110,7 @@ class ExportController extends Controller
         $persons = Person::all();
         $devices = Device::all();
         $companies = Company::all();
-        return view('string.export.multi_qr_codes.index', compact('persons', 'devices','companies'));
+        return view('string.export.multi_qr_codes.index', compact('persons', 'devices', 'companies'));
     }
 
     public function search_multi_qr_codes(Request $request)
@@ -115,8 +121,8 @@ class ExportController extends Controller
         if (!$qr_code) {
             $if_exported = Export::where('serial', $request->search)->first();
             if ($if_exported) {
-                if(!$if_exported->device || !$if_exported->person)
-                    $desc = 'خروجی جهت صفر کردن سلول در تاریخ : '. jdate($if_exported->created_at)->format('Y/m/d');
+                if (!$if_exported->device || !$if_exported->person)
+                    $desc = 'خروجی جهت صفر کردن سلول در تاریخ : ' . jdate($if_exported->created_at)->format('Y/m/d');
                 else
                     $desc = "دستگاه " . $if_exported->device->name . " , شخص " . $if_exported->person->name . ", زمان خروج" . jdate($if_exported->created_at)->format('Y/m/d');
                 return Response::error(" کد qr با مشخصه $desc خارج شده است ");
@@ -144,7 +150,8 @@ class ExportController extends Controller
             'company_id' => $request->company,
             'weight' => $qr_code->weight,
             'serial' => $qr_code->serial,
-            'string_cells'=> $data['cells']
+            'string_cells' => $data['cells'],
+            'count'=>$qr_code->count
         ]);
         $qr_code->delete();
 
@@ -158,32 +165,32 @@ class ExportController extends Controller
 
     }
 
-/*    public function export_multi_qr_codes_save(Request $request)
-    {
-        $cells = [];
-        if (isset($request->qr_codes)) {
-            foreach ($request->qr_codes as $qr_code) {
-                $qrCode = QrCode::find($qr_code);
-                array_push($cells, ...$qrCode->string_cells()->get()->pluck('id')->toArray());
-                $qrCode->string_cells()->detach();
-                $qrCode->delete();
-                $qrCode->string_group_qr_code->string_exports()->create([
-                    'string_group_id' => $qrCode->string_group_qr_code->string_group->id,
-                    'device_id' => $request->device,
-                    'person_id' => $request->person,
-                    'weight' => $qrCode->weight,
-                    'serial' => $qrCode->serial,
-                ]);
+    /*    public function export_multi_qr_codes_save(Request $request)
+        {
+            $cells = [];
+            if (isset($request->qr_codes)) {
+                foreach ($request->qr_codes as $qr_code) {
+                    $qrCode = QrCode::find($qr_code);
+                    array_push($cells, ...$qrCode->string_cells()->get()->pluck('id')->toArray());
+                    $qrCode->string_cells()->detach();
+                    $qrCode->delete();
+                    $qrCode->string_group_qr_code->string_exports()->create([
+                        'string_group_id' => $qrCode->string_group_qr_code->string_group->id,
+                        'device_id' => $request->device,
+                        'person_id' => $request->person,
+                        'weight' => $qrCode->weight,
+                        'serial' => $qrCode->serial,
+                    ]);
+                }
+                $cells = array_unique($cells);
+                foreach ($cells as $cell) {
+                    $cell = Cell::find($cell);
+                    if (!$cell->string_qr_codes()->count())
+                        $cell->update(['string_group_id' => null]);
+                }
+                return redirect()->back()->with('success', 'عملیات با موفقیت انجام شد.');
             }
-            $cells = array_unique($cells);
-            foreach ($cells as $cell) {
-                $cell = Cell::find($cell);
-                if (!$cell->string_qr_codes()->count())
-                    $cell->update(['string_group_id' => null]);
-            }
-            return redirect()->back()->with('success', 'عملیات با موفقیت انجام شد.');
-        }
-        return redirect()->back()->withErrors('کد qr وارد نشده است.');
-    }*/
+            return redirect()->back()->withErrors('کد qr وارد نشده است.');
+        }*/
 
 }

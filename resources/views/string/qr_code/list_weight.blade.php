@@ -24,6 +24,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <select class="form-control select2" name="person">
+                                    <option></option>
                                     @foreach($persons as $person)
                                         <option value="{{$person->id}}">{{$person->name}}</option>
                                     @endforeach
@@ -34,6 +35,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <select class="form-control select2" name="device">
+                                    <option></option>
                                     @foreach($devices as $device)
                                         <option value="{{$device->id}}">{{$device->name}}</option>
                                     @endforeach
@@ -44,6 +46,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <select class="form-control select2" name="company">
+                                    <option></option>
                                     @foreach($companies as $company)
                                         <option value="{{$company->id}}">{{$company->name}}</option>
                                     @endforeach
@@ -55,6 +58,14 @@
                                 </label>
                                 <input type="text" id="weight" name="weight"
                                        value="{{old('weight',isset($item) ? $item->weight : '')}}" class="form-control">
+                            </div>
+
+                            <div class="form-group col-12 col-sm-6 col-md-4">
+                                <label for="day">{{__('panel.count')}}
+                                    <span class="required">*</span>
+                                </label>
+                                <input type="text" id="count" name="count"
+                                       value="{{old('count',isset($item) ? $item->count : '')}}" class="form-control">
                             </div>
                         </div>
                         <button type="submit" class="btn btn-success mt-3">{{__('panel.save')}}</button>
@@ -142,8 +153,13 @@
                                 <th scope="col">#</th>
                                 <th>{{__('panel.qrcode')}}</th>
                                 <th>{{__('panel.material')}}</th>
+
                                 <th>{{__('panel.rest_weight')}}</th>
                                 <th>{{__('panel.initial weight')}}</th>
+
+                                <th>{{__('panel.initial_count')}}</th>
+                                <th>{{__('panel.rest_count')}}</th>
+
                                 <th>{{__('panel.cells')}}</th>
                                 <th>{{__('panel.seller')}}</th>
                                 <th>{{__('panel.lat')}}</th>
@@ -162,6 +178,10 @@
                                     <td>{{ $group_qr_code->string_group->title }}</td>
                                     <td class="ltr">{{ $group_qr_code->string_qr_codes()->first()  ? $group_qr_code->string_qr_codes()->first()->weight  : '0' }}</td>
                                     <td>{{ $group_qr_code->initial_weight }}</td>
+
+                                    <td>{{ $group_qr_code->count }}</td>
+                                    <td class="ltr">{{ $group_qr_code->string_qr_codes()->first()  ? $group_qr_code->string_qr_codes()->first()->count  : '0' }}</td>
+
                                     <td>{{ $group_qr_code->string_qr_codes()->first() ? $group_qr_code->string_qr_codes()->first()->string_cells_code : '' }}</td>
                                     <td>{{ $group_qr_code->seller->name }}</td>
                                     <td>{{ $group_qr_code->lat }}</td>

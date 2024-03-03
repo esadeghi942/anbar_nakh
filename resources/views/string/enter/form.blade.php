@@ -118,7 +118,15 @@
                value="{{ old('weight') }}" class="form-control">
     </div>
 
-    <div class="form-group col-12 col-sm-6 col-md-3">
+    <div class="form-group col-12 col-sm-6 col-md-1">
+        <label for="day">{{__('panel.count')}}
+            <span class="required">*</span>
+        </label>
+        <input type="text" id="count" name="count"
+               value="{{ old('count',1) }}" class="form-control">
+    </div>
+
+    <div class="form-group col-12 col-sm-6 col-md-2">
         <label for="day">{{__('panel.lat')}}
             <span class="required">*</span>
         </label>
