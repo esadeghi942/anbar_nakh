@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigInteger('carpet_company_id')->unsigned()->nullable()->after('number');
             $table->bigInteger('carpet_device_id')->unsigned()->nullable()->after('number');
 
-            $table->foreign('carpet_company_id')->references('id')->on('carpet_companies')->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('carpet_company_id')->references('id')->on('companies')->onDelete('set null')->onUpdate('cascade');
             $table->foreign('carpet_device_id')->references('id')->on('carpet_devices')->onDelete('set null')->onUpdate('cascade');
         });
     }
