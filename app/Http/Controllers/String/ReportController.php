@@ -45,7 +45,7 @@ class ReportController extends Controller
         $query = GroupQrCode::join('string_groups', 'string_group_qr_codes.string_group_id', '=', 'string_groups.id')->join('string_qr_codes', 'string_qr_codes.string_group_qr_code_id', '=', 'string_group_qr_codes.id');
         $title = [];
          if (isset($request->string_anbar_id)) {
-             $query->join('string_qr_code_cell', 'string_qr_code_cell.string_qr_code_id', '=', 'string_qr_codes.id')->join('string_cells', 'string_qr_code_cell.string_cell_id', '=', 'string_cells.id');
+             $query->join('string_qr_code_cell', 'string_qr_code_cell.string_qr_code_id', '=', 'string_qr_codes.id')->join('string_cells', 'string_qr_code_cell.string_cell_id', '=', 'string_cells.id')->groupBy('string_cells.id');
              $query->where('string_cells.string_anbar_id', $request->string_anbar_id);
              $title[] = ' انبار:' . Anbar::find($request->string_anbar_id)->name;
          }
