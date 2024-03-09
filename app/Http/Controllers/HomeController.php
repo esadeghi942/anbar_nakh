@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\String\Cell;
+use App\Models\String\GroupQrCode;
 use App\Models\String\StringGroup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +35,7 @@ class HomeController extends Controller
 
     public function add_up_cells()
     {
-        for ($i = 0; $i < 9; $i++) {
+        /*for ($i = 0; $i < 9; $i++) {
             foreach (range('A', 'M') as $char) {
                 $nameCellU = 'MU' . $char . sprintf('%02d', $i);
                 Cell::create(['code' => $nameCellU, 'string_anbar_id' => 3]);
@@ -47,7 +48,6 @@ class HomeController extends Controller
                 Cell::create(['code' => $nameCellU, 'string_anbar_id' => 3]);
 
             }
-        }
-
+        }*/
     }
 }

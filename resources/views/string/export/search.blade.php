@@ -59,6 +59,13 @@
                                 <input type="text" id="weight" name="weight"
                                        value="{{old('weight',isset($item) ? $item->weight : '')}}" class="form-control">
                             </div>
+                            <div class="form-group col-12 col-sm-6 col-md-4">
+                                <label for="day">{{__('panel.count')}}
+                                    <span class="required">*</span>
+                                </label>
+                                <input type="text" id="count" name="count"
+                                       value="{{old('count',isset($item) ? $item->count : '')}}" class="form-control">
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-success mt-3">{{__('panel.save')}}</button>
                     </form>

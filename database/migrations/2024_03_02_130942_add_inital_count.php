@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('string_qr_codes', function (Blueprint $table) {
-            $table->integer('count')->after('weight');
+            $table->integer('count')->after('weight')->default(1);
         });
 
         Schema::table('string_exports', function (Blueprint $table) {
