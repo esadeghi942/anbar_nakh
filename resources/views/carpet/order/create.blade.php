@@ -136,13 +136,13 @@
                     <div class="card-body">
                         <div class="row mb-3" id="buttonRow">
                             <div class="col-md-2">
-                                <button class="btn btn-info-gradien" type="button" data-bs-original-title="" title="" data-original-title="">افزودن</button>
+                                <button id="InsertOrder" class="btn btn-info-gradien" type="button" data-bs-original-title="" title="" data-original-title="">افزودن</button>
                             </div>
                         </div>
                         <div class="row" id="inputsRow">
                             <div class="col-md-2 m-2">
                                 <label class="form-label" for="shapeSelect">شکل</label>
-                                <select name="shape[]" class="form-select" id="shapeSelect" required="">
+                                <select name="shape[]" class="form-select shapeSelect" id="shapeSelect" required="" onchange="">
                                     <option value="مستطیل" class="rectangle">مستطیل</option>
                                     <option value="مربع" class="square">مربع</option>
                                     <option value="دایره" class="circle">دایره</option>
@@ -151,7 +151,7 @@
                             </div>
                             <div class="col-md-2 m-2" id="size">
                                 <label class="form-label" for="sizeSelect">اندازه</label>
-                                <select name="size[]" class="form-select" id="sizeSelect" required="">
+                                <select name="size[]" class="form-select sizeSelect" id="sizeSelect" required="">
                                     <option value="1*2">1*2</option>
                                     <option value="1*3">1*3</option>
                                     <option value="1*4">1*4</option>
@@ -167,86 +167,20 @@
                                 <label class="form-label" for="number">تعداد</label>
                                 <input name="number[]" class="form-control" id="number" type="text" placeholder="">
                             </div>
-                            <div class="col-md-2 m-2" id="length">
+                            <div class="col-md-2 m-2 d-none" id="length">
                                 <label class="form-label" for="exampleInputPassword">طول</label>
                                 <input name="length[]" class="form-control" id="exampleInputPassword" type="text" placeholder="">
                             </div>
-                            <div class="col-md-2 m-2" id="width">
+                            <div class="col-md-2 m-2 d-none" id="width">
                                 <label class="form-label" for="exampleInputPassword16">عرض</label>
                                 <input name="width[]" class="form-control" id="exampleInputPassword16" type="text" placeholder="">
                             </div>
-                        </div>
-                        <div class="row" id="inputsRow">
-                            <div class="col-md-2 m-2">
-                                <label class="form-label" for="shapeSelect">شکل</label>
-                                <select name="shape[]" class="form-select" id="shapeSelect" required="">
-                                    <option value="مستطیل" class="rectangle">مستطیل</option>
-                                    <option value="مربع" class="square">مربع</option>
-                                    <option value="دایره" class="circle">دایره</option>
-                                    <option value="بیضی" class="oval">بیضی</option>
-                                </select>
-                            </div>
-                            <div class="col-md-2 m-2" id="size">
-                                <label class="form-label" for="sizeSelect">اندازه</label>
-                                <select name="size[]" class="form-select" id="sizeSelect" required="">
-                                    <option value="1*2">1*2</option>
-                                    <option value="1*3">1*3</option>
-                                    <option value="1*4">1*4</option>
-                                    <option value="1*1.15">1*1.15</option>
-                                    <option value="1*2.25">1*2.25</option>
-                                    <option value="2*3">2*3</option>
-                                    <option value="2.5*3.5">2.5*3.5</option>
-                                    <option value=3*4"">3*4</option>
-                                    <option value="اندازه دلخواه">اندازه دلخواه</option>
-                                </select>
-                            </div>
-                            <div class="col-md-2 m-2" id="number">
-                                <label class="form-label" for="number">تعداد</label>
-                                <input name="number[]" class="form-control" id="number" type="text" placeholder="">
-                            </div>
-                            <div class="col-md-2 m-2" id="length">
-                                <label class="form-label" for="exampleInputPassword">طول</label>
-                                <input name="length[]" class="form-control" id="exampleInputPassword" type="text" placeholder="">
-                            </div>
-                            <div class="col-md-2 m-2" id="width">
-                                <label class="form-label" for="exampleInputPassword16">عرض</label>
+                            <div class="col-md-2 m-2 d-none" id="Radius">
+                                <label class="form-label" for="exampleInputPassword16">شعاع</label>
                                 <input name="width[]" class="form-control" id="exampleInputPassword16" type="text" placeholder="">
                             </div>
-                        </div>
-                        <div class="row" id="inputsRow">
-                            <div class="col-md-2 m-2">
-                                <label class="form-label" for="shapeSelect">شکل</label>
-                                <select name="shape[]" class="form-select" id="shapeSelect" required="">
-                                    <option value="مستطیل" class="rectangle">مستطیل</option>
-                                    <option value="مربع" class="square">مربع</option>
-                                    <option value="دایره" class="circle">دایره</option>
-                                    <option value="بیضی" class="oval">بیضی</option>
-                                </select>
-                            </div>
-                            <div class="col-md-2 m-2" id="size">
-                                <label class="form-label" for="sizeSelect">اندازه</label>
-                                <select name="size[]" class="form-select" id="sizeSelect" required="">
-                                    <option value="1*2">1*2</option>
-                                    <option value="1*3">1*3</option>
-                                    <option value="1*4">1*4</option>
-                                    <option value="1*1.15">1*1.15</option>
-                                    <option value="1*2.25">1*2.25</option>
-                                    <option value="2*3">2*3</option>
-                                    <option value="2.5*3.5">2.5*3.5</option>
-                                    <option value=3*4"">3*4</option>
-                                    <option value="اندازه دلخواه">اندازه دلخواه</option>
-                                </select>
-                            </div>
-                            <div class="col-md-2 m-2" id="number">
-                                <label class="form-label" for="number">تعداد</label>
-                                <input name="number[]" class="form-control" id="number" type="text" placeholder="">
-                            </div>
-                            <div class="col-md-2 m-2" id="length">
-                                <label class="form-label" for="exampleInputPassword">طول</label>
-                                <input name="length[]" class="form-control" id="exampleInputPassword" type="text" placeholder="">
-                            </div>
-                            <div class="col-md-2 m-2" id="width">
-                                <label class="form-label" for="exampleInputPassword16">عرض</label>
+                            <div class="col-md-2 m-2 d-none" id="lengthSide">
+                                <label class="form-label" for="exampleInputPassword16">طول یک ضلع</label>
                                 <input name="width[]" class="form-control" id="exampleInputPassword16" type="text" placeholder="">
                             </div>
                         </div>
@@ -259,46 +193,46 @@
         <button type="submit">insert</button>
     </form>
 @endsection
-{{--@section('js')--}}
-{{--<script>--}}
-{{--    $(document).ready(function () {--}}
-{{--        $("button").click(function () {--}}
-{{--            var inputsRow = $("#inputsRow");--}}
-{{--            var newInputsRow = inputsRow.clone();--}}
-{{--            newInputsRow.find("select,input").val("");--}}
-{{--            inputsRow.after(newInputsRow);--}}
+@section('js')
+<script>
+    $(document).ready(function () {
+        $("#InsertOrder").click(function () {
+            var inputsRow = $("#inputsRow");
+            var newInputsRow = inputsRow.clone();
+            newInputsRow.find("select,input").val("");
+            newInputsRow.find("#Radius,#width,#length, #lengthSide").addClass("d-none");
+            inputsRow.after(newInputsRow);
+        });
 
-{{--            // اعمال رویداد تغییر بر روی عناصر جدید--}}
-{{--            newInputsRow.find("#shapeSelect").change(function () {--}}
-{{--                var shapeValue = $(this).val();--}}
-{{--                if (shapeValue === "اندازه دلخواه") {--}}
-{{--                    newInputsRow.find("#customSizeFields").hide();--}}
-{{--                    newInputsRow.find("#customSizeFields2").hide();--}}
-{{--                    newInputsRow.find("#length").show();--}}
-{{--                    newInputsRow.find("#width").show();--}}
-{{--                } else {--}}
-{{--                    newInputsRow.find("#length").hide();--}}
-{{--                    newInputsRow.find("#width").hide();--}}
-{{--                    newInputsRow.find("#customSizeFields").show();--}}
-{{--                    newInputsRow.find("#customSizeFields2").show();--}}
-{{--                }--}}
-{{--            });--}}
-{{--        });--}}
+        $("body").on("change", ".form-select", function () {
+            var parentRow = $(this).closest(".row");
+            var selectedShape = parentRow.find(".shapeSelect").val();
+            var selectedSize = parentRow.find(".sizeSelect").val();
 
-{{--        // اعمال رویداد تغییر بر روی ردیف اصلی--}}
-{{--        $("#shapeSelect").change(function () {--}}
-{{--            if ($(this).val() === "اندازه دلخواه") {--}}
-{{--                $("#customSizeFields").hide();--}}
-{{--                $("#customSizeFields2").hide();--}}
-{{--                $("#length").show();--}}
-{{--                $("#width").show();--}}
-{{--            } else {--}}
-{{--                $("#length").hide();--}}
-{{--                $("#width").hide();--}}
-{{--                $("#customSizeFields").show();--}}
-{{--                $("#customSizeFields2").show();--}}
-{{--            }--}}
-{{--        });--}}
-{{--    });--}}
-{{--</script>--}}
-{{--@endsection--}}
+            if (selectedSize === "اندازه دلخواه" && selectedShape === "مستطیل") {
+                parentRow.find("#Radius, #lengthSide").addClass("d-none");
+                parentRow.find("#length, #width").removeClass("d-none");
+            }
+
+            else if (selectedSize === "اندازه دلخواه" && selectedShape === "مربع") {
+                parentRow.find("#Radius, #length, #width").addClass("d-none");
+                parentRow.find("#lengthSide").removeClass("d-none");
+            }
+
+            else if (selectedSize === "اندازه دلخواه" && selectedShape === "دایره") {
+                parentRow.find("#lengthSide, #length, #width").addClass("d-none");
+                parentRow.find("#Radius").removeClass("d-none");
+            }
+
+            else if (selectedSize === "اندازه دلخواه" && selectedShape === "بیضی") {
+                parentRow.find("#lengthSide, #length, #width").addClass("d-none");
+                parentRow.find("#Radius").removeClass("d-none");
+            }
+            else {
+                parentRow.find("#Radius, #length, #width, #lengthSide").addClass("d-none");
+            }
+        });
+
+    });
+</script>
+@endsection
