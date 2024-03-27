@@ -132,5 +132,10 @@ return [
     'companies'=>'شرکت ها',
     'company'=>'شرکت',
     'initial_count'=>'تعدا اولیه',
-    'rest_count'=>'تعداد باقی مانده'
+    'rest_count'=>'تعداد باقی مانده',
+
+    'List_orders'=>'لیست سفارشات',
+    'new_order'=>'سفارش جدید',
+    'file_name'=>'نام فایل',
+    'image_map'=>'عکس نقشه'
 ];

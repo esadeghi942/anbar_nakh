@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Carpet;
 
 use App\Helpers\Response;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Carpet\CarpetMapRequest;
 use App\Http\Requests\PersonRequest;
 use App\Models\Carpet\Map;
 use App\Models\Person;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class MapController extends Controller
 {
@@ -31,9 +33,17 @@ class MapController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(PersonRequest $request)
+    public function store(CarpetMapRequest $request)
     {
-        Map::create($request->all());
+        $data = $request->validated();
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $fileName = time().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('images/uploads'), $fileName);
+            $data["image"] = $fileName;
+        }
+
+        Map::create($data);
         return redirect()->route('carpet.map.index')->with('success', trans('panel.success create', ['item' => trans('panel.map')]));
     }
 
@@ -57,9 +67,22 @@ class MapController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Map $map)
+    public function update(CarpetMapRequest $request, Map $map)
     {
-        $map->update($request->all());
+        $data = $request->validated();
+        if ($request->hasFile('image')) {
+            $imagePath = public_path('images/uploads/'.$map->image);
+            if (File::exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
+
+        $image = $request->file('image');
+        $fileName = time() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('images/uploads'), $fileName);
+        $data["image"] = $fileName;
+
+        $map->update($data);
         return redirect()->route('carpet.map.index')->with('success', trans('panel.success edit', ['item' => trans('panel.map')]));
     }
 
@@ -68,6 +91,10 @@ class MapController extends Controller
      */
     public function destroy(Map $map)
     {
+        $imagePath = public_path('images/uploads/'.$map->image);
+        if (File::exists($imagePath)) {
+            unlink($imagePath);
+        }
         $map->delete();
         return redirect()->route('carpet.map.index')->with('success', trans('panel.success delete', ['item' => trans('panel.map')]));
     }

@@ -81,6 +81,19 @@
                                                href="{{route('carpet.map.index')}}">{{ __('panel.map') }}</a></li>
                                     </ul>
                                 </li>
+                                <li><a class="submenu-title" href="#">سفارشات
+                                        <span class="sub-arrow"><i
+                                                class="fa fa-angle-left"></i></span></a>
+                                    <ul class="nav-sub-childmenu submenu-content">
+                                        <li><a class="{{ $route == 'carpet.color.index' ? 'active' : '' }}"
+                                               href="{{route('carpet.order.index')}}">{{ __('panel.List_orders') }}</a></li>
+
+                                        <li><a class="{{ $route == 'carpet.size.index' ? 'active' : '' }}"
+                                               href="{{route('carpet.order.create')}}">{{ __('panel.new_order') }}</a>
+                                        </li>
+
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
                         <li class="sidebar-list">
