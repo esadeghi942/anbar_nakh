@@ -44,11 +44,11 @@ class ReportController extends Controller
 
         $query = GroupQrCode::join('string_groups', 'string_group_qr_codes.string_group_id', '=', 'string_groups.id')->join('string_qr_codes', 'string_qr_codes.string_group_qr_code_id', '=', 'string_group_qr_codes.id');
         $title = [];
-         if (isset($request->string_anbar_id)) {
-             $query->join('string_qr_code_cell', 'string_qr_code_cell.string_qr_code_id', '=', 'string_qr_codes.id')->join('string_cells', 'string_qr_code_cell.string_cell_id', '=', 'string_cells.id')->groupBy('string_cells.id');
-             $query->where('string_cells.string_anbar_id', $request->string_anbar_id);
-             $title[] = ' انبار:' . Anbar::find($request->string_anbar_id)->name;
-         }
+        if (isset($request->string_anbar_id)) {
+            $query->join('string_qr_code_cell', 'string_qr_code_cell.string_qr_code_id', '=', 'string_qr_codes.id')->join('string_cells', 'string_qr_code_cell.string_cell_id', '=', 'string_cells.id');
+            $query->where('string_cells.string_anbar_id', $request->string_anbar_id);
+            $title[] = ' انبار:' . Anbar::find($request->string_anbar_id)->name;
+        }
         /*if (isset($request->string_cell_id)) {
             $query->where('string_cells.id', $request->string_cell_id);
             $title[] = ' سلول:' . Cell::find($request->string_cell_id)->name;
@@ -82,7 +82,7 @@ class ReportController extends Controller
         }
         $title = implode(',', $title);
         //dd($query->groupBy('string_groups.id')->selectRaw('string_groups.*,sum(string_qr_codes.weight) as total_weight')->get());
-        $items = $query->groupBy('string_group_qr_codes.id')->selectRaw('string_group_qr_codes.*,sum(string_qr_codes.weight) as total_weight2')->get();
+        $items = $query->groupBy('string_group_qr_codes.id')->selectRaw('string_group_qr_codes.*')->get();
         $devices = Device::all();
         $persons = Person::all();
         return view('string.report.search', compact('items', 'title', 'devices', 'persons'));
@@ -129,7 +129,7 @@ class ReportController extends Controller
     {
         $query = QrCodeCell::
         join('string_cells', 'string_qr_code_cell.string_cell_id', '=', 'string_cells.id')
-        ->join('string_anbars', 'string_cells.string_anbar_id', '=', 'string_anbars.id')->where('string_anbars.id',$anbar);
+            ->join('string_anbars', 'string_cells.string_anbar_id', '=', 'string_anbars.id')->where('string_anbars.id',$anbar);
         $items = $query->groupBy('string_qr_code_cell.string_qr_code_id')->orderBy('string_cells.code')->pluck('string_qr_code_cell.string_qr_code_id')->toArray();
         return view('string.report.anbar', compact('items'));
     }
