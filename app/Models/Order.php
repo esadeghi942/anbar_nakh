@@ -9,6 +9,8 @@ class Order extends Model
 {
     use HasFactory;
 
+    protected $table='carpet_orders';
+
     protected $guarded = ['id'];
 
     public function color()
@@ -30,4 +32,8 @@ class Order extends Model
     {
         return $this->belongsTo(Unit::class);
     }
+
+    public static $time_limits = [
+        1,5,7,10,15,20,25,30,40,50,60
+    ];
 }
