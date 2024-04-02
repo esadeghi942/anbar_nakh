@@ -91,19 +91,21 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @php($sum=0)
                             @foreach($items as $i => $item)
+                                @php($sum += $item->string_qr_codes()->sum('weight') )
                                 <tr>
                                     <td>{{ $i +1 }}</td>
                                     <td>{{ $item->string_group->title }}</td>
                                     <td>{{ $item->string_cells_code }}</td>
                                     <td>{{ $item->seller->name }}</td>
                                     <td>{{ $item->lat }}</td>
-                                    <td>{{ $item->total_weight2 }}</td>
+                                    <td>{{ $item->string_qr_codes()->sum('weight') }}</td>
                                 </tr>
                             @endforeach
                             <tr>
                                 <td colspan="5">جمع</td>
-                                <td>{{ $items->sum('total_weight2') }}</td>
+                                <td>{{ $sum }}</td>
                             </tr>
                             </tbody>
                         </table>
