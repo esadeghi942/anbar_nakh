@@ -9,13 +9,13 @@ class Factor extends Model
 {
     use HasFactory;
 
-    protected $table='carpet_factors';
+    protected $table='roll_factors';
 
     protected $guarded=['id'];
 
     public function orders()
     {
-        return $this->hasMany(Order::class,'carpet_factor_id');
+        return $this->hasMany(Order::class,'roll_factor_id');
     }
 
     public function device()

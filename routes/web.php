@@ -110,6 +110,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('color', App\Http\Controllers\Carpet\ColorController::class);
         Route::resource('factor', \App\Http\Controllers\Carpet\FactorController::class);
         Route::resource('device', \App\Http\Controllers\Carpet\DeviceControlle::class);
+        Route::resource('order', App\Http\Controllers\Carpet\OrderController::class);
 
 
         Route::group(['as' => 'qr_code.', 'prefix' => 'qr_code/'], function () {

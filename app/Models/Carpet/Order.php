@@ -9,13 +9,13 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $table='carpet_orders';
+    protected $table='roll_orders';
 
     protected $guarded=['id'];
 
     public function factor()
     {
-        return $this->belongsTo(Factor::class,'carpet_factor_id');
+        return $this->belongsTo(Factor::class,'roll_factor_id');
     }
 
     public function weaver()

@@ -22,10 +22,21 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-body">
-                        <form method="post" action="{{route('carpet.map.update',$data)}}">
+                        <form method="post" action="{{route('carpet.map.update',$data)}}" enctype="multipart/form-data">
                             @csrf
                             @method('put')
                             @include('carpet.BaseForm')
+                            <div class="row my-2" style="display: flex;justify-content: space-between">
+                                <div class="form-group col-6 col-sm-6 col-md-4">
+                                    <label class="control-label" for="day">{{__('panel.image_map')}}
+                                        <span class="required">*</span>
+                                    </label>
+                                    <input value="" type="file" id="imageInput" name="image" autocomplete="off" class="form-control">
+                                </div>
+                                <div class="form-group col-6 col-sm-6 col-md-4">
+                                    <img id="imagePreview" src="{{ asset('images/uploads/' . $data->image) }}" width="400px" height="400px">
+                                </div>
+                            </div>
                             <button type="submit" class="btn btn-success mt-3">{{__('panel.save')}}</button>
                         </form>
 
@@ -34,4 +45,23 @@
             </div>
         </div>
     </div>
+@endsection
+@section('js')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var imageInput = document.getElementById('imageInput');
+            var imagePreview = document.getElementById('imagePreview');
+
+            // بارگذاری تصویر قبلی در صورت وجود
+            imageInput.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        imagePreview.setAttribute('src', e.target.result);
+                    }
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+        });
+    </script>
 @endsection
