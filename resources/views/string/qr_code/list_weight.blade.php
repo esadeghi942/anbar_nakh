@@ -4,6 +4,18 @@
         .dataTables_wrapper button {
             color: black !important;
         }
+
+        .col a, .table.dataTable thead {
+            padding: 0 !important;
+        }
+
+        .col {
+            width: 20px !important;
+        }
+
+        table.dataTable tbody td {
+            padding: 5px 0 !important;
+        }
     </style>
 @endsection
 @section('content')
@@ -128,6 +140,131 @@
         </div>
     </div>
 
+
+    <div class="modal" id="edit_string_type" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         style="padding-left: 17px" aria-modal="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ __('panel.edit string type')}}</h5>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"
+                            data-bs-original-title="" title=""></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{route('string.group_qr_code.edit_string_type')}}" method="post" class="ajax_form">
+                        @csrf
+                        <input type="hidden" value="" name="id">
+                        <div class="row">
+                            <div class="form-group col-12 col-sm-6 col-md-2">
+                                <label for="day">{{__('panel.material')}}
+                                    <span class="required">*</span>
+                                </label>
+                                <select name="string_material_id" class="form-control form-select">
+                                    @foreach(\App\Models\String\Material::all() as $material)
+                                        <option value="{{$material->id}}">{{ $material->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group col-12 col-sm-6 col-md-2">
+                                <label for="day">{{__('panel.color')}}
+                                    <span class="required">*</span>
+                                </label>
+                                <select name="string_color_id" class="form-control form-select">
+                                    @foreach(\App\Models\String\Color::all() as $color)
+                                        <option value="{{$color->id}}">{{ $color->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group col-12 col-sm-6 col-md-2">
+                                <label for="day">{{__('panel.grade')}}
+                                    <span class="required">*</span>
+                                </label>
+                                <select name="string_grade_id" class="form-control form-select">
+                                    @foreach(\App\Models\String\Grade::all() as $grade)
+                                        <option value="{{$grade->id}}">{{ $grade->value}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group col-12 col-sm-6 col-md-2">
+                                <label for="day">{{__('panel.layer')}}
+                                    <span class="required">*</span>
+                                </label>
+                                <select name="string_layer_id" class="form-control form-select">
+                                    @foreach(\App\Models\String\Layer::all() as $layer)
+                                        <option value="{{$layer->id}}">{{ $layer->value}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group col-12 col-sm-6 col-md-4">
+                                <label class="col-sm-3 form-label text-lg-start" for="type">نوع</label>
+                                <div class="m-checkbox-inline">
+                                    <div class="radio radio-theme">
+                                        <input type="radio" name="type" id="type_1" value="pallet">
+                                        <label for="type_1">پالت آک</label>
+                                    </div>
+
+                                    <div class="radio radio-theme">
+                                        <input type="radio" name="type" id="type_2" value="pocket">
+                                        <label for="type_2">گونی آک</label>
+                                    </div>
+
+                                    <div class="radio radio-theme">
+                                        <input type="radio" name="type" id="type_3" value="used">
+                                        <label for="type_3">مصرف شده</label>
+                                    </div>
+
+                                    <div class="radio radio-theme">
+                                        <input type="radio" name="type" id="type_4" value="converted">
+                                        <label for="type_4">تبدیل شده</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-12 col-sm-6 col-md-3">
+                                <label for="day">{{__('panel.seller')}}
+                                    <span class="required">*</span>
+                                </label>
+                                <select name="seller" class="form-control form-select">
+                                    @foreach(\App\Models\Seller::all() as $seller)
+                                        <option value="{{$seller->id}}">{{ $seller->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+
+                            <div class="form-group col-12 col-sm-6 col-md-1">
+                                <label for="day">{{__('panel.count')}}
+                                    <span class="required">*</span>
+                                </label>
+                                <input type="text" id="count" name="count"
+                                       value="1" class="form-control">
+                            </div>
+
+                            <div class="form-group col-12 col-sm-6 col-md-2">
+                                <label for="day">{{__('panel.lat')}}
+                                    <span class="required">*</span>
+                                </label>
+                                <input type="text" id="lat" name="lat"
+                                       value="وارد نشده" class="form-control persian-date-picker">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal"
+                                    data-bs-original-title=""
+                                    title="">{{ __('panel.close')}}
+                            </button>
+                            <button class="btn btn-primary" type="submit">{{ __('panel.edit')}}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container-fluid">
         <div class="page-title">
             <div class="row">
@@ -151,7 +288,6 @@
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th>{{__('panel.qrcode')}}</th>
                                 <th>{{__('panel.material')}}</th>
 
                                 <th>{{__('panel.rest_weight')}}</th>
@@ -165,16 +301,19 @@
                                 <th>{{__('panel.lat')}}</th>
                                 <th>{{__('panel.type')}}</th>
                                 <th>{{__('panel.date registered')}}</th>
-                                <th scope="col">واد کردن/جابجایی سلول</th>
-                                <th scope="col">{{__('panel.export')}}</th>
-                                <th scope="col">{{__('panel.exports')}}</th>
+                                <th class="col">واد کردن/جابجایی سلول</th>
+                                <th class="col">{{__('panel.export')}}</th>
+                                <th class="col">{{__('panel.exports')}}</th>
+                                <th class="col">{{__('panel.edit') }}</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($group_qr_codes as $i => $group_qr_code)
                                 <tr>
                                     <td>{{ $i +1 }}</td>
-                                    <td class="ltr">{{ $group_qr_code->string_qr_codes()->first() ? $group_qr_code->string_qr_codes()->first()->serial : 'خارج شده' }}</td>
+                                    {{--
+                                                                        <td class="ltr">{{ $group_qr_code->string_qr_codes()->first() ? $group_qr_code->string_qr_codes()->first()->serial : 'خارج شده' }}</td>
+                                    --}}
                                     <td>{{ $group_qr_code->string_group->title }}</td>
                                     <td class="ltr">{{ $group_qr_code->string_qr_codes()->first()  ? $group_qr_code->string_qr_codes()->first()->weight  : '0' }}</td>
                                     <td>{{ $group_qr_code->initial_weight }}</td>
@@ -213,9 +352,21 @@
                                         @endif
                                     </td>
 
-                                    <td><a href="{{route('string.group_qr_code.exports',$group_qr_code->id)}}"
-                                           class="btn"><i
+                                    <td class="col"><a
+                                            href="{{route('string.group_qr_code.exports',$group_qr_code->id)}}"
+                                            class="btn"><i
                                                 class="fa fa-list"></i></a></td>
+                                    <td class="col">
+                                        @if($group_qr_code->string_qr_codes()->first())
+                                        <button class="btn edit_string_type" type="button" data-bs-toggle="modal"
+                                                data-detail="{{$group_qr_code}}"
+                                                data-id="{{$group_qr_code->id}}" data-bs-target="#edit_string_type">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                        @else
+                                            <span class="badge bg-warning">خارج شده</span>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -228,6 +379,9 @@
 @endsection
 @section('js')
     <script>
+        $(document).ready(function () {
+            $('th.col').removeClass('sorting');
+        })
         $(document).on('change', '#anbar', function () {
             var val = $(this).val();
             $('#cells .cell-select').hide();
@@ -246,6 +400,15 @@
             var id = $(this).attr('data-id');
             $('#id_item').val(id);
         });
+
+        $(document).on('click', '.edit_string_type', function (event) {
+            var id = $(this).attr('data-id');
+            var detail = $(this).attr('data-detail');
+            var data = $.parseJSON(detail);
+            var form = $('#edit_string_type form');
+            full_modal_input(form,data);
+            $('#edit_string_type input[name=id]').val(id);
+        });
         $(document).on('submit', 'form.ajax_form', function (event) {
             event.preventDefault();
             var form = $(this);
@@ -258,7 +421,6 @@
             event.preventDefault();
             var form = $(this);
             var mabda = $('#mabda').html();
-            log(mabda)
             var dest = $('#cells input:checkbox:checked').map(function () {
                 return $(this).next("label").text();
             }).get();
@@ -266,5 +428,35 @@
             if (conf)
                 ajax_form_request(form, event);
         });
+
+        function full_modal_input(form, data) {
+            var input = form.find('input[type=text],input[type=number]');
+            for (let i = 0; i < input.length; i++) {
+                let name = input[i].getAttribute('name');
+                $(input[i]).val(data[name]);
+            }
+            var select = form.find('select');
+
+            for (let i = 0; i < select.length; i++) {
+                let name = select[i].getAttribute('name');
+                $(select[i]).find("option[value='" + data[name] + "']").prop('selected', true);
+                $(select[i]).find("option[value='" + data['string_group'][name] + "']").prop('selected', true);
+            }
+            var textarea = form.find('textarea');
+            for (let i = 0; i < textarea.length; i++) {
+                let name = textarea[i].getAttribute('name');
+                $(textarea[i]).html(data[name]);
+            }
+
+            var checkedinput = form.find('input[type=radio],input[type=checkbox]');
+            for (let i = 0; i < checkedinput.length; i++) {
+                let name = checkedinput[i].getAttribute('name');
+                if ($(checkedinput[i]).val() == data[name])
+                    $(checkedinput[i]).prop('checked', true);
+                else
+                    $(checkedinput[i]).prop('checked', false);
+            }
+        }
+
     </script>
 @endsection

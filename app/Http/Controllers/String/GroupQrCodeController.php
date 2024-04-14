@@ -4,8 +4,8 @@ namespace App\Http\Controllers\String;
 
 use App\Helpers\Response;
 use App\Http\Controllers\Controller;
-use App\Models\Carpet\Company;
-use App\Models\Device;
+use App\Models\Company;
+use App\Models\String\Device;
 use App\Models\Person;
 use App\Models\String\Anbar;
 use App\Models\String\Cell;
@@ -15,7 +15,7 @@ use App\Models\String\Grade;
 use App\Models\String\GroupQrCode;
 use App\Models\String\Layer;
 use App\Models\String\Material;
-use App\Models\String\QrCode;
+use App\Models\String\QrCodeCell;
 use App\Models\String\StringGroup;
 use Illuminate\Http\Request;
 
@@ -41,9 +41,9 @@ class GroupQrCodeController extends Controller
             $group_qr_codes = GroupQrCode::where('type', '!=', 'label')->get();
             $persons = Person::all();
             $devices = Device::all();
-            $companies=Company::all();
+            $companies = Company::all();
 
-            return view('string.qr_code.list_weight', compact('group_qr_codes', 'anbars', 'cells','devices','persons','companies'));
+            return view('string.qr_code.list_weight', compact('group_qr_codes', 'anbars', 'cells', 'devices', 'persons', 'companies'));
 
         }
     }
@@ -58,6 +58,7 @@ class GroupQrCodeController extends Controller
         return view('string.qr_code.create', compact('colors', 'materials', 'sellers', 'grades', 'layers'));
     }
 
+//store label enters
     public function store(Request $request)
     {
         /* $validated = $request->validate([
@@ -74,7 +75,7 @@ class GroupQrCodeController extends Controller
             $group_qr_codes->string_qr_codes()->create(['serial' => $qrcode]);
         }
 
-        return redirect()->route('string.group_qr_code.show', $group_qr_codes)->with('success', trans('panel.success done'));;
+        return redirect()->route('string.group_qr_code.show', $group_qr_codes)->with('success', trans('panel.success done'));
     }
 
     public function show(GroupQrCode $group_qr_code)
@@ -191,8 +192,37 @@ class GroupQrCodeController extends Controller
 
     public function exports(GroupQrCode $groupQrCode)
     {
-        $exports=$groupQrCode->string_exports()->get();
-        return view('string.qr_code.exports',compact('exports','groupQrCode'));
+        $exports = $groupQrCode->string_exports()->get();
+        return view('string.qr_code.exports', compact('exports', 'groupQrCode'));
+    }
+
+    //edit just in wight not work in label enters because we have just one qr_code for each group_qr_code
+    public function edit_string_type(Request $request)
+    {
+        $groupQrCode = GroupQrCode::find($request->id);
+        $string_group = StringGroup::find_or_create($request->string_color_id, $request->string_material_id, $request->string_grade_id, $request->string_layer_id);
+        if ($groupQrCode->string_group_id != $string_group->id) {
+
+            $qr_code = $groupQrCode->string_qr_codes()->first();
+            $cells = $qr_code->string_cells()->get()->pluck('id')->toArray();
+
+            $other_enter_exist = QrCodeCell::whereIn('string_cell_id', $cells)->where('string_qr_code_id', '!=', $qr_code->id)->get();
+            foreach ($other_enter_exist as $qr_code_cell) {
+                if ($qr_code_cell->string_qr_code->string_group_qr_code->string_group_id !== $string_group->id)
+                    return  Response::error(' سلول '.$qr_code_cell->string_cell->code .'حاوی متریال متفاوتی است امکان ویرایش کردن به متریال این سلول وجود ندارد.');
+            }
+            $qr_code->string_cells()->update(['string_group_id' => $string_group->id]);
+            $groupQrCode->string_exports()->update(['string_group_id' => $string_group->id]);
+        }
+        $groupQrCode->update([
+            'string_group_id' => $string_group->id,
+            'seller_id' => $request->seller,
+            'lat' => $request->lat,
+            'count' => $request->count,
+            'type' => $request->type
+        ]);
+        return  Response::success();
+
     }
 
 }

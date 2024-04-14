@@ -29,7 +29,7 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-body">
-                        <form id="update_factor" method="post" action="{{route('factor.update',$factor)}}">
+                        <form id="update_factor" method="post" action="{{route('roll.factor.update',$factor)}}">
                             @csrf
                             @method('put')
                             <div class="row">

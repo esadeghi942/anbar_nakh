@@ -29,7 +29,7 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-body">
-                        <form id="create_store" method="post" action="{{route('carpet.factor.store')}}">
+                        <form id="create_store" method="post" action="{{route('roll.factor.store')}}">
                             @csrf
                             <div class="row">
                                 <div class="form-group col-12 col-sm-6 col-md-4">

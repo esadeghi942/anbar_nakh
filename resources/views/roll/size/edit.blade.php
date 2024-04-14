@@ -22,10 +22,10 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-body">
-                        <form method="post" action="{{route('carpet.size.update',$data)}}">
+                        <form method="post" action="{{route('roll.size.update',$data)}}">
                             @csrf
                             @method('put')
-                            @include('carpet.size.form')
+                            @include('roll.size.form')
                             <button type="submit" class="btn btn-success mt-3">{{__('panel.save')}}</button>
                         </form>
 

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('roll_factors', function (Blueprint $table) {
+        Schema::table('carpet_factors', function (Blueprint $table) {
             $table->bigInteger('carpet_company_id')->unsigned()->nullable()->after('number');
             $table->bigInteger('carpet_device_id')->unsigned()->nullable()->after('number');
 

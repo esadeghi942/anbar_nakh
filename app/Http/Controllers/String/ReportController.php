@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\String;
 
 use App\Http\Controllers\Controller;
-use App\Models\Device;
+use App\Models\String\Device;
 use App\Models\Person;
 use App\Models\Seller;
 use App\Models\String\Anbar;

@@ -2,8 +2,7 @@
 
 namespace App\Models\String;
 
-use App\Models\Carpet\Company;
-use App\Models\Device;
+use App\Models\Company;
 use App\Models\Person;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

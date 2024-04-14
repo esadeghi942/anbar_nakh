@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Carpet;
+namespace App\Http\Controllers\Roll;
 
 use App\Helpers\Response;
 use App\Http\Controllers\Controller;
-use App\Models\Carpet\Size;
+use App\Models\Roll\Size;
 use Illuminate\Http\Request;
 
 class SizeController extends Controller
@@ -15,7 +15,7 @@ class SizeController extends Controller
     public function index()
     {
         $sizes=Size::all();
-        return view('carpet.size.index',compact('sizes'));
+        return view('roll.size.index',compact('sizes'));
     }
 
     /**
@@ -32,7 +32,7 @@ class SizeController extends Controller
     public function store(Request $request)
     {
         Size::create($request->all());
-        return redirect()->route('carpet.size.index')->with('success', trans('panel.success create', ['item' => trans('panel.size')]));
+        return redirect()->route('roll.size.index')->with('success', trans('panel.success create', ['item' => trans('panel.size')]));
     }
 
     /**
@@ -49,7 +49,7 @@ class SizeController extends Controller
     public function edit(Size $size)
     {
         $data=$size;
-        return view('carpet.size.edit',compact('data'));
+        return view('roll.size.edit',compact('data'));
     }
 
     /**
@@ -58,7 +58,7 @@ class SizeController extends Controller
     public function update(Request $request, Size $size)
     {
         $size->update($request->all());
-        return redirect()->route('carpet.size.index')->with('success', trans('panel.success edit', ['item' => trans('panel.size')]));
+        return redirect()->route('roll.size.index')->with('success', trans('panel.success edit', ['item' => trans('panel.size')]));
     }
 
     /**
@@ -67,6 +67,6 @@ class SizeController extends Controller
     public function destroy(Size $size)
     {
         $size->delete();
-        return redirect()->route('carpet.size.index')->with('success', trans('panel.success delete', ['item' => trans('panel.size')]));
+        return redirect()->route('roll.size.index')->with('success', trans('panel.success delete', ['item' => trans('panel.size')]));
     }
 }

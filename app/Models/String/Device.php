@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\String;
 
 use App\Models\String\Export;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

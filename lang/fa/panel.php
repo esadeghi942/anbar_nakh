@@ -137,5 +137,6 @@ return [
     'List_orders'=>'لیست سفارشات',
     'new_order'=>'سفارش جدید',
     'file_name'=>'نام فایل',
-    'image_map'=>'عکس نقشه'
+    'image_map'=>'عکس نقشه',
+    'edit string type'=>'تغییر جنس نخ'
 ];

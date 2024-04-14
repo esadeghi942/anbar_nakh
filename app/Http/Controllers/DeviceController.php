@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PersonRequest;
-use App\Models\Device;
+use App\Models\String\Device;
 use Illuminate\Http\Request;
 
 class DeviceController extends Controller

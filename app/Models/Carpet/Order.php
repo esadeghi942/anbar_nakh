@@ -9,33 +9,21 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $table='roll_orders';
+    protected $table='carpet_orders';
 
-    protected $guarded=['id'];
-
-    public function factor()
-    {
-        return $this->belongsTo(Factor::class,'roll_factor_id');
-    }
-
-    public function weaver()
-    {
-        return $this->belongsTo(Weaver::class,'carpet_weaver_id');
-    }
+    protected $guarded = ['id'];
 
     public function color()
     {
-        return $this->belongsTo(Color::class,'carpet_color_id');
+        return $this->belongsTo(Color::class);
     }
 
-    public function map()
+    public function products()
     {
-        return $this->belongsTo(Map::class,'carpet_map_id');
+        return $this->belongsTo(Product::class);
     }
 
-    public function size()
-    {
-        return $this->belongsTo(Size::class,'carpet_size_id');
-    }
-
+    public static $time_limits = [
+        1,5,7,10,15,20,25,30,40,50,60
+    ];
 }

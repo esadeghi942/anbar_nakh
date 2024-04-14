@@ -4,10 +4,10 @@ namespace App\Http\Controllers\String;
 
 use App\Helpers\Response;
 use App\Http\Controllers\Controller;
-use App\Models\Carpet\Company;
+use App\Models\Company;
 use App\Models\Seller;
 use App\Models\String\Cell;
-use App\Models\Device;
+use App\Models\String\Device;
 use App\Models\Person;
 use App\Models\String\Anbar;
 use App\Models\String\Color;

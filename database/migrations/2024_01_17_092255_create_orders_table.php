@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('roll_factors', function (Blueprint $table) {
+        Schema::create('carpet_factors', function (Blueprint $table) {
             $table->id();
             $table->string('number');
             $table->timestamps();
         });
 
-        Schema::create('roll_orders', function (Blueprint $table) {
+        Schema::create('carpet_orders', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('roll_factor_id')->unsigned();
+            $table->bigInteger('carpet_factor_id')->unsigned();
             $table->string('number');
             $table->string('date');
             $table->bigInteger('carpet_weaver_id')->unsigned()->nullable();
@@ -34,7 +34,7 @@ return new class extends Migration
             $table->integer('number_roll_sleepy_below');
             $table->integer('weight_roll_sleepy_below');
 
-            $table->foreign('roll_factor_id')->references('id')->on('roll_factors')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('carpet_factor_id')->references('id')->on('carpet_factors')->onDelete('cascade')->onUpdate('cascade');
 
             $table->foreign('carpet_weaver_id')->references('id')->on('carpet_weavers')->onDelete('set null')->onUpdate('cascade');
             $table->foreign('carpet_color_id')->references('id')->on('carpet_colors')->onDelete('set null')->onUpdate('cascade');

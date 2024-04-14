@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'role_admin'=> \App\Http\Middleware\AdminRole::class,
         'role_carpet'=> \App\Http\Middleware\CarpetRole::class,
         'role_string'=> \App\Http\Middleware\StringRole::class,
+        'role_roll'=> \App\Http\Middleware\RollRole::class,
     ];
 }
