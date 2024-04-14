@@ -20,9 +20,9 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <form method="post" action="{{route('carpet.size.store')}}">
+                    <form method="post" action="{{route('roll.size.store')}}">
                         @csrf
-                        @include('carpet.size.form')
+                        @include('roll.size.form')
                         <button type="submit" class="btn btn-success mt-3">{{__('panel.save')}}</button>
                     </form>
                 </div>
@@ -53,9 +53,9 @@
                                     <td>{{ $i +1 }}</td>
                                     <td>{{ $size->size1 }}</td>
                                     <td>{{ $size->size2 }}</td>
-                                    <td><a href="{{route('carpet.size.edit',$size)}}" class="btn"><i class="fa fa-edit"></i></a></td>
+                                    <td><a href="{{route('roll.size.edit',$size)}}" class="btn"><i class="fa fa-edit"></i></a></td>
                                     <td>
-                                        <form action="{{ route('carpet.size.destroy',$size->id)}}" method="POST">
+                                        <form action="{{ route('roll.size.destroy',$size->id)}}" method="POST">
                                             @method('DELETE')
                                             @csrf
                                             <button type="submit" class="btn"><i

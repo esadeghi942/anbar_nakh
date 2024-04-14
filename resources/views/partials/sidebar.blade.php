@@ -40,6 +40,19 @@
                             <ul class="sidebar-submenu">
                                 <li><a class="{{ $route == 'company.index' ? 'active' : '' }}"
                                        href="{{route('company.index')}}">{{ __('panel.companies') }}</a></li>
+                                <li><a class="submenu-title" href="#">فرش
+                                        <span class="sub-arrow"><i
+                                                class="fa fa-angle-left"></i></span></a>
+                                    <ul class="nav-sub-childmenu submenu-content">
+                                        <li><a class="{{ $route == 'carpet.map.index' ? 'active' : '' }}"
+                                               href="{{route('carpet.map.index')}}">{{ __('panel.map') }}</a></li>
+                                        <li><a class="{{ $route == 'carpet.device.index' ? 'active' : '' }}"
+                                               href="{{route('carpet.device.index')}}">{{ __('panel.devices') }}</a>
+                                        </li>
+                                        <li><a class="{{ $route == 'customer.index' ? 'active' : '' }}"
+                                               href="{{route('customer.index')}}">{{ __('panel.customers') }}</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
                     @endif
@@ -56,29 +69,15 @@
                                 <li><a class="{{ $route == 'carpet.cell.index' ? 'active' : '' }}"
                                        href="{{route('carpet.cell.index')}}">{{ __('panel.cells') }}</a></li>
 
-                                <li><a class="submenu-title" href="#">اشخاص<span class="sub-arrow"><i
-                                                class="fa fa-angle-left"></i></span></a>
-                                    <ul class="nav-sub-childmenu submenu-content">
-                                        <li><a class="{{ $route == 'customer.index' ? 'active' : '' }}"
-                                               href="{{route('customer.index')}}">{{ __('panel.customers') }}</a></li>
+                                <li><a class="{{ $route == 'weaver.index' ? 'active' : '' }}"
+                                       href="{{route('weaver.index')}}">{{ __('panel.weavers') }}</a></li>
 
-                                        <li><a class="{{ $route == 'weaver.index' ? 'active' : '' }}"
-                                               href="{{route('weaver.index')}}">{{ __('panel.weavers') }}</a></li>
-                                    </ul>
-                                </li>
                                 <li><a class="submenu-title" href="#">فرش
                                         <span class="sub-arrow"><i
                                                 class="fa fa-angle-left"></i></span></a>
                                     <ul class="nav-sub-childmenu submenu-content">
                                         <li><a class="{{ $route == 'carpet.color.index' ? 'active' : '' }}"
                                                href="{{route('carpet.color.index')}}">{{ __('panel.colors') }}</a></li>
-
-                                        <li><a class="{{ $route == 'carpet.size.index' ? 'active' : '' }}"
-                                               href="{{route('carpet.size.index')}}">{{ __('panel.size') }}</a>
-                                        </li>
-
-                                        <li><a class="{{ $route == 'carpet.map.index' ? 'active' : '' }}"
-                                               href="{{route('carpet.map.index')}}">{{ __('panel.map') }}</a></li>
                                     </ul>
                                 </li>
                                 <li><a class="submenu-title" href="#">سفارشات
@@ -86,7 +85,8 @@
                                                 class="fa fa-angle-left"></i></span></a>
                                     <ul class="nav-sub-childmenu submenu-content">
                                         <li><a class="{{ $route == 'carpet.color.index' ? 'active' : '' }}"
-                                               href="{{route('carpet.order.index')}}">{{ __('panel.List_orders') }}</a></li>
+                                               href="{{route('carpet.order.index')}}">{{ __('panel.List_orders') }}</a>
+                                        </li>
 
                                         <li><a class="{{ $route == 'carpet.size.index' ? 'active' : '' }}"
                                                href="{{route('carpet.order.create')}}">{{ __('panel.new_order') }}</a>
@@ -103,24 +103,18 @@
                             </a>
                             <ul class="sidebar-submenu">
 
-                                <li><a class="{{ $route == 'carpet.factor.index' ? 'active' : '' }}"
-                                       href="{{route('carpet.factor.index')}}">{{ __('panel.receipt') }}</a></li>
-
-                                <li><a class="{{ $route == 'carpet.device.index' ? 'active' : '' }}"
-                                       href="{{route('carpet.device.index')}}">{{ __('panel.devices') }}</a></li>
+                                <li><a class="{{ $route == 'roll.factor.index' ? 'active' : '' }}"
+                                       href="{{route('roll.factor.index')}}">{{ __('panel.receipt') }}</a></li>
 
                                 <li><a class="submenu-title" href="#">رول<span class="sub-arrow"><i
                                                 class="fa fa-angle-left"></i></span></a>
                                     <ul class="nav-sub-childmenu submenu-content">
-                                        <li><a class="{{ $route == 'carpet.color.index' ? 'active' : '' }}"
-                                               href="{{route('carpet.color.index')}}">{{ __('panel.colors') }}</a></li>
+                                        <li><a class="{{ $route == 'roll.color.index' ? 'active' : '' }}"
+                                               href="{{route('roll.color.index')}}">{{ __('panel.colors') }}</a></li>
 
-                                        <li><a class="{{ $route == 'carpet.size.index' ? 'active' : '' }}"
-                                               href="{{route('carpet.size.index')}}">{{ __('panel.size') }}</a>
+                                        <li><a class="{{ $route == 'roll.size.index' ? 'active' : '' }}"
+                                               href="{{route('roll.size.index')}}">{{ __('panel.size') }}</a>
                                         </li>
-
-                                        <li><a class="{{ $route == 'carpet.map.index' ? 'active' : '' }}"
-                                               href="{{route('carpet.map.index')}}">{{ __('panel.map') }}</a></li>
                                     </ul>
                                 </li>
                             </ul>

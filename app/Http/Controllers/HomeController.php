@@ -6,6 +6,7 @@ use App\Models\String\Cell;
 use App\Models\String\GroupQrCode;
 use App\Models\String\StringGroup;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -35,12 +36,7 @@ class HomeController extends Controller
 
     public function add_up_cells()
     {
-        /*for ($i = 0; $i < 9; $i++) {
-            foreach (range('A', 'M') as $char) {
-                $nameCellU = 'MU' . $char . sprintf('%02d', $i);
-                Cell::create(['code' => $nameCellU, 'string_anbar_id' => 3]);
-            }
-        }
+        /*
 
         for ($i = 11; $i < 16; $i++) {
             foreach (range('A', 'M') as $char) {
@@ -49,5 +45,10 @@ class HomeController extends Controller
 
             }
         }*/
+    }
+
+    public function migrate()
+    {
+        Artisan::call('migrate');
     }
 }

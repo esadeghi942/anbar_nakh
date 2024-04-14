@@ -101,7 +101,7 @@
                         </div>
 
                         <div style="margin: auto; width: fit-content">
-                            @for($i=11;$i<16;$i++)
+                            @for($i=11;$i<18;$i++)
                                 <div class="pt-4 row">
                                     @foreach(range('A', 'M') as $char)
                                         @php($nameCell='M'.$char.sprintf('%02d', $i))
@@ -136,7 +136,7 @@
                                         @php($cell=\App\Models\String\Cell::where('code',$nameCell)->first())
                                         @php($cellU=\App\Models\String\Cell::where('code',$nameCellU)->first())
                                         <div class="box-holder column">
-                                            <a title="{{isset($cellU) && $cellU->string_group_id ? $cell->lat. $cellU->string_group->title: '' }}"
+                                            <a title="{{isset($cellU) && $cellU->string_group_id ? $cellU->lat. $cellU->string_group->title: '' }}"
                                                class="badge badge-{{ isset($cellU) && $cellU->string_group_id ?  $cellU->string_group->string_material->en_name  : 'empty'}}">
                                                 {{ $nameCellU }}</a>
                                             <a title="{{isset($cell) && $cell->string_group_id ? $cell->lat. $cell->string_group->title: '' }}"
@@ -168,14 +168,14 @@
                     <div class="card-body">
                         <div style="margin: auto; width: fit-content">
                             <div class="pt-4">
-                                @foreach(range('A', 'N') as $char)
+                                @foreach(range('A', 'P') as $char)
                                     <a class="badge badge-primary"> {{$char}} </a>
                                 @endforeach
                             </div>
-                            @for($i=1;$i<8;$i++)
+                            @for($i=1;$i<10;$i++)
                                 <div class="pt-4">
-                                    @foreach(range('A', 'N') as $char)
-                                        @php($nameCell='T'.$char.sprintf('%02d', $i))
+                                    @foreach(range('A', 'P') as $char)
+                                        @php($nameCell='B'.$char.sprintf('%02d', $i))
                                         @php($cell=\App\Models\String\Cell::where('code',$nameCell)->first())
                                         <a title="{{isset($cell) && $cell->string_group_id ? $cell->lat. $cell->string_group->title : '' }}"
                                            class="badge badge-{{ isset($cell) && $cell->string_group_id ?  $cell->string_group->string_material->en_name  : 'empty'}}">
@@ -184,7 +184,7 @@
                                 </div>
                             @endfor
                             <div class="pt-4">
-                                @foreach(range('A', 'N') as $char)
+                                @foreach(range('A', 'P') as $char)
                                     <a class="badge badge-primary"> {{ $char }} </a>
                                 @endforeach
                             </div>
@@ -300,8 +300,18 @@
 
     <script>
         $(document).ready(function () {
-            $('a:contains(MA11),a:contains(MB11),a:contains(MC11),a:contains(MA12),a:contains(MB12),a:contains(MC12),' +
-            'a:contains(MUA11),a:contains(MUB11),a:contains(MUC11),a:contains(MUA12),a:contains(MUB12),a:contains(MUC12)').css('background-color', 'black');
+            $('a:contains(MA11),a:contains(MA12),' +
+                'a:contains(BB07),a:contains(BB08),a:contains(BB09),a:contains(BP01),a:contains(BO01),' +
+                'a:contains(BA07),a:contains(BA08),a:contains(BA09),' +
+                'a:contains(MUA11),a:contains(MUA12)').css('background-color', 'black');
+            var range = alphabetRange("A", "Q");
+            for (var i = 0; i < range.length; i++) {
+                $('a:contains(B'+range[i]+'06)').css('background-color', 'black');
+            }
+
+            function alphabetRange (start, end) {
+                return new Array(end.charCodeAt(0) - start.charCodeAt(0)).fill().map((d, i) => String.fromCharCode(i + start.charCodeAt(0)));
+            }
         });
     </script>
 @endsection

@@ -44,16 +44,15 @@ class StringGroup extends Model
         return $this->belongsTo(Grade::class);
     }
 
-    public function group_qr_codes()
-    {
-        return $this->hasMany(GroupQrCode::class);
-    }
-
     public function string_layer()
     {
         return $this->belongsTo(Layer::class);
     }
 
+    public function group_qr_codes()
+    {
+        return $this->hasMany(GroupQrCode::class);
+    }
 
     public function string_exports()
     {

@@ -1,28 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\Carpet;
+namespace App\Http\Controllers\Roll;
 
 use App\Helpers\Functions;
 use App\Http\Controllers\Controller;
-use App\Models\Carpet\Color;
-use App\Models\Carpet\Company;
+use App\Models\Roll\Color;
+use App\Models\Company;
 use App\Models\Carpet\Device;
-use App\Models\Carpet\Factor;
+use App\Models\Roll\Factor;
 use App\Models\Carpet\Map;
-use App\Models\Carpet\Size;
+use App\Models\Roll\Size;
 use App\Models\Carpet\Weaver;
-use App\Models\Customer;
-use App\Models\Order;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class FactorController extends Controller
 {
     public function index()
     {
-
         $factors = Factor::orderBy('id','Desc')->get();
-        return view('carpet.factor.index', compact('factors'));
+        return view('roll.factor.index', compact('factors'));
     }
 
     /**
@@ -36,7 +32,7 @@ class FactorController extends Controller
         $sizes=Size::all();
         $companies=Company::all();
         $devices=Device::all();
-        return view('carpet.factor.create', compact('weavers', 'colors','maps','sizes','devices','companies'));
+        return view('roll.factor.create', compact('weavers', 'colors','maps','sizes','devices','companies'));
 
     }
 
@@ -45,11 +41,10 @@ class FactorController extends Controller
      */
     public function store(Request $request)
     {
-
         $factor = Factor::create([
             'number' => $request->factor_number,
             'carpet_device_id' => $request->device,
-            'carpet_company_id' => $request->company,
+            'company_id' => $request->company,
         ]);
         //$factor->setNumber();
         if (isset($request->number))
@@ -71,7 +66,7 @@ class FactorController extends Controller
                     $factor->orders()->create($order);
                 }
             }
-        return redirect()->route('carpet.factor.index')->with('success', trans('panel.success create', ['item' => trans('panel.order')]));
+        return redirect()->route('roll.factor.index')->with('success', trans('panel.success create', ['item' => trans('panel.order')]));
     }
 
     /**
@@ -79,7 +74,7 @@ class FactorController extends Controller
      */
     public function show(Factor $factor)
     {
-        return view('carpet.factor.show',compact('factor'));
+        return view('roll.factor.show',compact('factor'));
     }
 
     /**
@@ -136,6 +131,6 @@ class FactorController extends Controller
     public function destroy(Factor $factor)
     {
         $factor->delete();
-        return redirect()->route('carpet.factor.index')->with('success', trans('panel.success delete', ['item' => trans('panel.order')]));
+        return redirect()->route('roll.factor.index')->with('success', trans('panel.success delete', ['item' => trans('panel.order')]));
     }
 }

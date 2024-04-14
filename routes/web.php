@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::get('/migrate', [\App\Http\Controllers\HomeController::class, 'migrate']);
 Route::middleware('auth')->group(function () {
     Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('index');
     Route::get('/add_up_cells', [\App\Http\Controllers\HomeController::class, 'add_up_cells']);
@@ -78,6 +78,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('group_qr_code_search', [App\Http\Controllers\String\GroupQrCodeController::class, 'search'])->name('group_qr_code.search');
         Route::post('group_qr_code/enter_cells', [App\Http\Controllers\String\GroupQrCodeController::class, 'enter_cells'])->name('group_qr_code.enter_cells');
+        Route::post('group_qr_code/edit_string_type', [App\Http\Controllers\String\GroupQrCodeController::class, 'edit_string_type'])->name('group_qr_code.edit_string_type');
 
         Route::get('export_qr_code', [App\Http\Controllers\String\ExportController::class, 'export_multi_qr_codes'])->name('export_multi_qr_codes');
         Route::post('export_qr_code', [App\Http\Controllers\String\ExportController::class, 'export_multi_qr_codes_save'])->name('export_multi_qr_codes.save');
@@ -100,18 +101,18 @@ Route::middleware('auth')->group(function () {
         Route::resource('weaver', App\Http\Controllers\Carpet\WeaverController::class);
 
     });
+    Route::group(['as' => 'roll.', 'prefix' => 'roll/', 'middleware' => 'role_roll'], function () {
+        Route::resource('size', App\Http\Controllers\Roll\SizeController::class);
+        Route::resource('factor', \App\Http\Controllers\Roll\FactorController::class);
+        Route::resource('color', App\Http\Controllers\Roll\ColorController::class);
+    });
     Route::group(['as' => 'carpet.', 'prefix' => 'carpet/', 'middleware' => 'role_carpet'], function () {
-
-
         Route::resource('cell', App\Http\Controllers\Carpet\CellController::class);
         Route::resource('anbar', App\Http\Controllers\Carpet\AnbarController::class);
-        Route::resource('size', App\Http\Controllers\Carpet\SizeController::class);
         Route::resource('map', App\Http\Controllers\Carpet\MapController::class);
         Route::resource('color', App\Http\Controllers\Carpet\ColorController::class);
-        Route::resource('factor', \App\Http\Controllers\Carpet\FactorController::class);
         Route::resource('device', \App\Http\Controllers\Carpet\DeviceControlle::class);
         Route::resource('order', App\Http\Controllers\Carpet\OrderController::class);
-
 
         Route::group(['as' => 'qr_code.', 'prefix' => 'qr_code/'], function () {
             Route::get('one', [\App\Http\Controllers\Carpet\QrCodeController::class, 'one'])->name('one');

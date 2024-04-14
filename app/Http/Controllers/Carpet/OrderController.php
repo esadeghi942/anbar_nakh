@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Carpet;
 
 use App\Http\Controllers\Controller;
 use App\Models\Carpet\Map;
-use App\Models\CarpetProduct;
+use App\Models\Carpet\Product;
 use App\Models\Customer;
-use App\Models\Order;
+use App\Models\Carpet\Order;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -27,7 +27,7 @@ class OrderController extends Controller
         $customers = Customer::all();
         $time_limits = Order::$time_limits;
         $carpet_maps = Map::all();
-        $carpet_features = CarpetProduct::$positions;
+        $carpet_features = Product::$positions;
         return view('carpet.order.create',compact('customers','time_limits','carpet_maps','carpet_features'));
     }
 

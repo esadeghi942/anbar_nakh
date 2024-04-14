@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Models\Carpet;
+namespace App\Models\Roll;
 
+use App\Models\Company;
+use App\Models\String\Device;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,6 +27,6 @@ class Factor extends Model
 
     public function company()
     {
-        return $this->belongsTo(Company::class,'carpet_company_id');
+        return $this->belongsTo(Company::class,'company_id');
     }
 }

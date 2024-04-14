@@ -88,12 +88,15 @@
                                 <th>{{__('panel.seller')}}</th>
                                 <th>{{__('panel.lat')}}</th>
                                 <th>{{__('panel.rest_weight')}}</th>
+                                <th>{{__('panel.rest_count')}}</th>
                             </tr>
                             </thead>
                             <tbody>
                             @php($sum=0)
+                            @php($sumcount=0)
                             @foreach($items as $i => $item)
                                 @php($sum += $item->string_qr_codes()->sum('weight') )
+                                @php($sumcount += $item->string_qr_codes()->sum('count') )
                                 <tr>
                                     <td>{{ $i +1 }}</td>
                                     <td>{{ $item->string_group->title }}</td>
@@ -101,11 +104,13 @@
                                     <td>{{ $item->seller->name }}</td>
                                     <td>{{ $item->lat }}</td>
                                     <td>{{ $item->string_qr_codes()->sum('weight') }}</td>
+                                    <td>{{ $item->string_qr_codes()->sum('count') }}</td>
                                 </tr>
                             @endforeach
                             <tr>
                                 <td colspan="5">جمع</td>
                                 <td>{{ $sum }}</td>
+                                <td>{{ $sumcount }}</td>
                             </tr>
                             </tbody>
                         </table>

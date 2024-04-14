@@ -1,6 +1,5 @@
 @extends('layouts.panel')
 @section('content')
-
     <div class="container-fluid">
         <div class="page-title">
             <div class="row">
@@ -12,50 +11,53 @@
             </div>
         </div>
     </div>
+
     <div class="container-fluid">
         <div class="row starter-main">
             <div class="col-12 col-sm-6">
-                <h3>{{__('panel.orders')}}</h3>
+                <h3>{{__('panel.create item',[ 'item'=>__('panel.color') ])}}</h3>
             </div>
             <div class="card">
                 <div class="card-body">
-                    <a href="{{route('carpet.factor.create')}}"
-                       class="btn btn-success float-left mb-3">{{__('panel.create item',[ 'item'=>__('panel.order') ])}}</a>
+                    <form method="post" action="{{route('roll.color.store')}}">
+                        @csrf
+                        @include('carpet.BaseForm')
+                        <button type="submit" class="btn btn-success mt-3">{{__('panel.save')}}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row starter-main">
+            <div class="col-12 col-sm-6">
+                <h3>{{__('panel.colors')}}</h3>
+            </div>
+            <div class="card">
+                <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-hover">
+                        <table class="table table-bordered">
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th>{{__('panel.number')}}</th>
-                                <th>{{__('panel.count orders')}}</th>
-                                <th>{{__('panel.date registered')}}</th>
-{{--
+                                <th>{{__('panel.color')}}</th>
                                 <th scope="col">{{__('panel.edit')}}</th>
---}}
                                 <th scope="col">{{__('panel.delete')}}</th>
-                                <th>{{__('panel.show')}}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($factors as $i => $factor)
+                            @foreach($colors as $i => $color)
                                 <tr>
                                     <td>{{ $i +1 }}</td>
-                                    <td> {{ $factor->number }}</td>
-                                    <td>{{ $factor->orders()->count() }}</td>
-                                    <td>{{ jdate($factor->created_at)->format('Y/m/d') }}</td>
-                               {{--     <td><a href="{{route('carpet.factor.edit',$factor)}}" class="btn"><i
-                                                class="fa fa-edit"></i></a></td>
-                                                --}}
+                                    <td>{{ $color->name }}</td>
+                                    <td><a href="{{route('roll.color.edit',$color)}}" class="btn"><i class="fa fa-edit"></i></a></td>
                                     <td>
-                                        <form action="{{ route('carpet.factor.destroy',$factor->id)}}" method="POST">
+                                        <form action="{{ route('roll.color.destroy',$color->id)}}" method="POST">
                                             @method('DELETE')
                                             @csrf
                                             <button type="submit" class="btn"><i
                                                     class="fa fa-trash"></i></button>
                                         </form>
-                                    </td>
-                                    <td><a href="{{route('carpet.factor.show',$factor)}}" target="_blank">نمایش</a></td>
-
                                 </tr>
                             @endforeach
                             </tbody>

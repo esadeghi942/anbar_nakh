@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Carpet;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CarpetProduct extends Model
+class Product extends Model
 {
     use HasFactory;
+
+    protected $table='carpet_products';
 
     public static $positions = [
         0   =>  'ندارد',

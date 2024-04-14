@@ -4,7 +4,7 @@ namespace App\Http\Controllers\String;
 
 use App\Helpers\Response;
 use App\Http\Controllers\Controller;
-use App\Models\Device;
+use App\Models\String\Device;
 use App\Models\Person;
 use App\Models\String\Anbar;
 use App\Models\String\Cell;
@@ -92,7 +92,7 @@ class QrCodeController extends Controller
         $qrCode->update(['weight' => $request->weight]);
         return Response::success();
     }
-
+//enter wigth enters
     public function enter_cells(Request $request)
     {
         $qrCode = QrCode::find($request->id);

@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers\Carpet;
 
-use App\Helpers\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Carpet\CarpetMapRequest;
-use App\Http\Requests\PersonRequest;
 use App\Models\Carpet\Map;
-use App\Models\Person;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
 class MapController extends Controller
@@ -73,7 +69,7 @@ class MapController extends Controller
         if ($request->hasFile('image')) {
             $imagePath = public_path('images/uploads/'.$map->image);
             if (File::exists($imagePath)) {
-                unlink($imagePath);
+                @unlink($imagePath);
             }
         }
 

@@ -4,8 +4,8 @@ namespace App\Http\Controllers\String;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StringCellRequest;
-use App\Models\Carpet\Company;
-use App\Models\Device;
+use App\Models\Company;
+use App\Models\String\Device;
 use App\Models\Person;
 use App\Models\String\Anbar;
 use App\Models\String\Cell;
