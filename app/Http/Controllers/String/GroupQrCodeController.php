@@ -216,7 +216,7 @@ class GroupQrCodeController extends Controller
         }
         $groupQrCode->update([
             'string_group_id' => $string_group->id,
-            'seller_id' => $request->seller,
+            'seller_id' => $request->seller_id,
             'lat' => $request->lat,
             'count' => $request->count,
             'type' => $request->type

@@ -228,7 +228,7 @@
                                 <label for="day">{{__('panel.seller')}}
                                     <span class="required">*</span>
                                 </label>
-                                <select name="seller" class="form-control form-select">
+                                <select name="seller_id" class="form-control form-select select2">
                                     @foreach(\App\Models\Seller::all() as $seller)
                                         <option value="{{$seller->id}}">{{ $seller->name}}</option>
                                     @endforeach

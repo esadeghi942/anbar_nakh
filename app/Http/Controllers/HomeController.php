@@ -51,4 +51,9 @@ class HomeController extends Controller
     {
         Artisan::call('migrate');
     }
+
+    public function seed($path)
+    {
+        Artisan::call('db:seed --class='.$path);
+    }
 }

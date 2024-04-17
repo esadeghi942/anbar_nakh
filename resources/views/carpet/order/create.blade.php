@@ -33,8 +33,8 @@
                         </div>
                         <div class="card-body">
                             <div class="mb-3">
-                                <label class="form-label" for="exampleFormControlSelect17">نام مشتری</label>
-                                <select class="form-select input-air-primary digits" id="exampleFormControlSelect17"
+                                <label class="form-label" for="customer">نام مشتری</label>
+                                <select class="form-select select2" id="customer"
                                         name="customer_id">
                                     @foreach($customers as $customer)
                                         <option value="{{ $customer->id }}">{{ $customer->name }}
@@ -52,9 +52,10 @@
                         </div>
                         <div class="card-body">
                             <div class="mb-3">
-                                <label class="form-label" for="exampleFormControlSelect17">کد نقشه و رنگ</label>
-                                <select class="form-select input-air-primary digits" id="exampleFormControlSelect17"
+                                <label class="form-label" for="map">کد نقشه و رنگ</label>
+                                <select class="form-select select2" id="map"
                                         name="carpet_map_id">
+                                    <option></option>
                                     @foreach($carpet_maps as $carpet_map)
                                         <option value="{{ $carpet_map->id }}">{{ $carpet_map->name }}</option>
                                     @endforeach
@@ -70,8 +71,8 @@
                         </div>
                         <div class="card-body">
                             <div class="mb-3">
-                                <label class="form-label" for="exampleFormControlSelect17">زمان تحویل به روز</label>
-                                <select class="form-select input-air-primary digits" id="exampleFormControlSelect17"
+                                <label class="form-label" for="delivery">زمان تحویل به روز</label>
+                                <select class="form-select select2" id="delivery"
                                         name="time_limit">
                                     @foreach($time_limits as $time_limit)
                                         <option value="{{ $time_limit }}">{{ $time_limit }}</option>
@@ -198,7 +199,9 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-center mt-3">
-                        <input class="btn-save btn btn-success" id="save-shift" type="submit" style="padding:15px;margin:20px;min-width: 50%" value=" ثـبت نهـایی" data-bs-original-title="" title="">
+                        <input class="btn-save btn btn-success" id="save-shift" type="submit"
+                               style="padding:15px;margin:20px;min-width: 50%" value=" ثـبت نهـایی"
+                               data-bs-original-title="" title="">
                     </div>
                 </div>
             </div>
@@ -213,6 +216,10 @@
 
             $(document).on('click', '#InsertOrder', function () {
                 $('#inputsRow').append(inputsRow);
+            });
+
+            $(document).on('change', '#map', function () {
+                $()
             });
 
             $(document).on('change', '.shapeSelect', function () {

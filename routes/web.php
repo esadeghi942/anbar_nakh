@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/migrate', [\App\Http\Controllers\HomeController::class, 'migrate']);
+Route::get('/seed/{path}', [\App\Http\Controllers\HomeController::class, 'seed']);
 Route::middleware('auth')->group(function () {
     Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('index');
     Route::get('/add_up_cells', [\App\Http\Controllers\HomeController::class, 'add_up_cells']);

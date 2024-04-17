@@ -59,6 +59,23 @@
                     @if(auth()->user()->role == 'admin' || auth()->user()->role == 'carpet')
                         <li class="sidebar-list">
                             <a class="sidebar-link sidebar-title" href="#">
+                                <i class="fa fa-files-o"></i><span class="">سفارشات</span>
+                                <div class="according-menu"></div>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li><a class="{{ $route == 'carpet.color.index' ? 'active' : '' }}"
+                                       href="{{route('carpet.order.index')}}">{{ __('panel.List_orders') }}</a>
+                                </li>
+
+                                <li><a class="{{ $route == 'carpet.size.index' ? 'active' : '' }}"
+                                       href="{{route('carpet.order.create')}}">{{ __('panel.new_order') }}</a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title" href="#">
                                 <i class="fa fa-puzzle-piece"></i><span class="">مرکز تنظیم ساختار انبار فرش</span>
                                 <div class="according-menu"></div>
                             </a>
@@ -78,20 +95,6 @@
                                     <ul class="nav-sub-childmenu submenu-content">
                                         <li><a class="{{ $route == 'carpet.color.index' ? 'active' : '' }}"
                                                href="{{route('carpet.color.index')}}">{{ __('panel.colors') }}</a></li>
-                                    </ul>
-                                </li>
-                                <li><a class="submenu-title" href="#">سفارشات
-                                        <span class="sub-arrow"><i
-                                                class="fa fa-angle-left"></i></span></a>
-                                    <ul class="nav-sub-childmenu submenu-content">
-                                        <li><a class="{{ $route == 'carpet.color.index' ? 'active' : '' }}"
-                                               href="{{route('carpet.order.index')}}">{{ __('panel.List_orders') }}</a>
-                                        </li>
-
-                                        <li><a class="{{ $route == 'carpet.size.index' ? 'active' : '' }}"
-                                               href="{{route('carpet.order.create')}}">{{ __('panel.new_order') }}</a>
-                                        </li>
-
                                     </ul>
                                 </li>
                             </ul>
