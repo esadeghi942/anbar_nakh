@@ -3,8 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Carpet\Map;
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -22,10 +20,11 @@ class add_customers_maps_table extends Seeder
         }catch (\Exception $e){
             echo $e->getMessage();
         }
+        // excract sql/Maps.zip in stoarge/app/public folder and after run this query
         $files = Storage::disk('public')->files('maps');
-        foreach ($files as $file){
-            $name=trim($file,'maps/');
-            Map::create(['name'=>$name,'image'=>$name]);
+        foreach ($files as  $file) {
+            $ss = str_replace('maps/','',$file);
+            Map::create(['name' => $ss, 'image' => $ss]);
         }
     }
 }

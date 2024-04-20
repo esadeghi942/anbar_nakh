@@ -23,7 +23,9 @@ class Map extends Model
 
     public function getImagePathAttribute()
     {
-        return asset('storage/'.Map::CARPET_MAP_PATH).'/'.$this->image;
+        return asset(env('BASE_STORAGE_PATH').'storage/'.Map::CARPET_MAP_PATH).'/'.$this->image;
+       // return asset('storage/'.Map::CARPET_MAP_PATH).'/'.$this->image;
+
     }
 
 }

@@ -57,9 +57,12 @@
                                         name="carpet_map_id" required>
                                     <option></option>
                                     @foreach($carpet_maps as $carpet_map)
-                                        <option value="{{ $carpet_map->id }}">{{ $carpet_map->name }}</option>
+                                        <option data-path="{{ $carpet_map->image_path }}" value="{{ $carpet_map->id }}">{{ $carpet_map->name }}</option>
                                     @endforeach
                                 </select>
+                            </div>
+                            <div id="map_prev">
+                                <img src="" width="40px" height="50px">
                             </div>
                         </div>
                     </div>
@@ -220,7 +223,9 @@
             });
 
             $(document).on('change', '#map', function () {
-                $()
+                var optionSelected = $("option:selected", this);
+                var path = optionSelected.attr('data-path');
+                $('#map_prev img').attr('src',path);
             });
 
             $(document).on('change', '.shapeSelect', function () {

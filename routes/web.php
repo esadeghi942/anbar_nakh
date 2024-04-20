@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/migrate', [\App\Http\Controllers\HomeController::class, 'migrate']);
 Route::get('/seed/{path}', [\App\Http\Controllers\HomeController::class, 'seed']);
+Route::get('/create-symlink', function () {
+    Artisan::call('storage:link');
+    //exec('composer dump-autoload');
+});
 Route::middleware('auth')->group(function () {
     Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('index');
     Route::get('/add_up_cells', [\App\Http\Controllers\HomeController::class, 'add_up_cells']);
@@ -111,6 +116,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('cell', App\Http\Controllers\Carpet\CellController::class);
         Route::resource('anbar', App\Http\Controllers\Carpet\AnbarController::class);
         Route::resource('map', App\Http\Controllers\Carpet\MapController::class);
+        Route::get('map/{id}/get_path', [\App\Http\Controllers\Carpet\MapController::class, 'get_path'])->name('get_path');
+
         Route::resource('color', App\Http\Controllers\Carpet\ColorController::class);
         Route::resource('device', \App\Http\Controllers\Carpet\DeviceControlle::class);
         Route::resource('order', App\Http\Controllers\Carpet\OrderController::class);

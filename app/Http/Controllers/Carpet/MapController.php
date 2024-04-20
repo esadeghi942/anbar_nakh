@@ -74,8 +74,6 @@ class MapController extends Controller
             }
         }
         $image = $request->file('image');
-        //$image->move(public_path('images/uploads'), $fileName);
-
         $fileName=Storage::putFile('public/maps', $image);
         $data["image"] = trim($fileName,'public/maps/');
 
@@ -88,7 +86,6 @@ class MapController extends Controller
      */
     public function destroy(Map $map)
     {
-       // $imagePath = public_path('images/uploads/'.$map->image);
         $imagePath = storage_path('app/public/maps/'.$map->image);
         if (File::exists($imagePath)) {
             unlink($imagePath);
@@ -96,4 +93,6 @@ class MapController extends Controller
         $map->delete();
         return redirect()->route('carpet.map.index')->with('success', trans('panel.success delete', ['item' => trans('panel.map')]));
     }
+
+
 }
