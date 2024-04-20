@@ -54,7 +54,7 @@
                             <div class="mb-3">
                                 <label class="form-label" for="map">کد نقشه و رنگ</label>
                                 <select class="form-select select2" id="map"
-                                        name="carpet_map_id">
+                                        name="carpet_map_id" required>
                                     <option></option>
                                     @foreach($carpet_maps as $carpet_map)
                                         <option value="{{ $carpet_map->id }}">{{ $carpet_map->name }}</option>
@@ -67,7 +67,7 @@
                 <div class="col-sm-12 col-md-6 col-xl-4">
                     <div class="card card-absolute">
                         <div class="card-header bg-warning">
-                            <h5 class="text-white">محدوده زمانی</h5>
+                            <h5 class="text-white">{{ __('panel.delivery') }}</h5>
                         </div>
                         <div class="card-body">
                             <div class="mb-3">
@@ -114,19 +114,13 @@
                             <h5 class="text-white">سایز متعارف محصول</h5>
                         </div>
                         <div class="card-body">
-                            <div class="row mb-3" id="buttonRow">
-                                <div class="col-md-2">
-                                    <button id="InsertOrder" class="btn btn-info-gradien" type="button"
-                                            data-bs-original-title="" title="" data-original-title="">افزودن
-                                    </button>
-                                </div>
-                            </div>
+
                             <div id="inputsRow">
                                 <div class="item row">
                                     <div class="col-md-2 m-2">
                                         <label class="form-label" for="shapeSelect">شکل</label>
                                         <select name="shape[]" class="form-select shapeSelect"
-                                                required="">
+                                                required="" autocomplete="off">
                                             <option value="مستطیل" class="rectangle" data-count-size="2">مستطیل</option>
                                             <option value="مربع" class="square" data-count-size="1">مربع</option>
                                             <option value="دایره" class="circle" data-count-size="1">دایره</option>
@@ -155,7 +149,7 @@
                                             <option value="2.5*3.5" data-size1="2.5" data-size2="3.5"
                                                     data-count-size="2">2.5*3.5
                                             </option>
-                                            <option value="3*4" data-size1="4" data-size2="4" data-count-size="2">3*4
+                                            <option value="3*4" data-size1="3" data-size2="4" data-count-size="2">3*4
                                             </option>
                                             <option value="1" data-size1="1" data-size2="" data-count-size="1">1
                                             </option>
@@ -194,6 +188,13 @@
                                             data-bs-original-title="" title=""
                                             data-original-title="btn btn-danger btn-xs"><i
                                             class="fa fa-trash"></i></button>
+                                </div>
+                            </div>
+                            <div class="row mb-3" id="buttonRow">
+                                <div class="col-md-2">
+                                    <button id="InsertOrder" class="btn btn-info-gradien" type="button"
+                                            data-bs-original-title="" title="" data-original-title="">افزودن
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -238,11 +239,15 @@
                 var shapeSelect = $(this).closest('.item').find('.shapeSelect');
                 var optionSelected = $("option:selected", shapeSelect);
                 var datacountsize = optionSelected.attr('data-count-size');
+                $(this).closest('.item').find('.size1 input').val('');
+                $(this).closest('.item').find('.size2 input').val('');
+
                 if (val == 0) {
                     $(this).closest('.item').find('.size1').show();
                     if (datacountsize == 2)
                         $(this).closest('.item').find('.size2').show();
-                } else {
+                }
+                else {
                     var sizeSelect = $(this).closest('.item').find('.sizeSelect');
                     var optionSizeSelected = $("option:selected", sizeSelect);
                     var size1 = optionSizeSelected.attr('data-size1');

@@ -26,7 +26,7 @@
                             @csrf
                             @method('put')
                             @include('carpet.BaseForm')
-                            <div class="row my-2" style="display: flex;justify-content: space-between">
+                            <div class="row my-2">
                                 <div class="form-group col-6 col-sm-6 col-md-4">
                                     <label class="control-label" for="day">{{__('panel.image_map')}}
                                         <span class="required">*</span>
@@ -34,7 +34,7 @@
                                     <input value="" type="file" id="imageInput" name="image" autocomplete="off" class="form-control">
                                 </div>
                                 <div class="form-group col-6 col-sm-6 col-md-4">
-                                    <img id="imagePreview" src="{{ asset('images/uploads/' . $data->image) }}" width="400px" height="400px">
+                                    <img id="imagePreview" src="{{  $data->image_path }}">
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-success mt-3">{{__('panel.save')}}</button>

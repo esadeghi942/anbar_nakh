@@ -11,14 +11,10 @@ class Product extends Model
 
     protected $table='carpet_products';
 
-    public static $positions = [
-        0   =>  'ندارد',
-        1   =>  'BR(باریشه)',
-        2   =>  'WR(بدون ریشه)',
-        3   =>  'GM(مارک طلایی)',
-        4   =>  'MM(مارک معمولی)',
-        5   =>  'LC(لب چسب)',
-        6   =>  'ZP(زیگ زاگ پنبه)',
-        7   => 'ZM(زیگ زاگ معمولی)'
-    ];
+    protected  $guarded=['id'];
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class,'carpet_order_id');
+    }
 }

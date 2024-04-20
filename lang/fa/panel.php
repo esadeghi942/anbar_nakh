@@ -138,5 +138,8 @@ return [
     'new_order'=>'سفارش جدید',
     'file_name'=>'نام فایل',
     'image_map'=>'عکس نقشه',
-    'edit string type'=>'تغییر جنس نخ'
+    'edit string type'=>'تغییر جنس نخ',
+    'delivery'=>'محدوده زمانی',
+    'products'=>'محصولات',
+    'user'=>'کاربر'
 ];

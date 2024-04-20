@@ -18,7 +18,7 @@ class add_customers_maps_table extends Seeder
     public function run(): void
     {
         try {
-           // DB::unprepared(file_get_contents(storage_path('sql/customers.sql')));
+            DB::unprepared(file_get_contents(storage_path('sql/customers.sql')));
         }catch (\Exception $e){
             echo $e->getMessage();
         }
@@ -27,7 +27,5 @@ class add_customers_maps_table extends Seeder
             $name=trim($file,'maps/');
             Map::create(['name'=>$name,'image'=>$name]);
         }
-
-        User::crea
     }
 }

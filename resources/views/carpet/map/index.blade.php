@@ -61,7 +61,7 @@
                                 <tr>
                                     <td>{{ $i +1 }}</td>
                                     <td>{{ $map->name }}</td>
-                                    <td><img src="{{ asset('images/uploads/' . $map->image) }}" style="width: 100px" height="100px"></td>
+                                    <td><img src="{{ $map->image_path }}" style="width: 100px" height="100px"></td>
                                     <td><a href="{{route('carpet.map.edit',$map)}}" class="btn"><i class="fa fa-edit"></i></a></td>
                                     <td>
                                         <form action="{{ route('carpet.map.destroy',$map->id)}}" method="POST">
@@ -75,6 +75,11 @@
                             </tbody>
                         </table>
                     </div>
+                    @if ($maps->links()->paginator->hasPages())
+                        <div class="mt-4 p-4 box has-text-centered">
+                            {{ $maps->links() }}
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

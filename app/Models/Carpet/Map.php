@@ -12,7 +12,7 @@ class Map extends Model
 
     protected $table = 'carpet_maps';
 
-    const CARPET_MAP_PATH = '/images/map/';
+    const CARPET_MAP_PATH = 'maps';
 
     protected $fillable = ['name', 'image'];
 
@@ -21,9 +21,9 @@ class Map extends Model
         return $this->hasMany(Order::class, 'carpet_map_id');
     }
 
-    static function CarpetMapImagePath($filename)
+    public function getImagePathAttribute()
     {
-        return public_path('images\uploads\\' . $filename);
+        return asset('storage/'.Map::CARPET_MAP_PATH).'/'.$this->image;
     }
 
 }

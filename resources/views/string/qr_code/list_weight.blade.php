@@ -170,7 +170,7 @@
                                 <label for="day">{{__('panel.color')}}
                                     <span class="required">*</span>
                                 </label>
-                                <select name="string_color_id" class="form-control form-select">
+                                <select name="string_color_id" class="form-control form-select select2">
                                     @foreach(\App\Models\String\Color::all() as $color)
                                         <option value="{{$color->id}}">{{ $color->name}}</option>
                                     @endforeach
@@ -181,7 +181,7 @@
                                 <label for="day">{{__('panel.grade')}}
                                     <span class="required">*</span>
                                 </label>
-                                <select name="string_grade_id" class="form-control form-select">
+                                <select name="string_grade_id" class="form-control form-select select2">
                                     @foreach(\App\Models\String\Grade::all() as $grade)
                                         <option value="{{$grade->id}}">{{ $grade->value}}</option>
                                     @endforeach
@@ -192,7 +192,7 @@
                                 <label for="day">{{__('panel.layer')}}
                                     <span class="required">*</span>
                                 </label>
-                                <select name="string_layer_id" class="form-control form-select">
+                                <select name="string_layer_id" class="form-control form-select select2">
                                     @foreach(\App\Models\String\Layer::all() as $layer)
                                         <option value="{{$layer->id}}">{{ $layer->value}}</option>
                                     @endforeach
@@ -441,6 +441,7 @@
                 let name = select[i].getAttribute('name');
                 $(select[i]).find("option[value='" + data[name] + "']").prop('selected', true);
                 $(select[i]).find("option[value='" + data['string_group'][name] + "']").prop('selected', true);
+                $(select[i]).select2();
             }
             var textarea = form.find('textarea');
             for (let i = 0; i < textarea.length; i++) {

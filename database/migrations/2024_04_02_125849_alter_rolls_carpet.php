@@ -92,7 +92,7 @@ return new class extends Migration {
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('carpet_map_id')->references('id')->on('carpet_maps')->onDelete('cascade');
             $table->string('time_limit', 20);
-            $table->json('carpet_product_feature');
+            $table->text('carpet_product_feature');
             $table->timestamps();
         });
 
@@ -102,8 +102,8 @@ return new class extends Migration {
             $table->foreign('carpet_order_id')->references('id')->on('carpet_orders')->onDelete('cascade');
             $table->string('shape', 20);
             $table->integer('row');
-            $table->integer('size1')->nullable();
-            $table->integer('size2')->nullable();
+            $table->float('size1')->nullable();
+            $table->float('size2')->nullable();
             $table->integer('count')->default(0);
             $table->float('area')->nullable();
             $table->timestamps();
