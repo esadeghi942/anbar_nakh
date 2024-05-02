@@ -10,9 +10,9 @@ class Map extends Model
 {
     use HasFactory;
 
-    protected $table = 'carpet_maps';
+    protected $table = 'test_maps';
 
-    const CARPET_MAP_PATH = 'maps';
+    const CARPET_MAP_PATH = 'test_maps';
 
     protected $fillable = ['name', 'image'];
 

@@ -201,15 +201,16 @@ class GroupQrCodeController extends Controller
     {
         $groupQrCode = GroupQrCode::find($request->id);
         $string_group = StringGroup::find_or_create($request->string_color_id, $request->string_material_id, $request->string_grade_id, $request->string_layer_id);
+        $qr_code = $groupQrCode->string_qr_codes()->first();
+
         if ($groupQrCode->string_group_id != $string_group->id) {
 
-            $qr_code = $groupQrCode->string_qr_codes()->first();
             $cells = $qr_code->string_cells()->get()->pluck('id')->toArray();
 
             $other_enter_exist = QrCodeCell::whereIn('string_cell_id', $cells)->where('string_qr_code_id', '!=', $qr_code->id)->get();
             foreach ($other_enter_exist as $qr_code_cell) {
                 if ($qr_code_cell->string_qr_code->string_group_qr_code->string_group_id !== $string_group->id)
-                    return  Response::error(' سلول '.$qr_code_cell->string_cell->code .'حاوی متریال متفاوتی است امکان ویرایش کردن به متریال این سلول وجود ندارد.');
+                    return Response::error(' سلول ' . $qr_code_cell->string_cell->code . 'حاوی متریال متفاوتی است امکان ویرایش کردن به متریال این سلول وجود ندارد.');
             }
             $qr_code->string_cells()->update(['string_group_id' => $string_group->id]);
             $groupQrCode->string_exports()->update(['string_group_id' => $string_group->id]);
@@ -221,7 +222,9 @@ class GroupQrCodeController extends Controller
             'count' => $request->count,
             'type' => $request->type
         ]);
-        return  Response::success();
+        $exports_count = $groupQrCode->string_exports()->sum('count');
+        $qr_code->update(['count' => $request->count - $exports_count]);
+        return Response::success();
 
     }
 

@@ -9,6 +9,8 @@ class Customer extends Model
 {
     use HasFactory;
 
+    protected $table = 'test_customers';
+
     protected $guarded=['id'];
 
     public function qrCodes()

@@ -82,7 +82,7 @@ class ReportController extends Controller
         }
         $title = implode(',', $title);
         //dd($query->groupBy('string_groups.id')->selectRaw('string_groups.*,sum(string_qr_codes.weight) as total_weight')->get());
-        $items = $query->groupBy('string_group_qr_codes.id')->selectRaw('string_group_qr_codes.*')->get();
+        $items = $query->groupBy('string_group_qr_codes.id')->selectRaw('distinct string_group_qr_codes.*')->get();
         $devices = Device::all();
         $persons = Person::all();
         return view('string.report.search', compact('items', 'title', 'devices', 'persons'));
